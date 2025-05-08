@@ -1,0 +1,766 @@
+[gd_scene load_steps=35 format=3 uid="uid://b5glthd6cd62o"]
+
+[ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_28flt"]
+[ext_resource type="Script" uid="uid://c1bl2jwil1ci1" path="res://Scenes/main_menu.gd" id="1_jr6u5"]
+[ext_resource type="Texture2D" uid="uid://3y7ovosrcw16" path="res://Assets/Icons/notification_icon.png" id="2_48xlc"]
+[ext_resource type="Texture2D" uid="uid://ycs1aqty0rk5" path="res://Assets/Icons/home_icon.png" id="3_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://b335mnrvwmerx" path="res://Assets/Icons/scan_icon.png" id="3_6m47u"]
+[ext_resource type="Texture2D" uid="uid://l4sli2slmsv8" path="res://Assets/Icons/community_icon.png" id="3_m3bi6"]
+[ext_resource type="Texture2D" uid="uid://csuxsvr63wy7i" path="res://Assets/Icons/scan_history_icon.png" id="3_mkpwh"]
+[ext_resource type="Texture2D" uid="uid://cagu05f46l0nf" path="res://Assets/Icons/home_icon2.png" id="3_n45e2"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="4_ce3w2"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="4_ehtkc"]
+[ext_resource type="Texture2D" uid="uid://nnnqpxm5he08" path="res://Assets/ButtonTexture/buton_big_main.png" id="4_m3bi6"]
+[ext_resource type="Texture2D" uid="uid://big6p7ra6oaj7" path="res://Assets/Icons/growth_insight_icon.png" id="5_4nkqq"]
+[ext_resource type="Texture2D" uid="uid://15iockg1pkr" path="res://Assets/Icons/faq_icon.png" id="5_wyh8j"]
+[ext_resource type="Texture2D" uid="uid://dhhxavytbdu4e" path="res://Assets/Icons/farm_icon.png" id="6_opfnp"]
+[ext_resource type="Texture2D" uid="uid://c4y6bs2uj68x" path="res://Assets/Icons/voucher_icon.png" id="6_ujyyl"]
+[ext_resource type="Texture2D" uid="uid://c1m1lw5lap48n" path="res://Assets/Icons/farm_icon2.png" id="7_5egv6"]
+[ext_resource type="Texture2D" uid="uid://cydv2vwckkgp6" path="res://Assets/Icons/reports_icon.png" id="8_vtepg"]
+[ext_resource type="Texture2D" uid="uid://wslq4mrexe5j" path="res://Assets/Icons/reports_icon2.png" id="9_8dnnj"]
+[ext_resource type="Texture2D" uid="uid://nxiay7gotfuv" path="res://Assets/Icons/weather_icon.png" id="10_m3bi6"]
+[ext_resource type="Texture2D" uid="uid://b1p6c2n6kvii2" path="res://Assets/Icons/staking.png" id="10_ne6ao"]
+[ext_resource type="Texture2D" uid="uid://bhkfsils7x3s7" path="res://Assets/Icons/weather_icon2.png" id="11_wyh8j"]
+[ext_resource type="Texture2D" uid="uid://cdh0gqv0ishyy" path="res://Assets/Icons/settings_icon.png" id="12_ujyyl"]
+[ext_resource type="Texture2D" uid="uid://bu8cqbtfotibl" path="res://Assets/Icons/settings_icon2.png" id="13_mkpwh"]
+[ext_resource type="PackedScene" uid="uid://b2vyd7c6e4xsn" path="res://Scenes/scan_history_container.tscn" id="14_5n0dv"]
+[ext_resource type="PackedScene" uid="uid://bb8mpk4bvv70u" path="res://Scenes/staking_container.tscn" id="15_tt8ml"]
+[ext_resource type="PackedScene" uid="uid://bsuv0xtq1n0bh" path="res://Popups/soil_meter_values_modal.tscn" id="24_6m47u"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="25_84iac"]
+[ext_resource type="PackedScene" uid="uid://cejjsv7igqif6" path="res://Popups/scan_entry_details.tscn" id="27_ne6ao"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+bg_color = Color(0.778153, 0.778047, 0.745007, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyh8j"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.054902)
+shadow_size = 4
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m47u"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+
+[sub_resource type="Animation" id="Animation_5n0dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(375, -94)]
+}
+
+[sub_resource type="Animation" id="Animation_84iac"]
+resource_name = "error_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(104, -92), Vector2(104, 13), Vector2(104, 13), Vector2(104, -92)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6ao"]
+_data = {
+&"RESET": SubResource("Animation_5n0dv"),
+&"error_animation": SubResource("Animation_84iac")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jr6u5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n45e2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 513)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 26.0
+offset_right = -18.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_28flt")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -9.5
+offset_right = 159.0
+offset_bottom = 16.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_ehtkc")
+theme_override_font_sizes/font_size = 22
+text = "DECENTRAGRI"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ScanButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("3_6m47u")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NotificationButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("2_48xlc")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="WindowsContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MainContainer" type="VBoxContainer" parent="VBoxContainer/WindowsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 770)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="Panel" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/Panel"]
+self_modulate = Color(0.662452, 0.662452, 0.662452, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_m3bi6")
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/Panel/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 149.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ehtkc")
+theme_override_font_sizes/font_size = 28
+text = "Overall farm condition: 
+Very good!"
+
+[node name="GreetingsLabel" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/Panel/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 21.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ehtkc")
+theme_override_font_sizes/font_size = 20
+text = "Hello Mary Ann!
+It's a wonderful day!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MainContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Panel" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -55.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mkpwh")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -34.0
+offset_right = 42.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 15
+text = "Scan History
+& Reports"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScanHistoryButton" type="TextureButton" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4nkqq")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -34.0
+offset_right = 42.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 15
+text = "Growth Insights"
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel3"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_ne6ao")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -34.0
+offset_right = 42.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 15
+text = "Staking & Rewards"
+horizontal_alignment = 1
+
+[node name="StakingButton" type="TextureButton" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MainContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Panel" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2/Panel"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -43.0
+offset_right = 37.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_m3bi6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -34.0
+offset_right = 42.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 15
+text = "Community"
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2/Panel2"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -43.0
+offset_right = 37.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_wyh8j")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.5
+offset_top = -43.0
+offset_right = 66.5
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 15
+text = "Frequently Asked
+Questions"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyh8j")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2/Panel3"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -43.0
+offset_right = 37.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ujyyl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer2/Panel3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -34.0
+offset_right = 42.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 15
+text = "Vouchers"
+
+[node name="ScanHistoryContainer" parent="VBoxContainer/WindowsContainer" instance=ExtResource("14_5n0dv")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="StakingContainer" parent="VBoxContainer/WindowsContainer" instance=ExtResource("15_tt8ml")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -252.0
+offset_top = -66.0
+offset_right = 248.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MainContainer" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("3_n45e2")
+texture_pressed = ExtResource("3_1ehe0")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/MainContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 11
+text = "Home"
+
+[node name="MyFarmButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("6_opfnp")
+texture_pressed = ExtResource("7_5egv6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/MyFarmButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 11
+text = "My Farm"
+
+[node name="ReportsButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("8_vtepg")
+texture_pressed = ExtResource("9_8dnnj")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/ReportsButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 11
+text = "Reports"
+
+[node name="WeatherButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("10_m3bi6")
+texture_pressed = ExtResource("11_wyh8j")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/WeatherButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 11
+text = "Weather"
+
+[node name="SettingsButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("12_ujyyl")
+texture_pressed = ExtResource("13_mkpwh")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/SettingsButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 11
+text = "Settings"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MessageBox" type="Panel" parent="."]
+z_index = 9
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 105.0
+offset_top = -94.0
+offset_right = 437.0
+offset_bottom = -5.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6m47u")
+
+[node name="ErrorLabel" type="Label" parent="MessageBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ne6ao")
+}
+
+[node name="SoilMeterValuesModal" parent="." instance=ExtResource("24_6m47u")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.148148
+anchor_top = -0.00104167
+anchor_right = 0.5
+anchor_bottom = 0.498958
+offset_right = 350.0
+offset_bottom = 480.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScanEntryDetails" parent="." instance=ExtResource("27_ne6ao")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/ScanButton" to="." method="_on_scan_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel/ScanHistoryButton" to="." method="_on_scan_history_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel3/StakingButton" to="." method="_on_staking_button_pressed"]
+[connection signal="scan_entry_details_button_pressed" from="VBoxContainer/WindowsContainer/ScanHistoryContainer" to="." method="_on_scan_history_container_scan_entry_details_button_pressed"]
+[connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/StakingContainer" to="." method="_on_staking_container_on_error_encountered"]
+[connection signal="pressed" from="HBoxContainer/MainContainer" to="." method="_on_main_container_pressed"]
+[connection signal="on_error_encountered" from="SoilMeterValuesModal" to="." method="_on_soil_meter_values_modal_on_error_encountered"]

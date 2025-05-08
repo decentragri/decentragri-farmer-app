@@ -1,0 +1,447 @@
+[gd_scene load_steps=17 format=3 uid="uid://dgb3krurd157u"]
+
+[ext_resource type="Script" uid="uid://qv6qfyhp34xm" path="res://Scenes/auth_screen.gd" id="1_kp0g6"]
+[ext_resource type="Texture2D" uid="uid://wglmkc4g02dg" path="res://Assets/Background/auth_bg.png" id="1_trybq"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_6xgm7"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="3_bkpry"]
+[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="4_6xgm7"]
+[ext_resource type="Texture2D" uid="uid://npigq4xe0y7v" path="res://Assets/Logo/decentra_logo.png" id="4_kp0g6"]
+[ext_resource type="Texture2D" uid="uid://c0qva6cp4hski" path="res://Assets/Logo/google_logo.png" id="5_bkpry"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="8_yreo4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yreo4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.878431)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trybq"]
+bg_color = Color(0.913725, 0.913725, 0.913725, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f62q"]
+content_margin_left = 10.0
+bg_color = Color(0.913725, 0.913725, 0.913725, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bkpry"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbsrr"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 6
+
+[sub_resource type="Animation" id="Animation_5n0dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(375, -94)]
+}
+
+[sub_resource type="Animation" id="Animation_84iac"]
+resource_name = "error_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(104, -92), Vector2(104, 13), Vector2(104, 13), Vector2(104, -92)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6ao"]
+_data = {
+&"RESET": SubResource("Animation_5n0dv"),
+&"error_animation": SubResource("Animation_84iac")
+}
+
+[node name="AuthScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kp0g6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+self_modulate = Color(0.813258, 0.813258, 0.813258, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -555.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_trybq")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ColorRect/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.000925926
+anchor_top = 0.498765
+anchor_right = 1.0
+anchor_bottom = 1.26433
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_6xgm7")
+theme_override_font_sizes/font_size = 28
+text = "LOGIN TO YOUR ACCOUNT"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="ColorRect"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.268519
+anchor_top = 0.04375
+anchor_right = 0.731481
+anchor_bottom = 0.304167
+offset_left = 50.0
+offset_right = -50.0
+offset_bottom = -100.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yreo4")
+metadata/_edit_use_anchors_ = true
+
+[node name="LoginContainer" type="VBoxContainer" parent="ColorRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(495, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.174074
+anchor_top = 0.539062
+anchor_right = 0.825926
+anchor_bottom = 0.921354
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = " Username"
+
+[node name="UsernameLogin" type="LineEdit" parent="ColorRect/LoginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_trybq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8f62q")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = "Password"
+
+[node name="Password" type="LineEdit" parent="ColorRect/LoginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_trybq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8f62q")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="SwitchToRegisterButton" type="Button" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bkpry")
+text = "No account yet? Register here"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = "Forgot your password?"
+horizontal_alignment = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="ColorRect/LoginContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="LoginButton" type="Button" parent="ColorRect/LoginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("4_6xgm7")
+theme_override_styles/hover = ExtResource("4_6xgm7")
+theme_override_styles/pressed = ExtResource("4_6xgm7")
+theme_override_styles/normal = ExtResource("4_6xgm7")
+text = "LOGIN"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="ColorRect/LoginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/LoginContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/LoginContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = "or login with:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/LoginContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/LoginContainer/VBoxContainer5/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("5_bkpry")
+expand_mode = 1
+
+[node name="RegisterContainer" type="VBoxContainer" parent="ColorRect"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(495, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0407407
+anchor_top = 0.471875
+anchor_right = 0.957407
+anchor_bottom = 0.954167
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = " Username"
+
+[node name="UsernameRegister" type="LineEdit" parent="ColorRect/RegisterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_trybq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8f62q")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = "Password"
+
+[node name="PasswordRegister" type="LineEdit" parent="ColorRect/RegisterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_trybq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8f62q")
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+text = "Confirm Password"
+
+[node name="ConfirmPasswordRegister" type="LineEdit" parent="ColorRect/RegisterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_trybq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8f62q")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="ColorRect/RegisterContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="SwitchToLoginButton" type="Button" parent="ColorRect/RegisterContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bkpry")
+text = "Already have an account? Login here"
+
+[node name="RegisterButton" type="Button" parent="ColorRect/RegisterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_bkpry")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("4_6xgm7")
+theme_override_styles/hover = ExtResource("4_6xgm7")
+theme_override_styles/pressed = ExtResource("4_6xgm7")
+theme_override_styles/normal = ExtResource("4_6xgm7")
+text = "REGISTER"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="ColorRect/RegisterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/RegisterContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.274074
+anchor_top = 0.0541667
+anchor_right = 0.727778
+anchor_bottom = 0.308333
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kp0g6")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="MessageBox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 105.0
+offset_top = -94.0
+offset_right = 437.0
+offset_bottom = -5.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbsrr")
+
+[node name="ErrorLabel" type="Label" parent="MessageBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_yreo4")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ne6ao")
+}
+
+[connection signal="text_changed" from="ColorRect/LoginContainer/UsernameLogin" to="." method="_on_username_login_text_changed"]
+[connection signal="text_changed" from="ColorRect/LoginContainer/Password" to="." method="_on_password_text_changed"]
+[connection signal="text_submitted" from="ColorRect/LoginContainer/Password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="ColorRect/LoginContainer/SwitchToRegisterButton" to="." method="_on_switch_to_register_button_pressed"]
+[connection signal="pressed" from="ColorRect/LoginContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="text_changed" from="ColorRect/RegisterContainer/UsernameRegister" to="." method="_on_username_register_text_changed"]
+[connection signal="text_changed" from="ColorRect/RegisterContainer/PasswordRegister" to="." method="_on_password_register_text_changed"]
+[connection signal="text_changed" from="ColorRect/RegisterContainer/ConfirmPasswordRegister" to="." method="_on_confirm_password_register_text_changed"]
+[connection signal="pressed" from="ColorRect/RegisterContainer/VBoxContainer4/SwitchToLoginButton" to="." method="_on_switch_to_login_button_pressed"]
+[connection signal="pressed" from="ColorRect/RegisterContainer/RegisterButton" to="." method="_on_register_button_pressed"]

@@ -1,0 +1,282 @@
+[gd_scene load_steps=5 format=3 uid="uid://cejjsv7igqif6"]
+
+[ext_resource type="Script" uid="uid://dbmlduo173xyg" path="res://Popups/scan_entry_details.gd" id="1_6lso8"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="1_frfsg"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="2_6lso8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlo60"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0, 0, 0, 0.270588)
+shadow_size = 15
+shadow_offset = Vector2(0, 5)
+
+[node name="ScanEntryDetails" type="Control"]
+custom_minimum_size = Vector2(700, 800)
+layout_mode = 3
+anchor_left = -0.148148
+anchor_top = -0.00104167
+anchor_right = 0.5
+anchor_bottom = 0.498958
+offset_right = 350.0
+offset_bottom = 480.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_6lso8")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22
+anchor_right = 1.77143
+anchor_bottom = 2.0125
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(916, 1000)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 162.0
+offset_right = -34.001
+offset_bottom = -199.999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mlo60")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
+custom_minimum_size = Vector2(773, 905)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -472.0
+offset_top = -681.0
+offset_right = 471.0
+offset_bottom = 819.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Crop Type: "
+
+[node name="CropType" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer" groups=["ScanDetailsLabel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Fertility: "
+
+[node name="Fertility" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer2" groups=["ScanDetailsLabel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Moisture: "
+
+[node name="Moisture" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer3" groups=["ScanDetailsLabel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "PH: "
+
+[node name="PH" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer4" groups=["ScanDetailsLabel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Temperature: "
+
+[node name="Temperature" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer5" groups=["ScanDetailsLabel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Sunlight: "
+
+[node name="Sunlight" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer6" groups=["ScanDetailsLabel"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Humidity: "
+
+[node name="Humidity" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer7"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+text = "Sensor ID:"
+
+[node name="SensorId" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer9"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 40
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Recommendations" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer8"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_fonts/font = ExtResource("2_6lso8")
+theme_override_font_sizes/font_size = 50
+text = "Recommendations"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InterpretationLabel" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(943, 858)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("1_frfsg")
+theme_override_font_sizes/font_size = 36
+autowrap_mode = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Panel/VBoxContainer/Panel"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 22.0
+offset_bottom = 142.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_fonts/font = ExtResource("2_6lso8")
+theme_override_font_sizes/font_size = 50
+text = " Scan Details"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]

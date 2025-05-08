@@ -1,0 +1,148 @@
+[gd_scene load_steps=6 format=3 uid="uid://yyfyq4eciqfj"]
+
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="1_cc0ed"]
+[ext_resource type="Script" uid="uid://dhu7m7k1rk7ww" path="res://Scenes/scan_entry.gd" id="1_d54te"]
+[ext_resource type="Texture2D" uid="uid://drxgvex2rnwx4" path="res://Assets/Icons/magnifying_glass_icon.png" id="2_4srdp"]
+[ext_resource type="Texture2D" uid="uid://bgv4qdgybfr3n" path="res://Assets/Icons/location_icon.png" id="3_d54te"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne6ao"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.227451)
+shadow_size = 5
+shadow_offset = Vector2(0, 1)
+
+[node name="ScanEntry" type="Control"]
+custom_minimum_size = Vector2(490, 100)
+layout_mode = 3
+anchor_right = 0.907407
+anchor_bottom = 0.104167
+offset_right = -490.0
+offset_bottom = -100.0
+size_flags_horizontal = 4
+mouse_filter = 1
+script = ExtResource("1_d54te")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ne6ao")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 13.0
+offset_right = -6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_cc0ed")
+theme_override_font_sizes/font_size = 16
+text = "Overall Result:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OverAllLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_cc0ed")
+theme_override_font_sizes/font_size = 16
+text = "Good"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_cc0ed")
+theme_override_font_sizes/font_size = 16
+text = "Crop:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CropLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_cc0ed")
+theme_override_font_sizes/font_size = 16
+text = "Corn"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_cc0ed")
+theme_override_font_sizes/font_size = 16
+text = "Date:"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DateLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_cc0ed")
+theme_override_font_sizes/font_size = 16
+text = "May 4, 2025"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScanDetailsButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.906122
+anchor_top = 0.16
+anchor_right = 0.967347
+anchor_bottom = 0.46
+grow_horizontal = 0
+texture_normal = ExtResource("2_4srdp")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="LocationButton" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.906122
+anchor_top = 0.54
+anchor_right = 0.967347
+anchor_bottom = 0.84
+grow_horizontal = 0
+texture_normal = ExtResource("3_d54te")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
