@@ -17,12 +17,6 @@ This is the mobile and desktop app companion to the [DecentrAgri](https://github
 
 ---
 
-## 📸 Screenshots
-
-> _Coming soon!_ Add screenshots of your UI or sample scans here.
-
----
-
 ## 🛠 Built With
 
 - [Godot 4.x](https://godotengine.org) — open source game engine
