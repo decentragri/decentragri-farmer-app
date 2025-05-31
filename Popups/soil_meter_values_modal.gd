@@ -3,7 +3,7 @@ extends Control
 
 signal on_error_encountered(text: String)
 
-	
+const uuid: Script = preload("res://HTTP/UUID.gd")
 	
 func _ready() -> void:
 	connect_signals()
@@ -16,10 +16,11 @@ func connect_signals() -> void:
 func _on_save_soil_meter_scan_complete(message: Dictionary) -> void:
 	if message.has("error"):
 		on_error_encountered.emit(str(message.error )+ " Please try again")
+		
 	else:
 		on_error_encountered.emit("Scan was submitted successfully")
 		reset_line_edits()
-	
+
 	
 func _on_croptype_line_text_changed(new_text: String) -> void:
 	var trimmed_text: String = new_text.strip_edges()
@@ -118,14 +119,10 @@ func _on_submit_button_pressed() -> void:
 		"temperature": %TemperatureLine,
 		"sunlight": %SunlightLine,
 		"humidity": %HumidityLine,
-		#"location":  GpsLocator.start_gps()
-
 	}
 
-	# Final dictionary with all data
 	var data: Dictionary[String, Variant] = {}
 
-	# Validate and convert numeric fields
 	for key: String in fields.keys():
 		var text: String = fields[key].text.strip_edges()
 		if text == "":
@@ -136,37 +133,46 @@ func _on_submit_button_pressed() -> void:
 			return
 		data[key] = text.to_float()
 
-	# Add optional crop type
 	if %CropTypeLine != null and %CropTypeLine.text.strip_edges() != "":
 		data["cropType"] = %CropTypeLine.text.strip_edges()
 	else:
 		data["cropType"] = null
 
-	# Add static or fetched metadata
 	data["username"] = User.username
 	data["sensorId"] = "sensor_def"
-	
-	
+	data["createdAt"] = Time.get_datetime_string_from_system()
+	data["id"] = uuid.generate_uuid_v4()
+
 	var sensor_data: Dictionary = {
 		"sensorData": data
 	}
-	
+
 	print(sensor_data)
-	Scan.save_soil_meter_scan(sensor_data)
 
-	
+	if NetworkState.hasNetwork():
+		Scan.save_soil_meter_scan(sensor_data)
+	else:
+		sensor_data["pending"] = true
+		RealmDB.save_data(JSON.stringify(sensor_data))
+		print("Network unavailable. Saved scan data to RealmDB for later sync.")
 	visible = false
-
+	
+	
 # Utility function to check if a string is a valid float
 func _is_valid_float(text: String) -> bool:
 	return text.is_valid_float()
-
-
+	
+	
 func _on_panel_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		visible = false
-		reset_line_edits()
+		pass
+		
 		
 func reset_line_edits() -> void:
 	for line_edit: LineEdit in get_tree().get_nodes_in_group(&"MeterValuesLine"):
 		line_edit.text = ""
+	
+	
+func _on_back_button_pressed() -> void:
+	visible = false
+	reset_line_edits()

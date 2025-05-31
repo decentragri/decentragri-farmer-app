@@ -3,7 +3,7 @@ extends Node
 signal user_data_received(user_data: Dictionary)
 
 var username: String
-
+var wallet_address: String
 
 
 func _ready() -> void:
@@ -16,6 +16,6 @@ func _on_authentication_complete(user_data: Dictionary) -> void:
 
 	if user_data.is_empty() or user_data.has("error"):
 		return
-	
+	wallet_address = user_data.walletAddress
 	username = user_data.username
 	user_data_received.emit(user_data)

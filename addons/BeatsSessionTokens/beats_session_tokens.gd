@@ -43,7 +43,6 @@ func jwt_cleared_completed(message: String) -> void:
 	
 	
 func store_jwt_tokens(jwt_tokens: Dictionary) -> void:
-	print("Does it contain tokens? ", jwt_tokens)
 	# Check that all the required keys are present
 	if not jwt_tokens.has("access_token") or not jwt_tokens.has("refresh_token") or not jwt_tokens.has("login_type"):
 		printerr("Error: Missing required keys in JWT data")

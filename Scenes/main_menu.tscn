@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b5glthd6cd62o"]
+[gd_scene load_steps=72 format=3 uid="uid://b5glthd6cd62o"]
 
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://c1bl2jwil1ci1" path="res://Scenes/main_menu.gd" id="1_jr6u5"]
@@ -21,13 +21,48 @@
 [ext_resource type="Texture2D" uid="uid://nxiay7gotfuv" path="res://Assets/Icons/weather_icon.png" id="10_m3bi6"]
 [ext_resource type="Texture2D" uid="uid://b1p6c2n6kvii2" path="res://Assets/Icons/staking.png" id="10_ne6ao"]
 [ext_resource type="Texture2D" uid="uid://bhkfsils7x3s7" path="res://Assets/Icons/weather_icon2.png" id="11_wyh8j"]
-[ext_resource type="Texture2D" uid="uid://cdh0gqv0ishyy" path="res://Assets/Icons/settings_icon.png" id="12_ujyyl"]
-[ext_resource type="Texture2D" uid="uid://bu8cqbtfotibl" path="res://Assets/Icons/settings_icon2.png" id="13_mkpwh"]
 [ext_resource type="PackedScene" uid="uid://b2vyd7c6e4xsn" path="res://Scenes/scan_history_container.tscn" id="14_5n0dv"]
 [ext_resource type="PackedScene" uid="uid://bb8mpk4bvv70u" path="res://Scenes/staking_container.tscn" id="15_tt8ml"]
+[ext_resource type="PackedScene" uid="uid://bkusq4jkrytjk" path="res://Scenes/profile_container.tscn" id="16_ifnak"]
 [ext_resource type="PackedScene" uid="uid://bsuv0xtq1n0bh" path="res://Popups/soil_meter_values_modal.tscn" id="24_6m47u"]
+[ext_resource type="Texture2D" uid="uid://o0f8f40y5b0u" path="res://Assets/Icons/rsweth_icon.png" id="24_u2gki"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="25_84iac"]
 [ext_resource type="PackedScene" uid="uid://cejjsv7igqif6" path="res://Popups/scan_entry_details.tscn" id="27_ne6ao"]
+[ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="29_u2gki"]
+[ext_resource type="Texture2D" uid="uid://c0lnyp1ss0smc" path="res://Assets/Loader/2.png" id="30_yuqo8"]
+[ext_resource type="Texture2D" uid="uid://dtglqrnntgd8g" path="res://Assets/Loader/3.png" id="31_ifnak"]
+[ext_resource type="Texture2D" uid="uid://disnogvn0f117" path="res://Assets/Loader/4.png" id="32_3eqs5"]
+[ext_resource type="PackedScene" uid="uid://cfkecqwvgypj2" path="res://Popups/send_tokens.tscn" id="32_6qc4h"]
+[ext_resource type="PackedScene" uid="uid://brnbqpkotya8l" path="res://Popups/scan_options_modal.tscn" id="32_ahukf"]
+[ext_resource type="Texture2D" uid="uid://c47iywekf7x6o" path="res://Assets/Loader/5.png" id="33_6qc4h"]
+[ext_resource type="Texture2D" uid="uid://da1r3q6fh60jd" path="res://Assets/Loader/6.png" id="34_ahukf"]
+[ext_resource type="Texture2D" uid="uid://bevw5svcw404c" path="res://Assets/Loader/7.png" id="35_2h8fa"]
+[ext_resource type="Texture2D" uid="uid://hks2c1yrk4g5" path="res://Assets/Loader/8.png" id="36_fh77k"]
+[ext_resource type="Texture2D" uid="uid://dywmfm3ua8mi1" path="res://Assets/Loader/9.png" id="37_bqu1d"]
+[ext_resource type="Texture2D" uid="uid://bw4wwgfb303ra" path="res://Assets/Loader/10.png" id="38_hcedr"]
+[ext_resource type="Texture2D" uid="uid://yvo4ldjkmc66" path="res://Assets/Loader/11.png" id="39_nrlkg"]
+[ext_resource type="Texture2D" uid="uid://bfmax1e1c5ol4" path="res://Assets/Loader/12.png" id="40_5vh2r"]
+[ext_resource type="Texture2D" uid="uid://r8m7d65vpjoa" path="res://Assets/Loader/13.png" id="41_ffqkl"]
+[ext_resource type="Texture2D" uid="uid://d1dwtnv1kwxlx" path="res://Assets/Loader/14.png" id="42_lt5fr"]
+[ext_resource type="Texture2D" uid="uid://sq1hli1kpybf" path="res://Assets/Loader/15.png" id="43_ew5j3"]
+[ext_resource type="Texture2D" uid="uid://d1af04e4luhmx" path="res://Assets/Loader/16.png" id="44_go1vp"]
+[ext_resource type="Texture2D" uid="uid://cbd3jrwa0mp37" path="res://Assets/Loader/17.png" id="45_aoijc"]
+[ext_resource type="Texture2D" uid="uid://3gi26pxvndbb" path="res://Assets/Loader/18.png" id="46_xm43g"]
+[ext_resource type="Texture2D" uid="uid://cfcbvlnhjfhws" path="res://Assets/Loader/19.png" id="47_gq2ea"]
+[ext_resource type="Texture2D" uid="uid://crdcjll36okvk" path="res://Assets/Loader/20.png" id="48_4vppj"]
+[ext_resource type="Texture2D" uid="uid://df60chnyt35i" path="res://Assets/Loader/21.png" id="49_nv0vt"]
+[ext_resource type="Texture2D" uid="uid://b6fxhxo60jca" path="res://Assets/Loader/22.png" id="50_wuvip"]
+[ext_resource type="Texture2D" uid="uid://daq47jak45x8k" path="res://Assets/Loader/23.png" id="51_58trw"]
+[ext_resource type="Texture2D" uid="uid://b6bjlx1c0miob" path="res://Assets/Loader/24.png" id="52_f6864"]
+[ext_resource type="Texture2D" uid="uid://csr808dglmm55" path="res://Assets/Loader/25.png" id="53_yiaqi"]
+[ext_resource type="Texture2D" uid="uid://blw10xxm77jg8" path="res://Assets/Loader/26.png" id="54_ayfml"]
+[ext_resource type="Texture2D" uid="uid://bpjquae3nqkn5" path="res://Assets/Loader/27.png" id="55_hpy5d"]
+[ext_resource type="Texture2D" uid="uid://cxj61gddh17rl" path="res://Assets/Loader/28.png" id="56_id3p6"]
+[ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="57_d3854"]
+[ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="58_0jm3b"]
+[ext_resource type="PackedScene" uid="uid://cm4unskb71ta3" path="res://Popups/choose_scan.tscn" id="60_ifnak"]
+[ext_resource type="PackedScene" uid="uid://nrwixf0abbwp" path="res://Popups/plant_scan_options_modal.tscn" id="61_3eqs5"]
+[ext_resource type="StyleBox" uid="uid://c85q66clwdr4w" path="res://Assets/StyleRes/verify_button.tres" id="62_6qc4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
 bg_color = Color(0.778153, 0.778047, 0.745007, 1)
@@ -67,7 +102,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_84iac"]
 resource_name = "error_animation"
-length = 2.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -75,10 +110,10 @@ tracks/0/path = NodePath("MessageBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 4.4, 5),
+"transitions": PackedFloat32Array(1, 0.217638, 1, 1),
 "update": 0,
-"values": [Vector2(104, -92), Vector2(104, 13), Vector2(104, 13), Vector2(104, -92)]
+"values": [Vector2(104, -300), Vector2(104, 13), Vector2(104, 80), Vector2(104, -300)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6ao"]
@@ -87,7 +122,108 @@ _data = {
 &"error_animation": SubResource("Animation_84iac")
 }
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2gki"]
+bg_color = Color(0.381703, 0.381703, 0.381703, 0.886275)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8p3n8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_u2gki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_yuqo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ifnak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_3eqs5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_6qc4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ahukf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_2h8fa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_fh77k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_bqu1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_hcedr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_nrlkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_5vh2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_ffqkl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_lt5fr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ew5j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_go1vp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_aoijc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_xm43g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_gq2ea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_4vppj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_nv0vt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_wuvip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_58trw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_f6864")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_yiaqi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_ayfml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_hpy5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_id3p6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_d3854")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_0jm3b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[node name="MainMenu" type="Control" groups=["RootNode"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,15 +256,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_n45e2")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 513)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = 26.0
-offset_right = -18.0
-offset_bottom = -7.0
+anchors_preset = -1
+anchor_left = 0.0351852
+anchor_top = 0.0552083
+anchor_right = 0.966667
+anchor_bottom = 0.992708
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
@@ -257,9 +392,42 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_ehtkc")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Hello Mary Ann!
 It's a wonderful day!"
+
+[node name="WeatherIcon" type="TextureRect" parent="VBoxContainer/WindowsContainer/MainContainer/Panel/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -112.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = 107.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MainContainer/Panel/TextureRect/WeatherIcon"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -49.5
+offset_top = -4.0
+offset_right = 49.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.982616, 0.982622, 0.979644, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 12
+text = "Today's Weather"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MainContainer"]
 custom_minimum_size = Vector2(0, 160)
@@ -320,6 +488,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel2" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -405,6 +574,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MainContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 theme_override_constants/separation = 15
@@ -548,6 +718,11 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
+[node name="ProfileContainer" parent="VBoxContainer/WindowsContainer" instance=ExtResource("16_ifnak")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 1
@@ -562,7 +737,7 @@ offset_right = 248.0
 offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 50
+theme_override_constants/separation = 150
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -595,6 +770,7 @@ theme_override_font_sizes/font_size = 11
 text = "Home"
 
 [node name="MyFarmButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 toggle_mode = true
@@ -622,6 +798,7 @@ theme_override_font_sizes/font_size = 11
 text = "My Farm"
 
 [node name="ReportsButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+visible = false
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 toggle_mode = true
@@ -675,16 +852,15 @@ theme_override_fonts/font = ExtResource("4_ce3w2")
 theme_override_font_sizes/font_size = 11
 text = "Weather"
 
-[node name="SettingsButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+[node name="ProfileButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 toggle_mode = true
-texture_normal = ExtResource("12_ujyyl")
-texture_pressed = ExtResource("13_mkpwh")
+texture_normal = ExtResource("24_u2gki")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/SettingsButton"]
+[node name="Label" type="Label" parent="HBoxContainer/ProfileButton"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -700,7 +876,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
 theme_override_fonts/font = ExtResource("4_ce3w2")
 theme_override_font_sizes/font_size = 11
-text = "Settings"
+text = "My Wallet"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -711,10 +887,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 105.0
-offset_top = -94.0
-offset_right = 437.0
-offset_bottom = -5.0
+offset_left = -166.0
+offset_top = -300.0
+offset_right = 166.0
+offset_bottom = -211.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6m47u")
 
@@ -743,24 +919,108 @@ libraries = {
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.148148
-anchor_top = -0.00104167
-anchor_right = 0.5
-anchor_bottom = 0.498958
-offset_right = 350.0
-offset_bottom = 480.0
-metadata/_edit_use_anchors_ = true
 
 [node name="ScanEntryDetails" parent="." instance=ExtResource("27_ne6ao")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="SendTokens" parent="." instance=ExtResource("32_6qc4h")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="ChooseScanModal" parent="." instance=ExtResource("60_ifnak")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PlantScanOptionsModal" parent="." instance=ExtResource("61_3eqs5")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="ScanOptionsModal" parent="." instance=ExtResource("32_ahukf")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="LoadingPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 9
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u2gki")
+
+[node name="TextureProgressBar" type="AnimatedSprite2D" parent="LoadingPanel"]
+z_index = 9
+position = Vector2(274, 474)
+sprite_frames = SubResource("SpriteFrames_8p3n8")
+autoplay = "default"
+frame_progress = 0.838258
+
+[node name="LoadingLabel" type="Label" parent="LoadingPanel/TextureProgressBar"]
+unique_name_in_owner = true
+z_index = 9
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 5.0
+offset_right = -29.5
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 25
+text = "Please wait"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VerifyBioButton" type="Button" parent="LoadingPanel"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(202, 66)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = -241.0
+offset_right = 101.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_ehtkc")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = ExtResource("62_6qc4h")
+theme_override_styles/pressed = ExtResource("62_6qc4h")
+theme_override_styles/normal = ExtResource("62_6qc4h")
+text = "VERIFY"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/ScanButton" to="." method="_on_scan_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel/ScanHistoryButton" to="." method="_on_scan_history_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel3/StakingButton" to="." method="_on_staking_button_pressed"]
 [connection signal="scan_entry_details_button_pressed" from="VBoxContainer/WindowsContainer/ScanHistoryContainer" to="." method="_on_scan_history_container_scan_entry_details_button_pressed"]
 [connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/StakingContainer" to="." method="_on_staking_container_on_error_encountered"]
+[connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_on_error_encountered"]
+[connection signal="wallet_token_button_pressed" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_wallet_token_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainContainer" to="." method="_on_main_container_pressed"]
+[connection signal="pressed" from="HBoxContainer/ProfileButton" to="." method="_on_profile_button_pressed"]
 [connection signal="on_error_encountered" from="SoilMeterValuesModal" to="." method="_on_soil_meter_values_modal_on_error_encountered"]
+[connection signal="on_error_encountered" from="SendTokens" to="." method="_on_send_tokens_on_error_encountered"]
+[connection signal="scan_button_pressed" from="ChooseScanModal" to="." method="_on_choose_scan_modal_scan_button_pressed"]
+[connection signal="on_error_encountered" from="PlantScanOptionsModal" to="." method="_on_plant_scan_options_modal_on_error_encountered"]
+[connection signal="plant_scan_button_pressed" from="PlantScanOptionsModal" to="." method="_on_plant_scan_options_modal_plant_scan_button_pressed"]
+[connection signal="scan_history_button_pressed" from="ScanOptionsModal" to="." method="_on_scan_options_modal_scan_history_button_pressed"]
+[connection signal="pressed" from="LoadingPanel/VerifyBioButton" to="." method="_on_verify_bio_button_pressed"]

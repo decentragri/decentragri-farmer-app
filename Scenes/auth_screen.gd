@@ -14,10 +14,13 @@ func connect_signals() -> void:
 	
 func _on_registration_complete(message: Dictionary) -> void:
 	if message.is_empty():
+		loading_start(false)
 		%RegisterButton.disabled = false
 	elif message.has("error"):
+		loading_start(false)
 		%ErrorLabel.text = message.error
 		%AnimationPlayer.play("error_animation")
+		%RegisterButton.disabled = true
 	elif "walletAddress" in message:
 		%RegisterButton.disabled = true
 		%ErrorLabel.text = "Registration successful!"
@@ -26,12 +29,20 @@ func _on_registration_complete(message: Dictionary) -> void:
 		
 		var scene: PackedScene = ResourceLoader.load("res://Scenes/main_menu.tscn")
 		var _1: int = get_tree().change_scene_to_packed(scene)
+	loading_start(false)
 	
 	
-func _on_login_complete(_message: Dictionary) -> void:
-	pass
+func _on_login_complete(message: Dictionary) -> void:
+	if message.has("error"):
+		%ErrorLabel.text = message.error
+		%AnimationPlayer.play("error_animation")
+		loading_start(false)
+		%LoginButton.disabled = true
+		return
+	var scene: PackedScene = ResourceLoader.load("res://Scenes/main_menu.tscn")
+	var _1: int = get_tree().change_scene_to_packed(scene)
 
-
+	
 func _on_username_login_text_changed(_new_text: String) -> void:
 	# Optional: enable login button only when both fields are filled
 	_update_login_button_state()
@@ -55,6 +66,8 @@ func _on_login_button_pressed() -> void:
 	# Trigger login
 	Auth.login(username, password)
 	%LoginButton.disabled = true  # Optional: disable button while logging in
+	loading_start(true)
+	
 
 func _update_login_button_state() -> void:
 	# Enable login button only if both fields are filled
@@ -64,11 +77,14 @@ func _update_login_button_state() -> void:
 func _on_username_register_text_changed(_new_text: String) -> void:
 	_update_register_button_state()
 
+
 func _on_password_register_text_changed(_new_text: String) -> void:
 	_update_register_button_state()
 
+
 func _on_confirm_password_register_text_changed(_new_text: String) -> void:
 	_update_register_button_state()
+
 
 func _on_register_button_pressed() -> void:
 	var username: String = %UsernameRegister.text.strip_edges()
@@ -95,10 +111,11 @@ func _on_register_button_pressed() -> void:
 		return
 
 	# Perform registration
-
 	Auth.register(username, password)
 	%RegisterButton.disabled = true
-
+	loading_start(false)
+	
+	
 func _update_register_button_state() -> void:
 	var username: String = %UsernameRegister.text.strip_edges()
 	var password: String= %PasswordRegister.text
@@ -121,3 +138,10 @@ func _on_switch_to_register_button_pressed() -> void:
 func _on_switch_to_login_button_pressed() -> void:
 	%LoginContainer.visible = true
 	%RegisterContainer.visible = false
+
+
+func loading_start(is_loading: bool = false) -> void:
+	%LoadingPanel.visible = is_loading
+	if is_loading:
+		await get_tree().create_timer(10.0).timeout
+		%LoadingPanel.visible = false

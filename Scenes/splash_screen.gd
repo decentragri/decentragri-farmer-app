@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func connect_signals() -> void:
 	var _1: int = Auth.session_check_complete.connect(_on_session_check_complete)
-	var _timer: int = get_tree().create_timer(5.0).timeout.connect(_on_timer_timeout)
+	var _timer: int = get_tree().create_timer(2.0).timeout.connect(_on_timer_timeout)
 	
 	
 func _on_timer_timeout() -> void:

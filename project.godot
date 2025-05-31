@@ -19,13 +19,18 @@ config/icon="res://icon.svg"
 
 SensorCamera="*res://addons/SensorCamera/sensor_camera.gd"
 Scan="*res://HTTP/Scan.gd"
-SessionTokens="*res://addons/SessionTokens/beats_session_tokens.gd"
+SessionTokens="*res://addons/BeatsSessionTokens/beats_session_tokens.gd"
 Auth="*res://HTTP/Auth.gd"
 User="*res://HTTP/User.gd"
 Utils="*res://HTTP/utils.gd"
 GpsLocator="*res://addons/GPSLocator/gps_locator.gd"
 Insight="*res://HTTP/Insight.gd"
 Onchain="*res://HTTP/Onchain.gd"
+Weather="*res://HTTP/Weather.gd"
+BiometricAuth="*res://addons/BiometricAuth/biometric_auth.gd"
+NetworkState="*res://addons/AndroidInternetConnectionStatePlugin/AndroidNetworkState.gd"
+RealmDB="*res://addons/RealmDB/realm_db.gd"
+Camera="*res://addons/GodotGetImage/Camera.gd"
 
 [debug]
 
@@ -61,17 +66,23 @@ window/size/viewport_width=540
 window/size/viewport_height=960
 window/size/mode=2
 window/size/resizable=false
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GPSLocator/plugin.cfg", "res://addons/SensorCamera/plugin.cfg", "res://addons/SessionTokens/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg")
+enabled=PackedStringArray("res://addons/AndroidInternetConnectionStatePlugin/plugin.cfg", "res://addons/BeatsSessionTokens/plugin.cfg", "res://addons/BiometricAuth/plugin.cfg", "res://addons/GPSLocator/plugin.cfg", "res://addons/GodotGetImage/plugin.cfg", "res://addons/RealmDB/plugin.cfg", "res://addons/SensorCamera/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg")
 
 [global_group]
 
 MeterValuesLine=""
 ScanDetailsLabel=""
 WindowButtons=""
+RootNode=""
+NumpadButtons=""
+WalletCopyButton=""
 
 [input_devices]
 
@@ -79,6 +90,5 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

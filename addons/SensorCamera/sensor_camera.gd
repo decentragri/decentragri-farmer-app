@@ -9,7 +9,6 @@ func _ready() -> void:
 			print("SensorCamera plugin found!")
 			android_plugin = Engine.get_singleton(plugin_name)
 			connect_signals()
-			OS.request_permissions()
 		else:
 			printerr("No SensorCamera plugin found!")
 	

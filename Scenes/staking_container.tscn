@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bb8mpk4bvv70u"]
+[gd_scene load_steps=18 format=3 uid="uid://bb8mpk4bvv70u"]
 
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="1_32fo8"]
 [ext_resource type="Script" uid="uid://vqxtaphypmo3" path="res://Scenes/staking_container.gd" id="1_yqfwp"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_nyv4a"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_yqfwp"]
 [ext_resource type="Texture2D" uid="uid://2klwas0kxu0t" path="res://Assets/Icons/ethereum_icon.png" id="3_nyv4a"]
 [ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="4_j7wne"]
@@ -52,7 +53,7 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
-theme_override_fonts/font = ExtResource("1_32fo8")
+theme_override_fonts/font = ExtResource("2_nyv4a")
 theme_override_font_sizes/font_size = 32
 text = "Staking"
 horizontal_alignment = 1
@@ -384,7 +385,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_yqfwp")
 theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = ExtResource("6_vwog5")
 theme_override_styles/hover = ExtResource("6_vwog5")
 theme_override_styles/pressed = ExtResource("6_vwog5")
 theme_override_styles/normal = ExtResource("6_vwog5")

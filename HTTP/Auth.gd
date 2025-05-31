@@ -193,13 +193,14 @@ func login(username: String, password: String) -> void:
 	
 func _on_Login_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	var json_string: String = body.get_string_from_utf8()
+	print("laman: ", json_string)
 	var json_body: Variant = JSON.parse_string(json_string)
 
 	if json_body == null:
 		login_complete.emit({"error": "Unknown server error"})
 		return
 
-	var status_check: bool = Utils.check_http_response(response_code, headers, body)
+	var status_check: bool = Utils.logger.check_http_response(response_code, headers, body)
 
 	if status_check:
 		if json_body.has("accessToken"):

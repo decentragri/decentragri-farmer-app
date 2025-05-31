@@ -34,9 +34,17 @@ class AndroidExportPlugin extends EditorExportPlugin:
 	func _get_android_dependencies(_platform: EditorExportPlatform, debug: bool) -> PackedStringArray:
 		# TODO: Add remote dependices here.
 		if debug:
-			return PackedStringArray(["androidx.core:core-ktx:1.12.0"])
+			return PackedStringArray([
+				"androidx.core:core-ktx:1.12.0",
+				"org.jetbrains.kotlin:kotlin-stdlib:2.0.20",
+				"com.google.android.gms:play-services-location:21.0.1"
+				])
 		else:
-			return PackedStringArray(["androidx.core:core-ktx:1.12.0"])
+			return PackedStringArray([
+				"androidx.core:core-ktx:1.12.0",
+				"org.jetbrains.kotlin:kotlin-stdlib:2.0.20",
+				"com.google.android.gms:play-services-location:21.0.1"
+				])
 
 	func _get_name() -> String:
 		return _plugin_name

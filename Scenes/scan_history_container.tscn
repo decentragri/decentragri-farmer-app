@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b2vyd7c6e4xsn"]
 
-[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="1_785vb"]
 [ext_resource type="Script" uid="uid://cu16js5iwrfe1" path="res://Scenes/scan_history_container.gd" id="1_bkopb"]
 [ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="2_bkopb"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_haejc"]
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="3_haejc"]
 
 [sub_resource type="Resource" id="Resource_fmarx"]
@@ -31,7 +31,7 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
-theme_override_fonts/font = ExtResource("1_785vb")
+theme_override_fonts/font = ExtResource("2_haejc")
 theme_override_font_sizes/font_size = 32
 text = "Scan History"
 horizontal_alignment = 1
