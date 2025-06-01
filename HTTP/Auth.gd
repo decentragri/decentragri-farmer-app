@@ -174,7 +174,7 @@ func login(username: String, password: String) -> void:
 	var _login_signal: int = Login.request_completed.connect(_on_Login_request_completed)
 	
 	# Log information about the login attempt
-	Utils.logger.info("Callin to log in user")
+	Utils.logger.info("Calling to log in user")
 	
 	# Prepare the payload for the login request
 	var payload: Dictionary[String, String] = { "username": username, "password": password }
