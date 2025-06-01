@@ -69,7 +69,13 @@ func on_stake_eth_completed(message: Dictionary) -> void:
 	for line: Variant in line_edits:
 		line.text = ""
 	get_data()
-
+	update_available_balance()
+	
+	
+func update_available_balance() -> void:
+	var user_eth_balance: float = %ETHBalance.text.replace(" ETH AVAILABLE", "").to_float()
+	var new_eth_balance: float  = user_eth_balance - %StakeAmount.text.to_float()
+	%ETHBalance.text = six_digit_balance_format(new_eth_balance) + " ETH AVAILABLE"
 #endregion
 
 #region 🧮 Stake Amount Input & Calculation
