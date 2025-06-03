@@ -182,3 +182,7 @@ func loading_start(is_loading: bool = false, is_bio_verification: String = "not"
 		%VerifyBioButton.visible = false
 
 #endregion
+
+
+func _on_create_farm_button_pressed() -> void:
+	pass # Replace with function body.

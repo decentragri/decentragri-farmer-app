@@ -9,7 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="6_vtyim"]
 [ext_resource type="Texture2D" uid="uid://boo5l23scoya1" path="res://Assets/Icons/back_icon.png" id="8_kqg3m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlo60"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idi3j"]
 bg_color = Color(1, 1, 1, 1)
 shadow_color = Color(0, 0, 0, 0.270588)
 shadow_size = 15
@@ -88,7 +88,7 @@ grow_vertical = 2
 [node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_mlo60")
+theme_override_styles/panel = SubResource("StyleBoxFlat_idi3j")
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/Panel"]
 visible = false
