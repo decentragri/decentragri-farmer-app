@@ -3,7 +3,7 @@ extends Control
 signal on_error_encountered(text: String)
 
 var line_edits: Array[LineEdit] = [%FarmName, %CropType, %Description]
-
+var farm_image: String
 
 func _ready() -> void:
 	connect_signals()
@@ -29,6 +29,7 @@ func _display_captured_image(image_data: Dictionary) -> void:
 
 	var uploaded_pic: Texture2D = ImageTexture.create_from_image(image)
 	%FarmPicture.texture = uploaded_pic
+	farm_image = str(buffer)
 
 
 func _image_request_failed(message: String) -> void:
@@ -80,3 +81,18 @@ func _on_visibility_changed() -> void:
 	
 func get_gps_coordinates() -> void:
 	GpsLocator.start_gps()
+
+
+func _on_submit_button_pressed() -> void:
+	
+	
+	
+	
+	var farm_data: Dictionary[String, Variant] = {
+		"farmName": %FarmName,
+		"cropType": %CropType,
+		"description": %Description,
+		"image": "tae"
+		
+		
+	}
