@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://b5glthd6cd62o"]
+[gd_scene load_steps=74 format=3 uid="uid://b5glthd6cd62o"]
 
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://c1bl2jwil1ci1" path="res://Scenes/main_menu.gd" id="1_jr6u5"]
@@ -24,9 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b2vyd7c6e4xsn" path="res://Scenes/scan_history_container.tscn" id="14_5n0dv"]
 [ext_resource type="PackedScene" uid="uid://bb8mpk4bvv70u" path="res://Scenes/staking_container.tscn" id="15_tt8ml"]
 [ext_resource type="PackedScene" uid="uid://bkusq4jkrytjk" path="res://Scenes/profile_container.tscn" id="16_ifnak"]
-[ext_resource type="Texture2D" uid="uid://dfj1k8wexi7w" path="res://Assets/Icons/plus_icon.png" id="17_2h8fa"]
-[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="19_hcedr"]
-[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="20_nrlkg"]
+[ext_resource type="PackedScene" uid="uid://dte83jcn2qj3x" path="res://Scenes/my_farm_container.tscn" id="17_fh77k"]
 [ext_resource type="PackedScene" uid="uid://bsuv0xtq1n0bh" path="res://Popups/soil_meter_values_modal.tscn" id="24_6m47u"]
 [ext_resource type="Texture2D" uid="uid://o0f8f40y5b0u" path="res://Assets/Icons/rsweth_icon.png" id="24_u2gki"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="25_84iac"]
@@ -38,7 +36,6 @@
 [ext_resource type="PackedScene" uid="uid://cfkecqwvgypj2" path="res://Popups/send_tokens.tscn" id="32_6qc4h"]
 [ext_resource type="PackedScene" uid="uid://brnbqpkotya8l" path="res://Popups/scan_options_modal.tscn" id="32_ahukf"]
 [ext_resource type="Texture2D" uid="uid://c47iywekf7x6o" path="res://Assets/Loader/5.png" id="33_6qc4h"]
-[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="34_5vh2r"]
 [ext_resource type="Texture2D" uid="uid://da1r3q6fh60jd" path="res://Assets/Loader/6.png" id="34_ahukf"]
 [ext_resource type="Texture2D" uid="uid://bevw5svcw404c" path="res://Assets/Loader/7.png" id="35_2h8fa"]
 [ext_resource type="Texture2D" uid="uid://hks2c1yrk4g5" path="res://Assets/Loader/8.png" id="36_fh77k"]
@@ -81,18 +78,6 @@ corner_radius_bottom_left = 20
 shadow_color = Color(0, 0, 0, 0.054902)
 shadow_size = 4
 shadow_offset = Vector2(0, 1)
-
-[sub_resource type="Resource" id="Resource_5vh2r"]
-script = ExtResource("20_nrlkg")
-friction = 4.0
-minimum_velocity = 0.4
-rebound_strength = 7.0
-
-[sub_resource type="Resource" id="Resource_ffqkl"]
-script = ExtResource("20_nrlkg")
-friction = 4.0
-minimum_velocity = 0.4
-rebound_strength = 7.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6m47u"]
 bg_color = Color(1, 1, 1, 1)
@@ -741,52 +726,9 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="MyFarmContainer" type="VBoxContainer" parent="VBoxContainer/WindowsContainer"]
+[node name="MyFarmContainer" parent="VBoxContainer/WindowsContainer" instance=ExtResource("17_fh77k")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MyFarmContainer"]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-
-[node name="CreateFarmButton" type="Button" parent="VBoxContainer/WindowsContainer/MyFarmContainer/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
-theme_override_constants/h_separation = 0
-theme_override_fonts/font = ExtResource("34_5vh2r")
-theme_override_font_sizes/font_size = 15
-text = "CREATE FARM"
-icon = ExtResource("17_2h8fa")
-flat = true
-expand_icon = true
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MyFarmContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/WindowsContainer/MyFarmContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
-theme_override_fonts/font = ExtResource("4_ehtkc")
-text = "MY FARMS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/WindowsContainer/MyFarmContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("19_hcedr")
-wheel_scroll_damper = SubResource("Resource_5vh2r")
-dragging_scroll_damper = SubResource("Resource_ffqkl")
-metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WindowsContainer/MyFarmContainer/SmoothScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(30, 30)
@@ -1011,6 +953,7 @@ layout_mode = 1
 
 [node name="CreateFarmModal" parent="." instance=ExtResource("37_nrlkg")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="LoadingPanel" type="Panel" parent="."]
@@ -1083,8 +1026,8 @@ text = "VERIFY"
 [connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/StakingContainer" to="." method="_on_staking_container_on_error_encountered"]
 [connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_on_error_encountered"]
 [connection signal="wallet_token_button_pressed" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_wallet_token_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/WindowsContainer/MyFarmContainer/HBoxContainer/CreateFarmButton" to="." method="_on_create_farm_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MainContainer" to="." method="_on_main_container_pressed"]
+[connection signal="pressed" from="HBoxContainer/MyFarmButton" to="." method="_on_my_farm_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ProfileButton" to="." method="_on_profile_button_pressed"]
 [connection signal="on_error_encountered" from="SoilMeterValuesModal" to="." method="_on_soil_meter_values_modal_on_error_encountered"]
 [connection signal="on_error_encountered" from="SendTokens" to="." method="_on_send_tokens_on_error_encountered"]
@@ -1092,4 +1035,5 @@ text = "VERIFY"
 [connection signal="on_error_encountered" from="PlantScanOptionsModal" to="." method="_on_plant_scan_options_modal_on_error_encountered"]
 [connection signal="plant_scan_button_pressed" from="PlantScanOptionsModal" to="." method="_on_plant_scan_options_modal_plant_scan_button_pressed"]
 [connection signal="scan_history_button_pressed" from="ScanOptionsModal" to="." method="_on_scan_options_modal_scan_history_button_pressed"]
+[connection signal="on_error_encountered" from="CreateFarmModal" to="." method="_on_create_farm_modal_on_error_encountered"]
 [connection signal="pressed" from="LoadingPanel/VerifyBioButton" to="." method="_on_verify_bio_button_pressed"]

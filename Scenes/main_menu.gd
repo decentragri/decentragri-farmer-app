@@ -184,5 +184,19 @@ func loading_start(is_loading: bool = false, is_bio_verification: String = "not"
 #endregion
 
 
-func _on_create_farm_button_pressed() -> void:
-	pass # Replace with function body.
+
+
+
+func _on_my_farm_button_pressed() -> void:
+	show_window("MyFarmContainer")
+	for button: TextureButton in get_tree().get_nodes_in_group("WindowButtons"):
+		button.button_pressed = (button.name == "MyFarmButton")
+
+
+func _on_create_farm_modal_on_error_encountered(text: String) -> void:
+	%ErrorLabel.text = text
+	%AnimationPlayer.play("error_animation")
+
+
+func _on_my_farm_container__create_farm_button_pressed() -> void:
+	%CreateFarmModal.visible = true

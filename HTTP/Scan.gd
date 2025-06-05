@@ -3,7 +3,6 @@ extends Node
 
 var SaveSoilMeterScan: HTTPRequest
 var wrSaveSoilMeterScan: WeakRef
-
 signal save_soil_meter_scan_complete(message: Dictionary[String, String])
 
 var SavePlantScan: HTTPRequest

@@ -13,6 +13,7 @@ config_version=5
 config/name="decentragri-app"
 run/main_scene="uid://f504lgfm2imt"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(1, 1, 1, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -31,6 +32,7 @@ BiometricAuth="*res://addons/BiometricAuth/biometric_auth.gd"
 NetworkState="*res://addons/AndroidInternetConnectionStatePlugin/AndroidNetworkState.gd"
 RealmDB="*res://addons/RealmDB/realm_db.gd"
 Camera="*res://addons/GodotGetImage/Camera.gd"
+Farmer="*res://HTTP/Farmer.gd"
 
 [debug]
 
@@ -92,3 +94,4 @@ pointing/emulate_touch_from_mouse=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.439049, 0.439049, 0.439049, 1)
