@@ -7,18 +7,18 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_irsjt"]
 bg_color = Color(1, 1, 1, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.99558, 0.99558, 0.99558, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.819608, 0.835294, 0.858824, 1)
 border_blend = true
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-shadow_color = Color(0, 0, 0, 0.298039)
-shadow_offset = Vector2(0, 5)
+shadow_color = Color(0, 0, 0, 0.0745098)
+shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hq3x"]
 bg_color = Color(0.0784314, 0.592157, 0.270588, 1)
@@ -133,3 +133,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="pressed" from="FarmButton" to="." method="_on_farm_button_pressed"]

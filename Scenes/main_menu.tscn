@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://b5glthd6cd62o"]
+[gd_scene load_steps=75 format=3 uid="uid://b5glthd6cd62o"]
 
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://c1bl2jwil1ci1" path="res://Scenes/main_menu.gd" id="1_jr6u5"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://c47iywekf7x6o" path="res://Assets/Loader/5.png" id="33_6qc4h"]
 [ext_resource type="Texture2D" uid="uid://da1r3q6fh60jd" path="res://Assets/Loader/6.png" id="34_ahukf"]
 [ext_resource type="Texture2D" uid="uid://bevw5svcw404c" path="res://Assets/Loader/7.png" id="35_2h8fa"]
+[ext_resource type="PackedScene" uid="uid://beus3nefqeyjk" path="res://Scenes/farm_modal.tscn" id="35_bqu1d"]
 [ext_resource type="Texture2D" uid="uid://hks2c1yrk4g5" path="res://Assets/Loader/8.png" id="36_fh77k"]
 [ext_resource type="Texture2D" uid="uid://dywmfm3ua8mi1" path="res://Assets/Loader/9.png" id="37_bqu1d"]
 [ext_resource type="PackedScene" uid="uid://bb8dxqfu4ah0g" path="res://Popups/create_farm_modal.tscn" id="37_nrlkg"]
@@ -346,7 +347,6 @@ size_flags_vertical = 3
 
 [node name="MainContainer" type="VBoxContainer" parent="VBoxContainer/WindowsContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 770)
 layout_mode = 2
 size_flags_vertical = 3
@@ -728,6 +728,7 @@ layout_mode = 2
 
 [node name="MyFarmContainer" parent="VBoxContainer/WindowsContainer" instance=ExtResource("17_fh77k")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -954,6 +955,10 @@ layout_mode = 1
 [node name="CreateFarmModal" parent="." instance=ExtResource("37_nrlkg")]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
+
+[node name="FarmModal" parent="." instance=ExtResource("35_bqu1d")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="LoadingPanel" type="Panel" parent="."]
