@@ -20,6 +20,7 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
     if farm_data.has("error"):
         _on_error_encountered.emit(farm_data.error)
     else:
+        display_image(str(farm_data.image))
         %FarmName.text = farm_data.farmName
         %CropType.text = farm_data.cropType
 
@@ -30,7 +31,7 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 
         %Owner.text = farm_data.owner
         %Description.text = farm_data.description
-        display_image(str(farm_data.image))
+        
 
 
 func display_image(image_buffer: String) -> void:
