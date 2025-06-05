@@ -57,10 +57,10 @@ func get_farms() -> void:
 	var _connect: int = GetFarms.request_completed.connect(_on_get_farms_request_completed)
 
 	# Log the initiation of the request to retrieve leaderboard data.	
-	Utils.logger.info("Call to create farm")
+	Utils.logger.info("Call to get farms")
 	
 	# Construct the request URL for fetching leaderboard data.
-	var request_url: String = Utils.host + "/api/create/farm"
+	var request_url: String = Utils.host + "/api/list/farm"
 
 	# Send the GET request using the prepared URL.
 	Utils.send_get_request(GetFarms, request_url)
@@ -74,11 +74,10 @@ func _on_get_farms_request_completed(_result: int, response_code: int, headers: 
 	if status_check:
 		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
 		if json_body != null:
-			if json_body is Dictionary:
-				if json_body.has("error"):
-					get_farms_complete.emit({ "error": json_body.error })
-				else:
-					get_farms_complete.emit(json_body)
+			if json_body.has("error"):
+				get_farms_complete.emit({ "error": json_body.error })
+			else:
+				get_farms_complete.emit(json_body)
 		else:
 			get_farms_complete.emit({ "error": "Unknown server error" })
 	else:

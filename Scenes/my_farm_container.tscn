@@ -78,7 +78,8 @@ wheel_scroll_damper = SubResource("Resource_irsjt")
 dragging_scroll_damper = SubResource("Resource_egf7y")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer3/SmoothScrollContainer"]
+[node name="FarmContainer" type="GridContainer" parent="HBoxContainer3/SmoothScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 20
@@ -89,4 +90,5 @@ columns = 2
 custom_minimum_size = Vector2(7, 0)
 layout_mode = 2
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="HBoxContainer/CreateFarmButton" to="." method="_on_create_farm_button_pressed"]
