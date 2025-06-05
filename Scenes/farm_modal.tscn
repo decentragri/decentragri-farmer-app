@@ -408,7 +408,7 @@ layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="SubmitButton3" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="SoilScanButton" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -425,7 +425,7 @@ toggle_mode = true
 button_pressed = true
 text = " Soil Scan"
 
-[node name="SubmitButton2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="PlantScanButton" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
