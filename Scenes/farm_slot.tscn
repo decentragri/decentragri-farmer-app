@@ -77,7 +77,8 @@ size_flags_horizontal = 4
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_0hq3x")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Panel"]
+[node name="FarmImage" type="TextureRect" parent="Panel/VBoxContainer/Panel"]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_emope")
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 1
