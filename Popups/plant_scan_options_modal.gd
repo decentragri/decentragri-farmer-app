@@ -92,6 +92,7 @@ func _on_input_fields_changed() -> void:
 func _on_notes_line_text_changed(_new_text: String) -> void:
 	_on_input_fields_changed()
 	
+
 func _on_crop_type_line_text_changed(_new_text: String) -> void:
 	_on_input_fields_changed()
 #endregion
@@ -150,6 +151,7 @@ func _on_panel_gui_input(event: InputEvent) -> void:
 func _on_panel_visibility_changed() -> void:
 	if visible:
 		get_gps_coordinates()
+		%FarmName.text = Scan.farm_name
 	
 	
 

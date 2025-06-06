@@ -6,6 +6,7 @@ signal _create_farm_button_pressed
 signal _on_error_encountered(message: String)
 signal on_button_farm_pressed(farm_id: String)
 
+
 func _ready() -> void:
 	connect_signals()
 	

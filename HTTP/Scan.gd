@@ -19,6 +19,7 @@ signal get_plant_scan_complete(message: Array)
 
 
 var farm_name: String
+var crop_type: String
 
 
 func save_soil_meter_scan(scan_data: Dictionary) -> void:

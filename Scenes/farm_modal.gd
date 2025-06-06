@@ -77,6 +77,7 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
 	root_node.loading_start(false , "not bio") 
 	Scan.farm_name = farm_data.farmName
+	Scan.crop_type = farm_data.cropType
 
 
 func display_image(image_buffer: String) -> void:

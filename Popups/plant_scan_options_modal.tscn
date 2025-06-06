@@ -106,7 +106,6 @@ vertical_alignment = 1
 
 [node name="OptionsContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -216,6 +215,7 @@ vertical_alignment = 1
 
 [node name="FormContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
