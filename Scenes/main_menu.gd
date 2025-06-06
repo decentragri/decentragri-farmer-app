@@ -17,6 +17,46 @@ func connect_signals() -> void:
 
 #endregion
 
+#region 🪟 Window Switching & Loading State
+
+func show_window(window_name: String) -> void:
+	for windows: VBoxContainer in %WindowsContainer.get_children():
+		windows.visible = (windows.name == window_name)
+
+func loading_start(is_loading: bool = false, is_bio_verification: String = "not") -> void:
+	%LoadingPanel.visible = is_loading
+	if is_bio_verification == "bio":
+		%LoadingLabel.text = "Please verify"
+		%VerifyBioButton.visible = true
+	else:
+		%LoadingLabel.text = "Please wait"
+		%VerifyBioButton.visible = false
+
+#endregion
+
+#region 🌱 Greeting Logic
+
+func set_display() -> void:
+	set_greetings_label()
+
+func set_greetings_label() -> void:
+	var greetings: Array[String] = [
+		"Hope your crops are thriving!",
+		"Let's grow something amazing today!",
+		"Sunshine and success to you!",
+		"Plant good seeds, reap great harvests!",
+		"The soil is calling — time to shine!",
+		"Let the earth reward your hard work!",
+		"A perfect day for smart farming!",
+		"Nature’s ready — are you?",
+		"May your yields be plentiful!",
+		"Let’s turn dirt into gold!"
+	]
+	var random_greeting: String = greetings[randi() % greetings.size()]
+	%GreetingsLabel.text = "Hello " + User.username + "!\n" + random_greeting
+
+#endregion
+
 #region 🔐 Biometric Authentication
 
 func _on_bio_auth_success() -> void:
@@ -47,29 +87,6 @@ func _on_get_current_weather_complete(current_weather: Dictionary) -> void:
 
 func _on_get_weather_icon_complete(image: Dictionary) -> void:
 	%WeatherIcon.texture = image.texture
-
-#endregion
-
-#region 🌱 Greeting Logic
-
-func set_display() -> void:
-	set_greetings_label()
-
-func set_greetings_label() -> void:
-	var greetings: Array[String] = [
-		"Hope your crops are thriving!",
-		"Let's grow something amazing today!",
-		"Sunshine and success to you!",
-		"Plant good seeds, reap great harvests!",
-		"The soil is calling — time to shine!",
-		"Let the earth reward your hard work!",
-		"A perfect day for smart farming!",
-		"Nature’s ready — are you?",
-		"May your yields be plentiful!",
-		"Let’s turn dirt into gold!"
-	]
-	var random_greeting: String = greetings[randi() % greetings.size()]
-	%GreetingsLabel.text = "Hello " + User.username + "!\n" + random_greeting
 
 #endregion
 
@@ -122,11 +139,9 @@ func _on_staking_button_pressed() -> void:
 func _on_scan_history_button_pressed() -> void:
 	%ScanOptionsModal.visible = true
 
-
 func _on_scan_options_modal_scan_history_button_pressed(button_name: String) -> void:
 	%ScanHistoryContainer.set_history_mode(button_name)
 	show_window("ScanHistoryContainer")
-	
 
 func _on_scan_history_container_scan_entry_details_button_pressed(details: Dictionary) -> void:
 	%ScanEntryDetails.details_display(details)
@@ -139,6 +154,18 @@ func _on_main_container_pressed() -> void:
 	for button: TextureButton in get_tree().get_nodes_in_group("WindowButtons"):
 		button.button_pressed = (button.name == "MainContainer")
 	show_window("MainContainer")
+
+#endregion
+
+#region 🏡 My Farm View
+
+func _on_my_farm_button_pressed() -> void:
+	show_window("MyFarmContainer")
+	for button: TextureButton in get_tree().get_nodes_in_group("WindowButtons"):
+		button.button_pressed = (button.name == "MyFarmButton")
+
+func _on_my_farm_container__create_farm_button_pressed() -> void:
+	%CreateFarmModal.visible = true
 
 #endregion
 
@@ -164,49 +191,16 @@ func _on_plant_scan_options_modal_on_error_encountered(text: String) -> void:
 	%ErrorLabel.text = text
 	%AnimationPlayer.play("error_animation")
 
-#endregion
-
-#region 🪟 Window Switching & Loading State
-
-func show_window(window_name: String) -> void:
-	for windows: VBoxContainer in %WindowsContainer.get_children():
-		windows.visible = (windows.name == window_name)
-
-func loading_start(is_loading: bool = false, is_bio_verification: String = "not") -> void:
-	%LoadingPanel.visible = is_loading
-	if is_bio_verification == "bio":
-		%LoadingLabel.text = "Please verify"
-		%VerifyBioButton.visible = true
-	else:
-		%LoadingLabel.text = "Please wait"
-		%VerifyBioButton.visible = false
-
-#endregion
-
-
-
-
-
-func _on_my_farm_button_pressed() -> void:
-	show_window("MyFarmContainer")
-	for button: TextureButton in get_tree().get_nodes_in_group("WindowButtons"):
-		button.button_pressed = (button.name == "MyFarmButton")
-
-
 func _on_create_farm_modal_on_error_encountered(text: String) -> void:
 	%ErrorLabel.text = text
 	%AnimationPlayer.play("error_animation")
-
-
-func _on_my_farm_container__create_farm_button_pressed() -> void:
-	%CreateFarmModal.visible = true
-
 
 func _on_farm_modal__on_error_encountered(text:String) -> void:
 	%ErrorLabel.text = text
 	%AnimationPlayer.play("error_animation")
 
-
 func _on_my_farm_container__on_error_encountered(text:String) -> void:
 	%ErrorLabel.text = text
 	%AnimationPlayer.play("error_animation")
+
+#endregion
