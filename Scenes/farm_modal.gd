@@ -20,6 +20,9 @@ func config_scan_buttons() -> void:
 
 func get_farm_data(farm_id: String) -> void:
     Farmer.get_farm_data(farm_id)
+    visible = true
+    var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
+    root_node.loading_start(true , "not bio")
 
 
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
@@ -37,7 +40,8 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 
         %Owner.text = farm_data.owner
         %Description.text = farm_data.description
-        
+    var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
+    root_node.loading_start(false , "not bio") 
 
 
 func display_image(image_buffer: String) -> void:
@@ -63,11 +67,6 @@ func _on_scan_button_pressed(button_name: String) -> void:
         else:
             button.button_pressed = false
         
-
-
-
-        
-
 
 
 func format_js_date(js_date: String) -> String:

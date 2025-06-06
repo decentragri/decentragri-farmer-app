@@ -167,6 +167,10 @@ func _on_my_farm_button_pressed() -> void:
 func _on_my_farm_container__create_farm_button_pressed() -> void:
 	%CreateFarmModal.visible = true
 
+func _on_my_farm_container_on_button_farm_pressed(farm_id:String) -> void:
+	%FarmModal.get_farm_data(farm_id)
+
+
 #endregion
 
 
@@ -213,3 +217,7 @@ func _on_my_farm_container__on_error_encountered(text:String) -> void:
 	%AnimationPlayer.play("error_animation")
 
 #endregion
+
+
+
+
