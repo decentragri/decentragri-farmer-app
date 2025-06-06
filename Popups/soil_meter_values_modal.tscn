@@ -79,7 +79,7 @@ offset_top = -822.0
 offset_right = 204.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 7
 
 [node name="Label9" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 60)
@@ -95,8 +95,8 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
-text = "Crop type"
+theme_override_font_sizes/font_size = 16
+text = "Crop type (auto-filled)"
 
 [node name="CropTypeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
 unique_name_in_owner = true
@@ -118,7 +118,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Fertility - us/cm"
 
 [node name="FertilityLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
@@ -138,7 +138,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Moisture - %"
 
 [node name="MoistureLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
@@ -158,7 +158,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "PH"
 
 [node name="PHLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
@@ -177,7 +177,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Temp - Celsius"
 
 [node name="TemperatureLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
@@ -197,7 +197,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Sunlight - Lux"
 
 [node name="SunlightLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
@@ -217,7 +217,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Humidity - %"
 
 [node name="HumidityLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
@@ -237,7 +237,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("1_ntrfi")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Farm name (auto-filled)"
 
 [node name="FarmName" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]

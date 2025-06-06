@@ -60,7 +60,6 @@ func config_scan_buttons() -> void:
 
 
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
-	print(farm_data)
 	if farm_data.has("error"):
 		_on_error_encountered.emit(farm_data.error)
 	else:
