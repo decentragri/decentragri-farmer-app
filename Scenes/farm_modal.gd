@@ -58,6 +58,7 @@ func config_scan_buttons() -> void:
 		var _1: int = button.pressed.connect(_on_scan_button_pressed.bind(button.name))
 
 
+
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 	print("Farm data received: ", farm_data)
 	if farm_data.has("error"):

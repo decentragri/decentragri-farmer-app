@@ -100,11 +100,13 @@ func on_scan_button_pressed() -> void:
 
 
 func _on_choose_scan_modal_scan_button_pressed(button_name: String) -> void:
+	print("Scan button pressed: ", button_name)
 	match button_name:
 		"SoilScanButton":
 			%SoilMeterValuesModal.visible = true
 		"PlantScanButton":
 			%PlantScanOptionsModal.visible = true
+			
 
 func _on_plant_scan_options_modal_plant_scan_button_pressed(button_name: String) -> void:
 	var image_functions: Dictionary[String, Callable] = {
@@ -226,7 +228,3 @@ func _on_my_farm_container__on_error_encountered(text:String) -> void:
 	%AnimationPlayer.play("error_animation")
 
 #endregion
-
-
-
-
