@@ -924,6 +924,7 @@ libraries = {
 
 [node name="SoilMeterValuesModal" parent="." instance=ExtResource("24_6m47u")]
 unique_name_in_owner = true
+visible = false
 z_index = 8
 layout_mode = 1
 

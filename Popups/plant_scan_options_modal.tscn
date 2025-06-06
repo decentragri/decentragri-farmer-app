@@ -106,6 +106,7 @@ vertical_alignment = 1
 
 [node name="OptionsContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -215,7 +216,6 @@ vertical_alignment = 1
 
 [node name="FormContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -263,7 +263,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("2_vtyim")
 theme_override_font_sizes/font_size = 20
-text = "Crop Type"
+text = "Crop type"
 
 [node name="CropTypeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
 unique_name_in_owner = true
@@ -329,15 +329,38 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_t317f")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
 editable = false
 
+[node name="Label9" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 20
+text = "Longitude"
+
+[node name="LongtitudeLine2" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 47)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.396889, 0.396889, 0.396889, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_4u4r4")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_t317f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
+editable = false
+
 [node name="Label4" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
 theme_override_fonts/font = ExtResource("2_vtyim")
 theme_override_font_sizes/font_size = 20
-text = "Latitude"
+text = "Farm name (auto-filled)"
 
-[node name="LatitudeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+[node name="FarmName" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 47)
 layout_mode = 2
@@ -371,6 +394,7 @@ theme_override_styles/normal = ExtResource("6_vtyim")
 text = "SUBMIT"
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel"]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
 anchors_preset = 8

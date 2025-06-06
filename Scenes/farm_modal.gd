@@ -14,10 +14,10 @@ func _ready() -> void:
 
 func get_farm_data(farm_id: String) -> void:
 	Farmer.get_farm_data(farm_id)
-	visible = true
 	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
 	root_node.loading_start(true , "not bio")
 	Scan.get_soil_meter_scan()
+	visible = true
 
 
 func connect_signals() -> void:
@@ -60,7 +60,6 @@ func config_scan_buttons() -> void:
 
 
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
-	print("Farm data received: ", farm_data)
 	if farm_data.has("error"):
 		_on_error_encountered.emit(farm_data.error)
 	else:
@@ -77,6 +76,7 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 		%Description.text = farm_data.description
 	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
 	root_node.loading_start(false , "not bio") 
+	Scan.farm_name = farm_data.farmName
 
 
 func display_image(image_buffer: String) -> void:

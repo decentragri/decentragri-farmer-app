@@ -18,6 +18,9 @@ var wrGetPlantScan: WeakRef
 signal get_plant_scan_complete(message: Array)
 
 
+var farm_name: String
+
+
 func save_soil_meter_scan(scan_data: Dictionary) -> void:
 	# Prepare an HTTP request for fetching leaderboard data.
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
