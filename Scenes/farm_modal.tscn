@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://beus3nefqeyjk"]
+[gd_scene load_steps=25 format=3 uid="uid://beus3nefqeyjk"]
 
 [ext_resource type="Script" uid="uid://cxaoxpxvfcx4q" path="res://Scenes/farm_modal.gd" id="1_s4kr6"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_nen8p"]
@@ -37,6 +37,14 @@ shader_parameter/height = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxypk"]
 bg_color = Color(0.819608, 0.835294, 0.858824, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xdx6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6k7y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_230lw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gc62v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrigd"]
 bg_color = Color(0.819608, 0.835294, 0.858824, 1)
@@ -362,6 +370,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(68, 0)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
@@ -369,15 +378,71 @@ theme_override_fonts/font = ExtResource("7_nj80e")
 theme_override_font_sizes/font_size = 12
 text = "Location:"
 
-[node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5"]
+[node name="Label2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5"]
 custom_minimum_size = Vector2(129, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("7_nj80e")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
+text = "See Location"
+text_overrun_behavior = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6"]
+layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_fonts/font = ExtResource("7_nj80e")
 theme_override_font_sizes/font_size = 12
-text = "San Jose, Camarines Sur"
+text = "Farm Level:"
+
+[node name="Label2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("7_nj80e")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
+text = "1"
+text_overrun_behavior = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer7"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("7_nj80e")
+theme_override_font_sizes/font_size = 12
+text = "Farm Rank:"
+
+[node name="Label2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer7"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("7_nj80e")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
+text = "1"
 text_overrun_behavior = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer"]
