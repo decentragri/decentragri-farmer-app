@@ -959,6 +959,7 @@ layout_mode = 1
 
 [node name="FarmModal" parent="." instance=ExtResource("35_bqu1d")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="LoadingPanel" type="Panel" parent="."]
@@ -1031,6 +1032,7 @@ text = "VERIFY"
 [connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/StakingContainer" to="." method="_on_staking_container_on_error_encountered"]
 [connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_on_error_encountered"]
 [connection signal="wallet_token_button_pressed" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_wallet_token_button_pressed"]
+[connection signal="_on_error_encountered" from="VBoxContainer/WindowsContainer/MyFarmContainer" to="." method="_on_my_farm_container__on_error_encountered"]
 [connection signal="pressed" from="HBoxContainer/MainContainer" to="." method="_on_main_container_pressed"]
 [connection signal="pressed" from="HBoxContainer/MyFarmButton" to="." method="_on_my_farm_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/ProfileButton" to="." method="_on_profile_button_pressed"]
@@ -1041,4 +1043,5 @@ text = "VERIFY"
 [connection signal="plant_scan_button_pressed" from="PlantScanOptionsModal" to="." method="_on_plant_scan_options_modal_plant_scan_button_pressed"]
 [connection signal="scan_history_button_pressed" from="ScanOptionsModal" to="." method="_on_scan_options_modal_scan_history_button_pressed"]
 [connection signal="on_error_encountered" from="CreateFarmModal" to="." method="_on_create_farm_modal_on_error_encountered"]
+[connection signal="_on_error_encountered" from="FarmModal" to="." method="_on_farm_modal__on_error_encountered"]
 [connection signal="pressed" from="LoadingPanel/VerifyBioButton" to="." method="_on_verify_bio_button_pressed"]

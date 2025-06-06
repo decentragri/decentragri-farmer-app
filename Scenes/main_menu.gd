@@ -200,3 +200,13 @@ func _on_create_farm_modal_on_error_encountered(text: String) -> void:
 
 func _on_my_farm_container__create_farm_button_pressed() -> void:
 	%CreateFarmModal.visible = true
+
+
+func _on_farm_modal__on_error_encountered(text:String) -> void:
+	%ErrorLabel.text = text
+	%AnimationPlayer.play("error_animation")
+
+
+func _on_my_farm_container__on_error_encountered(text:String) -> void:
+	%ErrorLabel.text = text
+	%AnimationPlayer.play("error_animation")
