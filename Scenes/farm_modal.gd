@@ -5,7 +5,7 @@ const plant_scan_entry_slot: PackedScene = preload("res://Scenes/plant_scan_entr
 
 
 signal _on_error_encountered(message: String)
-
+signal scan_entry_details_button_pressed(details: Dictionary)
 
 
 func _ready() -> void:
@@ -14,7 +14,33 @@ func _ready() -> void:
 
 func connect_signals() -> void:
 	var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
+	var _2: int = Scan.get_soil_meter_scan_complete.connect(_on_get_soil_meter_scan_complete)
+	var _3: int = Scan.get_plant_scan_complete.connect(_on_get_plan_scan_complete)
 	config_scan_buttons() 
+
+
+func _on_get_soil_meter_scan_complete(scan_data: Array) -> void:
+	for data: Dictionary in scan_data:
+		var scan_entry: Control = soil_scan_entry_slot.instantiate()
+		scan_entry.slot_data(data)
+		scan_entry.get_node("Panel/ScanDetailsButton").pressed.connect(_on_scan_entry_details_button_pressed.bind(data))
+		%ScanEntryContainer.add_child(scan_entry)
+	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
+	root_node. loading_start(false)
+
+
+func _on_get_plan_scan_complete(scan_data: Array) -> void:
+	for data: Dictionary in scan_data:
+		var scan_entry: Control = plant_scan_entry_slot.instantiate()
+		scan_entry.slot_data(data)
+		scan_entry.get_node("Panel/ScanDetailsButton").pressed.connect(_on_scan_entry_details_button_pressed.bind(data))
+		%ScanEntryContainer.add_child(scan_entry)
+	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
+	root_node.loading_start(false)
+
+
+func _on_scan_entry_details_button_pressed(details: Dictionary) -> void:
+	scan_entry_details_button_pressed.emit(details)
 
 
 func config_scan_buttons() -> void:
@@ -64,21 +90,32 @@ func display_image(image_buffer: String) -> void:
 		%FarmPic.texture = farm_pic
 
 
-
 func _on_scan_button_pressed(button_name: String) -> void:
 	for button: Button in get_tree().get_nodes_in_group("FarmScanButtons"):
 		if button.name == button_name:
 			button.button_pressed = true
 		else:
 			button.button_pressed = false
-		
+	get_scans(button_name)
+	for scan: Control in %ScanEntryContainer.get_children():
+		scan.queue_free()
+	
 
-
+func get_scans(button_name: String) -> void:
+	if not visible:
+		return
+	match button_name:
+		"SoilScan":
+			Scan.get_soil_meter_scan()
+		"PlantScan":
+			Scan.get_plant_scan()
+	
+	
 func format_js_date(js_date: String) -> String:
 	var months: Array[String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 	var dt: Dictionary = Time.get_datetime_dict_from_datetime_string(js_date, true)
 	return "%s %d, %d" % [months[dt.month - 1], dt.day, dt.year]
-
-
+	
+	
 func _on_back_button_pressed() -> void:
 	visible = false

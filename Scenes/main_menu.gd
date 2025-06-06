@@ -184,6 +184,11 @@ func _on_my_farm_container_on_button_farm_pressed(farm_id:String) -> void:
 
 #region ⚠️ Error Handling
 
+
+func error_or_message(text: String) -> void:
+	%ErrorLabel.text = text
+	%AnimationPlayer.play("error_animation")
+
 func _on_soil_meter_values_modal_on_error_encountered(text: String) -> void:
 	%ErrorLabel.text = text
 	%AnimationPlayer.play("error_animation")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://beus3nefqeyjk"]
+[gd_scene load_steps=25 format=3 uid="uid://beus3nefqeyjk"]
 
 [ext_resource type="Script" uid="uid://cxaoxpxvfcx4q" path="res://Scenes/farm_modal.gd" id="1_s4kr6"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_nen8p"]
@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_nj80e"]
 [ext_resource type="StyleBox" uid="uid://d4kcxwi6ggvys" path="res://Assets/StyleRes/farm_scan_select_button.tres" id="7_4xdx6"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="7_nj80e"]
-[ext_resource type="PackedScene" uid="uid://yyfyq4eciqfj" path="res://Scenes/scan_entry.tscn" id="10_e6k7y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlo60"]
 bg_color = Color(1, 1, 1, 1)
@@ -443,7 +442,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
-text = "1"
+text = "Seedling"
 text_overrun_behavior = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer"]
@@ -517,23 +516,11 @@ wheel_scroll_damper = SubResource("Resource_0s0pr")
 dragging_scroll_damper = SubResource("Resource_i3j26")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+[node name="ScanContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 10
-
-[node name="ScanEntry" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" instance=ExtResource("10_e6k7y")]
-layout_mode = 2
-
-[node name="ScanEntry2" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" instance=ExtResource("10_e6k7y")]
-layout_mode = 2
-
-[node name="ScanEntry3" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" instance=ExtResource("10_e6k7y")]
-layout_mode = 2
-
-[node name="ScanEntry4" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" instance=ExtResource("10_e6k7y")]
-layout_mode = 2
 
 [node name="BackButton" type="TextureButton" parent="Panel/VBoxContainer/Panel"]
 unique_name_in_owner = true
