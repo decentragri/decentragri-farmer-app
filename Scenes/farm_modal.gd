@@ -12,6 +12,14 @@ func _ready() -> void:
 	connect_signals()
 
 
+func get_farm_data(farm_id: String) -> void:
+	Farmer.get_farm_data(farm_id)
+	visible = true
+	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
+	root_node.loading_start(true , "not bio")
+	Scan.get_soil_meter_scan()
+
+
 func connect_signals() -> void:
 	var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
 	var _2: int = Scan.get_soil_meter_scan_complete.connect(_on_get_soil_meter_scan_complete)
@@ -48,11 +56,7 @@ func config_scan_buttons() -> void:
 		var _1: int = button.pressed.connect(_on_scan_button_pressed.bind(button.name))
 
 
-func get_farm_data(farm_id: String) -> void:
-	Farmer.get_farm_data(farm_id)
-	visible = true
-	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
-	root_node.loading_start(true , "not bio")
+
 
 
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
@@ -102,6 +106,7 @@ func _on_scan_button_pressed(button_name: String) -> void:
 	
 
 func get_scans(button_name: String) -> void:
+	print(button_name, " button pressed")
 	if not visible:
 		return
 	match button_name:

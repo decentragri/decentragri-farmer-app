@@ -481,7 +481,7 @@ toggle_mode = true
 button_pressed = true
 text = "Soil scan"
 
-[node name="PlantScanButton2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
+[node name="PlantScan" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -516,7 +516,8 @@ wheel_scroll_damper = SubResource("Resource_0s0pr")
 dragging_scroll_damper = SubResource("Resource_i3j26")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="ScanContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+[node name="ScanEntryContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
