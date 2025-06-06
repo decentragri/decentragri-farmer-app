@@ -21,9 +21,11 @@ func get_farm_data(farm_id: String) -> void:
 
 
 func connect_signals() -> void:
+	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
 	var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
 	var _2: int = Scan.get_soil_meter_scan_complete.connect(_on_get_soil_meter_scan_complete)
 	var _3: int = Scan.get_plant_scan_complete.connect(_on_get_plan_scan_complete)
+	var _4: int  = %ScanButton.pressed.connect(root_node.on_scan_button_pressed)
 	config_scan_buttons() 
 
 
@@ -54,9 +56,6 @@ func _on_scan_entry_details_button_pressed(details: Dictionary) -> void:
 func config_scan_buttons() -> void:
 	for button: Button in get_tree().get_nodes_in_group("FarmScanButtons"):
 		var _1: int = button.pressed.connect(_on_scan_button_pressed.bind(button.name))
-
-
-
 
 
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:

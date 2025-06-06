@@ -15,6 +15,9 @@ func connect_signals() -> void:
 	var _3: int = BiometricAuth.bio_auth_success.connect(_on_bio_auth_success)
 	var _4: int = BiometricAuth.bio_auth_failed.connect(_on_bio_failed)
 
+	var _5: int  = %ScanButton.pressed.connect(on_scan_button_pressed)
+
+
 #endregion
 
 #region 🪟 Window Switching & Loading State
@@ -92,8 +95,9 @@ func _on_get_weather_icon_complete(image: Dictionary) -> void:
 
 #region 🧪 Scan Logic
 
-func _on_scan_button_pressed() -> void:
+func on_scan_button_pressed() -> void:
 	%ChooseScanModal.visible = true
+
 
 func _on_choose_scan_modal_scan_button_pressed(button_name: String) -> void:
 	match button_name:
