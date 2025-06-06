@@ -4,7 +4,8 @@ extends Control
 signal on_error_encountered(text: String)
 
 const uuid: Script = preload("res://HTTP/UUID.gd")
-	
+
+
 func _ready() -> void:
 	connect_signals()
 	
@@ -176,3 +177,9 @@ func reset_line_edits() -> void:
 func _on_back_button_pressed() -> void:
 	visible = false
 	reset_line_edits()
+
+
+func _on_visibility_changed() -> void:
+	if visible:
+		%CropTypeLine.text = Scan.crop_type
+		%FarmName.text = Scan.farm_name

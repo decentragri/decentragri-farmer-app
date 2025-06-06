@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_3q04a"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="2_r223u"]
 [ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="2_vo87h"]
+[ext_resource type="StyleBox" uid="uid://dd72i5nktmii7" path="res://Assets/StyleRes/soil_meter_values_modal_non_edit.tres" id="4_abi7b"]
 [ext_resource type="Texture2D" uid="uid://boo5l23scoya1" path="res://Assets/Icons/back_icon.png" id="5_8ieqn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2h8fa"]
@@ -28,14 +29,6 @@ corner_radius_bottom_left = 8
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r223u"]
 content_margin_left = 10.0
 bg_color = Color(0.913725, 0.913725, 0.913725, 1)
-border_color = Color(0.0784314, 0.592157, 0.270588, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q04a"]
-bg_color = Color(0.74558, 0.74558, 0.74558, 1)
 border_color = Color(0.0784314, 0.592157, 0.270588, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -112,10 +105,13 @@ layout_mode = 2
 theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 19
 theme_override_styles/focus = SubResource("StyleBoxFlat_vo87h")
+theme_override_styles/read_only = ExtResource("4_abi7b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_r223u")
+editable = false
 
 [node name="Label8" type="Label" parent="Panel/VBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 24)
@@ -244,17 +240,18 @@ theme_override_fonts/font = ExtResource("1_ntrfi")
 theme_override_font_sizes/font_size = 20
 text = "Farm name (auto-filled)"
 
-[node name="HumidityLine2" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
+[node name="FarmName" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer" groups=["MeterValuesLine"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 19
 theme_override_styles/focus = SubResource("StyleBoxFlat_vo87h")
-theme_override_styles/read_only = SubResource("StyleBoxFlat_3q04a")
+theme_override_styles/read_only = ExtResource("4_abi7b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_r223u")
 editable = false
 
@@ -326,6 +323,7 @@ ignore_texture_size = true
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
 [connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/CropTypeLine" to="." method="_on_croptype_line_text_changed"]
 [connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/FertilityLine" to="." method="_on_fertility_line_text_changed"]
@@ -334,6 +332,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/TemperatureLine" to="." method="_on_temperature_line_text_changed"]
 [connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/SunlightLine" to="." method="_on_sunlight_line_text_changed"]
 [connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/HumidityLine" to="." method="_on_humidity_line_text_changed"]
-[connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/HumidityLine2" to="." method="_on_humidity_line_text_changed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/Panel/VBoxContainer/FarmName" to="." method="_on_humidity_line_text_changed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Panel/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Panel/BackButton" to="." method="_on_back_button_pressed"]
