@@ -11,7 +11,7 @@ func _ready() -> void:
 func connect_signals() -> void:
     var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
     config_scan_buttons() 
-    
+
 
 func config_scan_buttons() -> void:
     for button: Button in get_tree().get_nodes_in_group("FarmScanButtons"):
@@ -55,12 +55,14 @@ func display_image(image_buffer: String) -> void:
         %FarmPic.texture = farm_pic
 
 
+
 func _on_scan_button_pressed(button_name: String) -> void:
     for button: Button in get_tree().get_nodes_in_group("FarmScanButtons"):
         if button.name == button_name:
             button.button_pressed = true
         else:
             button.button_pressed = false
+        
 
 
 
