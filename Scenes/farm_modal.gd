@@ -1,5 +1,9 @@
 extends Control
 
+const soil_scan_entry_slot: PackedScene = preload("res://Scenes/scan_entry.tscn")
+const plant_scan_entry_slot: PackedScene = preload("res://Scenes/plant_scan_entry.tscn")
+
+
 signal _on_error_encountered(message: String)
 
 
