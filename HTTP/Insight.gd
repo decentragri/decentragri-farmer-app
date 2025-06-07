@@ -18,7 +18,7 @@ func get_eth_sweth_price() -> void:
 	wrGetETHSWETHPrice = prepared_http_req.weakref
 
 	var _connect: int = GetETHSWETHPrice.request_completed.connect(_on_GetPrice_request_completed)
-	Utils.logger.info("Calling BKMREngine to get prices")
+	Utils.logger.info("Calling to get prices")
 	var request_url: String = Utils.host + "/api/insight/eth/price"
 
 	Utils.send_get_request(GetETHSWETHPrice, request_url)
@@ -47,7 +47,7 @@ func get_last_transaction(wallet_address: String, chain_id: String) -> void:
 	wrGetLastTransactions = prepared_http_req.weakref
 
 	var _connect: int = GetLastTransactions.request_completed.connect(_on_GetLastTransaction_request_completed)
-	Utils.logger.info("Calling BKMREngine to get prices")
+	Utils.logger.info("Calling to get prices")
 	var request_url: String = Utils.host + "/api/insight/transactions/" + wallet_address + "/" + chain_id 
 
 	Utils.send_get_request(GetLastTransactions, request_url)

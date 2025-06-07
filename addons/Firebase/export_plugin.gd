@@ -32,7 +32,7 @@ class AndroidExportPlugin extends EditorExportPlugin:
 			return PackedStringArray([_plugin_name + "/bin/release/" + _plugin_name + "-release.aar"])
 
 	func _get_android_dependencies(_platform: EditorExportPlatform, debug: bool) -> PackedStringArray:
-		# TODO: Add remote dependices here.
+
 		if debug:
 			return PackedStringArray([
 				"androidx.core:core-ktx:1.12.0",

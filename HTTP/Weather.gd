@@ -17,7 +17,7 @@ func get_current_weather(location: String) -> void:
 	wrCurrentWeather = prepared_http_req.weakref
 
 	var _connect: int = GetCurrentWeather.request_completed.connect(_on_GetCurrentWeather_request_completed)
-	Utils.logger.info("Calling BKMREngine to get prices")
+	Utils.logger.info("Calling  to get weather")
 	var request_url: String = Utils.host + "/api/weather/current/" + location
 	Utils.send_get_request(GetCurrentWeather, request_url)
 	
@@ -45,7 +45,7 @@ func get_weather_icon(icon_uri: String) -> void:
 	wrGetWeatherIcon = prepared_http_req.weakref
 
 	var _connect: int = GetWeatherIcon.request_completed.connect(_on_GetWeatherIcon_request_completed)
-	Utils.logger.info("Calling BKMREngine to get prices")
+	Utils.logger.info("Calling to get weather icon")
 	var request_url: String = "https://" + icon_uri.replace("//", "")
 	
 	Utils.send_get_request(GetWeatherIcon, request_url)

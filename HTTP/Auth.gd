@@ -265,7 +265,7 @@ func _on_Register_request_completed(_result: int, response_code: int, headers: A
 			set_user_logged_in(username)
 			save_session(access_token, refresh_token, login_type)
 			renew_access_token_timer()
-			Utils.logger.info("BKMREngine register success")
+			Utils.logger.info("egister success")
 		else:
 			registration_complete.emit({ "error": "Unknown error" })
 	else:

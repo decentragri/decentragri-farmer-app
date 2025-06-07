@@ -24,7 +24,7 @@ func get_eth_to_rsweth_rate() -> void:
 	wrGetETHRSWETHRate = prepared_http_req.weakref
 
 	var _connect: int = GetETHRSWETHRate.request_completed.connect(_on_GetETHRSWETHRate_request_completed)
-	Utils.logger.info("Calling BKMREngine to exchange rate soil meter data")
+	Utils.logger.info("Calling to exchange rate soil meter data")
 	var request_url: String = Utils.host + "/api/onchain/eth-rsweth/rate"
 
 	Utils.send_get_request(GetETHRSWETHRate, request_url)
@@ -53,7 +53,7 @@ func get_reward_rate() -> void:
 	wrGetRewardRate = prepared_http_req.weakref
 
 	var _connect: int = GetRewardRate.request_completed.connect(_on_GetRewardRate_request_completed)
-	Utils.logger.info("Calling BKMREngine to exchange rate soil meter data")
+	Utils.logger.info("Calling to exchange rate soil meter data")
 	var request_url: String = Utils.host + "/api/onchain/reward-percentage/price"
 
 	Utils.send_get_request(GetRewardRate, request_url)

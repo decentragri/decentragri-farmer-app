@@ -68,7 +68,7 @@ func get_soil_meter_scan() -> void:
 	wrGetSoilMeterScan = prepared_http_req.weakref
 
 	var _connect: int = GetSoilMeterScan.request_completed.connect(_on_GetSoilMeterScan_request_completed)
-	Utils.logger.info("Calling BKMREngine to get soil meter data")
+	Utils.logger.info("Calling to get soil meter data")
 	var request_url: String = Utils.host + "/api/get-sensor-readings"
 
 	# Send the GET request using the prepared URL.
@@ -139,7 +139,7 @@ func get_plant_scan() -> void:
 	wrGetPlantScan = prepared_http_req.weakref
 
 	var _connect: int = GetPlantScan.request_completed.connect(_on_GetPlantScan_request_completed)
-	Utils.logger.info("Calling BKMREngine to get plant scan data")
+	Utils.logger.info("Calling to get plant scan data")
 	var request_url: String = Utils.host + "/api/get-scan-readings"
 
 	# Send the GET request using the prepared URL.
