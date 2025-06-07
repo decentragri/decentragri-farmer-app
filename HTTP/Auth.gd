@@ -13,15 +13,18 @@ var wrLogin: WeakRef
 signal login_complete
 signal logout_complete
 
-
 var Register: HTTPRequest
 var wrRegister: WeakRef
 signal registration_complete
 
-
 var RenewToken: HTTPRequest
 var wrRenewToken: WeakRef
 signal token_renew_complete
+
+var SaveFcmToken: HTTPRequest
+var wrSaveFcmToken: WeakRef
+signal save_fcm_token_complete
+
 
 var login_type: String
 var last_login_type: String
@@ -159,6 +162,40 @@ func _on_ValidateSession_request_completed(_result: int, response_code: int, hea
 	else:
 		# Trigger the completion of the session check with an empty result in case of failure
 		complete_session_check({ })
+	
+	
+func save_fcm_token(token: String) -> void:
+	# Prepare the HTTP request for session validation
+	var prepared_http_req: Dictionary = Utils.prepare_http_request()
+	SaveFcmToken = prepared_http_req.request
+	wrSaveFcmToken = prepared_http_req.weakref
+	var _validate_session: int = ValidateSession.request_completed.connect(_on_SaveFcmToken_request_completed)
+	Utils.logger.info("Calling to save FCM token")
+	
+	var payload: Dictionary = { "token": token }
+	var request_url: String = Utils.host + "/api/save/fcm-token/android"
+	Utils.send_post_request(SaveFcmToken, request_url, payload)
+	
+	
+func _on_SaveFcmToken_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+	# Check the HTTP response status.
+	var status_check: bool = Utils.logger.check_http_response(response_code, headers, body)
+	if status_check:
+		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+		if json_body != null:
+			if json_body is Dictionary:
+				if json_body.has("error"):
+					save_fcm_token_complete.emit({ "error": json_body.error })
+				else:
+					save_fcm_token_complete.emit(json_body)
+		else:
+			save_fcm_token_complete.emit({ "error": "Unknown server error" })
+	else:
+		save_fcm_token_complete.emit({ "error": "Unknown server error" })
+
+
+
+
 #endregion
 
 

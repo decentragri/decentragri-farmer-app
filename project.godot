@@ -33,6 +33,7 @@ NetworkState="*res://addons/AndroidInternetConnectionStatePlugin/AndroidNetworkS
 RealmDB="*res://addons/RealmDB/realm_db.gd"
 Camera="*res://addons/GodotGetImage/Camera.gd"
 Farmer="*res://HTTP/Farmer.gd"
+Firebase="*res://addons/Firebase/firebase.gd"
 
 [debug]
 
