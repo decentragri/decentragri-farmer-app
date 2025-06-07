@@ -34,9 +34,21 @@ class AndroidExportPlugin extends EditorExportPlugin:
 	func _get_android_dependencies(_platform: EditorExportPlatform, debug: bool) -> PackedStringArray:
 		# TODO: Add remote dependices here.
 		if debug:
-			return PackedStringArray([])
+			return PackedStringArray([
+				"androidx.core:core-ktx:1.12.0",
+				"org.jetbrains.kotlin:kotlin-stdlib:2.0.20",
+				"com.google.firebase:firebase-messaging-ktx:24.1.1",
+				"com.google.firebase:firebase-inappmessaging-display-ktx:21.0.2",
+				"com.google.firebase:firebase-analytics"
+			])
 		else:
-			return PackedStringArray([])
+			return PackedStringArray([
+				"androidx.core:core-ktx:1.12.0",
+				"org.jetbrains.kotlin:kotlin-stdlib:2.0.20",
+				"com.google.firebase:firebase-messaging-ktx:24.1.1",
+				"com.google.firebase:firebase-inappmessaging-display-ktx:21.0.2",
+				"com.google.firebase:firebase-analytics"
+			])
 
 	func _get_name() -> String:
 		return _plugin_name
