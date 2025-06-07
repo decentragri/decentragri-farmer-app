@@ -1,15 +1,21 @@
 {
     "cSpell.words": [
+        "autologin",
         "Camarines",
         "croptype",
+        "decentragri",
         "decentrasession",
         "elif",
+        "ETHRSWETH",
         "ETHSWETH",
         "inappmessaging",
+        "LANCZOS",
         "Longtitude",
         "printerr",
+        "rsweth",
         "tscn",
-        "weakref"
+        "weakref",
+        "weatherapi"
     ],
     "godotTools.editorPath.godot4": "/home/paulanthonyarriola/Desktop/Godot_v4.4.1-stable_linux.x86_64"
 }
