@@ -63,10 +63,10 @@ corner_radius_bottom_left = 5
 content_margin_left = 10.0
 bg_color = Color(0.683077, 0.683077, 0.683077, 1)
 border_color = Color(0.0784314, 0.592157, 0.270588, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owong"]
 bg_color = Color(1, 1, 1, 0.729412)
@@ -299,14 +299,14 @@ text = "Longitude"
 
 [node name="LongtitudeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer/VBoxContainer2" groups=["MeterValuesLine"]]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 30)
+custom_minimum_size = Vector2(300, 31)
 layout_mode = 2
 theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_colors/font_uneditable_color = Color(0.396889, 0.396889, 0.396889, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_6gi3p")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_poavc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2bk0l")
@@ -322,14 +322,14 @@ text = "Latitude"
 
 [node name="LatitudeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/VBoxContainer/VBoxContainer2" groups=["MeterValuesLine"]]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 30)
+custom_minimum_size = Vector2(300, 31)
 layout_mode = 2
 theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_colors/font_uneditable_color = Color(0.396889, 0.396889, 0.396889, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxFlat_6gi3p")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_poavc")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2bk0l")

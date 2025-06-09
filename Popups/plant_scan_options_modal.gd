@@ -28,6 +28,7 @@ func connect_signals() -> void:
 func get_gps_coordinates() -> void:
 	GpsLocator.start_gps()
 
+
 func _on_gps_coordinates_received(gps_string: String) -> void:
 	print("📍 Raw GPS: ", gps_string)
 	if gps_string == null or gps_string.strip_edges() == "":
@@ -62,7 +63,6 @@ func _display_captured_image(image_data: Dictionary) -> void:
 		on_error_encountered.emit("No image data received")
 		return
 	
-
 	var image: Image = Image.new()
 	var buffer: Array = image_data["0"]
 	var error: Error = image.load_png_from_buffer(buffer)
@@ -112,17 +112,16 @@ func _on_submit_button_pressed() -> void:
 	var _plant_scan_data: Dictionary[String, Variant] = {
 		"imageBytes": string_image_byte_data,
 		"cropType": %CropTypeLine.text.strip_edges(),
+		"farmName": %FarmName.text.strip_edges(),
 		"location": {
 			"lat": %LatitudeLine.text.to_float(),
 			"lng": %LongtitudeLine.text.to_float(),
 		},
 		"note": %NotesLine.text.strip_edges()
 	}
-
 	Scan.save_plant_scan(_plant_scan_data)
-	#var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
-	#root_node.loading_start(true)
-
+	
+	
 func _on_save_plant_scan_complete(message: Dictionary) -> void:
 	if message.has("error"):
 		on_error_encountered.emit(message.error + " Please try again")
@@ -176,5 +175,4 @@ func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArra
 		@warning_ignore("narrowing_conversion")
 		image.resize(w * scale_down, h * scale_down, Image.INTERPOLATE_LANCZOS)
 		
-	
 	return image.save_png_to_buffer()

@@ -34,7 +34,6 @@ func _on_visibility_changed() -> void:
 	
 	
 func _on_farm_button_pressed(farm_id: String) -> void:
-	print("Farm button pressed with ID: ", farm_id)
 	on_button_farm_pressed.emit(farm_id)
 	
 	

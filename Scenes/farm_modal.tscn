@@ -498,6 +498,22 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0s0pr")
 toggle_mode = true
 text = "Plant scan"
 
+[node name="PlantScan2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.450648, 0.450648, 0.450648, 1)
+theme_override_colors/font_pressed_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("7_nj80e")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = ExtResource("7_4xdx6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e6k7y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_230lw")
+theme_override_styles/pressed = ExtResource("7_4xdx6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0s0pr")
+toggle_mode = true
+text = "Pest Forecast"
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2

@@ -1,9 +1,8 @@
 extends Control
 
+const uuid: Script = preload("res://HTTP/UUID.gd")
 
 signal on_error_encountered(text: String)
-
-const uuid: Script = preload("res://HTTP/UUID.gd")
 
 
 func _ready() -> void:
@@ -21,7 +20,7 @@ func _on_save_soil_meter_scan_complete(message: Dictionary) -> void:
 	else:
 		on_error_encountered.emit("Scan was submitted successfully")
 		reset_line_edits()
-
+	
 	
 func _on_croptype_line_text_changed(new_text: String) -> void:
 	var trimmed_text: String = new_text.strip_edges()
