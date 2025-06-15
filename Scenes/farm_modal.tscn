@@ -498,7 +498,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0s0pr")
 toggle_mode = true
 text = "Plant scan"
 
-[node name="PlantScan2" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
+[node name="PestForecast" type="Button" parent="Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2

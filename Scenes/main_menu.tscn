@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://b5glthd6cd62o"]
+[gd_scene load_steps=99 format=3 uid="uid://b5glthd6cd62o"]
 
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://c1bl2jwil1ci1" path="res://Scenes/main_menu.gd" id="1_jr6u5"]
@@ -26,7 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://bkusq4jkrytjk" path="res://Scenes/profile_container.tscn" id="16_ifnak"]
 [ext_resource type="PackedScene" uid="uid://dte83jcn2qj3x" path="res://Scenes/my_farm_container.tscn" id="17_fh77k"]
 [ext_resource type="PackedScene" uid="uid://bsuv0xtq1n0bh" path="res://Popups/soil_meter_values_modal.tscn" id="24_6m47u"]
+[ext_resource type="Texture2D" uid="uid://bfcflc81rwo1a" path="res://Assets/Icons/farmer_icon.png" id="24_nrlkg"]
 [ext_resource type="Texture2D" uid="uid://o0f8f40y5b0u" path="res://Assets/Icons/rsweth_icon.png" id="24_u2gki"]
+[ext_resource type="Texture2D" uid="uid://d132dik8g5r6v" path="res://Assets/Icons/farmer_icon2.png" id="25_5vh2r"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="25_84iac"]
 [ext_resource type="PackedScene" uid="uid://cejjsv7igqif6" path="res://Popups/scan_entry_details.tscn" id="27_ne6ao"]
 [ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="29_u2gki"]
@@ -43,13 +45,21 @@
 [ext_resource type="Texture2D" uid="uid://dywmfm3ua8mi1" path="res://Assets/Loader/9.png" id="37_bqu1d"]
 [ext_resource type="PackedScene" uid="uid://bb8dxqfu4ah0g" path="res://Popups/create_farm_modal.tscn" id="37_nrlkg"]
 [ext_resource type="Texture2D" uid="uid://bw4wwgfb303ra" path="res://Assets/Loader/10.png" id="38_hcedr"]
+[ext_resource type="Shader" uid="uid://2vfgwygibjq2" path="res://Scenes/arm_pic.gdshader" id="38_xm43g"]
+[ext_resource type="Texture2D" uid="uid://wglmkc4g02dg" path="res://Assets/Background/auth_bg.png" id="39_gq2ea"]
 [ext_resource type="Texture2D" uid="uid://yvo4ldjkmc66" path="res://Assets/Loader/11.png" id="39_nrlkg"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="40_4vppj"]
 [ext_resource type="Texture2D" uid="uid://bfmax1e1c5ol4" path="res://Assets/Loader/12.png" id="40_5vh2r"]
 [ext_resource type="Texture2D" uid="uid://r8m7d65vpjoa" path="res://Assets/Loader/13.png" id="41_ffqkl"]
+[ext_resource type="StyleBox" uid="uid://d4kcxwi6ggvys" path="res://Assets/StyleRes/farm_scan_select_button.tres" id="41_nv0vt"]
 [ext_resource type="Texture2D" uid="uid://d1dwtnv1kwxlx" path="res://Assets/Loader/14.png" id="42_lt5fr"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="42_wuvip"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="43_58trw"]
 [ext_resource type="Texture2D" uid="uid://sq1hli1kpybf" path="res://Assets/Loader/15.png" id="43_ew5j3"]
+[ext_resource type="Texture2D" uid="uid://boo5l23scoya1" path="res://Assets/Icons/back_icon.png" id="44_f6864"]
 [ext_resource type="Texture2D" uid="uid://d1af04e4luhmx" path="res://Assets/Loader/16.png" id="44_go1vp"]
 [ext_resource type="Texture2D" uid="uid://cbd3jrwa0mp37" path="res://Assets/Loader/17.png" id="45_aoijc"]
+[ext_resource type="PackedScene" uid="uid://cw48wufhj4rir" path="res://Scenes/community_container.tscn" id="45_gq2ea"]
 [ext_resource type="Texture2D" uid="uid://3gi26pxvndbb" path="res://Assets/Loader/18.png" id="46_xm43g"]
 [ext_resource type="Texture2D" uid="uid://cfcbvlnhjfhws" path="res://Assets/Loader/19.png" id="47_gq2ea"]
 [ext_resource type="Texture2D" uid="uid://crdcjll36okvk" path="res://Assets/Loader/20.png" id="48_4vppj"]
@@ -124,6 +134,81 @@ _data = {
 &"RESET": SubResource("Animation_5n0dv"),
 &"error_animation": SubResource("Animation_84iac")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlo60"]
+bg_color = Color(1, 1, 1, 1)
+shadow_color = Color(0, 0, 0, 0.270588)
+shadow_size = 15
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oh1sv"]
+bg_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+corner_detail = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4xdx6"]
+shader = ExtResource("38_xm43g")
+shader_parameter/radius_scale = 1.0
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 1.0
+shader_parameter/height = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxypk"]
+bg_color = Color(0.819608, 0.835294, 0.858824, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xdx6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6k7y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_230lw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gc62v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qrigd"]
+bg_color = Color(0.819608, 0.835294, 0.858824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6k7y"]
+bg_color = Color(1, 1, 1, 0.729412)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_230lw"]
+bg_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s0pr"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="Resource" id="Resource_0s0pr"]
+script = ExtResource("43_58trw")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_i3j26"]
+script = ExtResource("43_58trw")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2gki"]
 bg_color = Color(0.381703, 0.381703, 0.381703, 0.886275)
@@ -348,6 +433,7 @@ size_flags_vertical = 3
 
 [node name="MainContainer" type="VBoxContainer" parent="VBoxContainer/WindowsContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 770)
 layout_mode = 2
 size_flags_vertical = 3
@@ -439,6 +525,7 @@ layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="Panel" type="Panel" parent="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -578,7 +665,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/WindowsContainer/MainContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 theme_override_constants/separation = 15
@@ -746,7 +832,8 @@ offset_right = 328.0
 offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 100
+theme_override_constants/separation = 60
+alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -833,7 +920,34 @@ theme_override_fonts/font = ExtResource("4_ce3w2")
 theme_override_font_sizes/font_size = 11
 text = "Reports"
 
-[node name="WeatherButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+[node name="FarmerButton" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("24_nrlkg")
+texture_pressed = ExtResource("25_5vh2r")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/FarmerButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = 3.0
+offset_right = 17.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.63371, 0.633445, 0.590696, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 11
+text = "Profile"
+
+[node name="WeatherButton2" type="TextureButton" parent="HBoxContainer" groups=["WindowButtons"]]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 toggle_mode = true
@@ -842,7 +956,7 @@ texture_pressed = ExtResource("11_wyh8j")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HBoxContainer/WeatherButton"]
+[node name="Label" type="Label" parent="HBoxContainer/WeatherButton2"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -967,6 +1081,499 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="FarmerProfileModal" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="FarmerProfileModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="FarmerProfileModal/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mlo60")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -846.0
+offset_right = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_oh1sv")
+
+[node name="FarmPic" type="TextureRect" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer/Panel"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_4xdx6")
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -75.0
+offset_right = 75.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("39_gq2ea")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="FarmName" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("40_4vppj")
+theme_override_font_sizes/font_size = 28
+text = "Rice Farm"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="CropType" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("40_4vppj")
+theme_override_font_sizes/font_size = 16
+text = "Sinandomeng"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+text = "Description"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SmoothScrollContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nxypk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_ce3w2")
+theme_override_font_sizes/font_size = 18
+text = "Farm details"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(122, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Created at:"
+
+[node name="CreatedAt" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "October 2025"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(122, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Last update"
+
+[node name="UpdatedAt" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "November 2025"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Owner:"
+
+[node name="Owner" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "wonyoung"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Total Scans:"
+
+[node name="Label2" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "10"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(116, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Last Scan"
+
+[node name="Label2" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "10/31/2025"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(68, 0)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Location:"
+
+[node name="Label2" type="Button" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer5"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
+text = "See Location"
+text_overrun_behavior = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Farm Level:"
+
+[node name="Label2" type="Button" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer6"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
+text = "1"
+text_overrun_behavior = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer7"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+text = "Farm Rank:"
+
+[node name="Label2" type="Button" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer7"]
+custom_minimum_size = Vector2(129, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4xdx6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_e6k7y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_230lw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gc62v")
+text = "Seedling"
+text_overrun_behavior = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrigd")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="SoilScan" type="Button" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.450648, 0.450648, 0.450648, 1)
+theme_override_colors/font_pressed_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = ExtResource("41_nv0vt")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e6k7y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_230lw")
+theme_override_styles/pressed = ExtResource("41_nv0vt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0s0pr")
+toggle_mode = true
+button_pressed = true
+text = "Soil scan"
+
+[node name="PlantScan" type="Button" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.450648, 0.450648, 0.450648, 1)
+theme_override_colors/font_pressed_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = ExtResource("41_nv0vt")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e6k7y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_230lw")
+theme_override_styles/pressed = ExtResource("41_nv0vt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0s0pr")
+toggle_mode = true
+text = "Plant scan"
+
+[node name="PestForecast" type="Button" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/HBoxContainer" groups=["FarmScanButtons"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.450648, 0.450648, 0.450648, 1)
+theme_override_colors/font_pressed_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("25_84iac")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = ExtResource("41_nv0vt")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e6k7y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_230lw")
+theme_override_styles/pressed = ExtResource("41_nv0vt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0s0pr")
+toggle_mode = true
+text = "Pest Forecast"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qrigd")
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("42_wuvip")
+wheel_scroll_damper = SubResource("Resource_0s0pr")
+dragging_scroll_damper = SubResource("Resource_i3j26")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="ScanEntryContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/VBoxContainer/SmoothScrollContainer/VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = 95.0
+grow_horizontal = 2
+
+[node name="BackButton" type="TextureButton" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 85)
+layout_mode = 2
+texture_normal = ExtResource("44_f6864")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ScanButton" type="TextureButton" parent="FarmerProfileModal/Panel/VBoxContainer/Panel/HBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("3_6m47u")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CommunityContainer" parent="." instance=ExtResource("45_gq2ea")]
+layout_mode = 1
+
 [node name="LoadingPanel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -1050,4 +1657,5 @@ text = "VERIFY"
 [connection signal="scan_history_button_pressed" from="ScanOptionsModal" to="." method="_on_scan_options_modal_scan_history_button_pressed"]
 [connection signal="on_error_encountered" from="CreateFarmModal" to="." method="_on_create_farm_modal_on_error_encountered"]
 [connection signal="_on_error_encountered" from="FarmModal" to="." method="_on_farm_modal__on_error_encountered"]
+[connection signal="pressed" from="FarmerProfileModal/Panel/VBoxContainer/Panel/HBoxContainer/BackButton" to="FarmerProfileModal" method="_on_back_button_pressed"]
 [connection signal="pressed" from="LoadingPanel/VerifyBioButton" to="." method="_on_verify_bio_button_pressed"]
