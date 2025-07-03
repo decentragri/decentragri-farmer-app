@@ -1,0 +1,282 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjwdx0d0mmrww"]
+
+[ext_resource type="Texture2D" uid="uid://cw8kt1o7ejr15" path="res://Assets/Icons/weather_icon_white.png" id="1_s3kg6"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_af41d"]
+[ext_resource type="Texture2D" uid="uid://bwgmsdkg2wnr6" path="res://Assets/Icons/location_pin_white.png" id="3_na8mg"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="4_k4nyv"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="5_0gb0h"]
+[ext_resource type="Texture2D" uid="uid://d08ye7peux4xx" path="res://Assets/Icons/humidity_icon_white.png" id="6_a82ls"]
+[ext_resource type="Texture2D" uid="uid://dwkyexudk8ly5" path="res://Assets/Icons/wind_icon_white.png" id="7_7svnt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 30
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekesb"]
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+border_color = Color(0.623529, 0.952941, 0, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eo2e"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="WeatherCard" type="Panel"]
+custom_minimum_size = Vector2(650, 715)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(586, 435)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0492308
+anchor_top = 0.032028
+anchor_right = 0.950769
+anchor_bottom = 0.973566
+offset_top = 10.1
+offset_bottom = -10.1
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer2"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(35, 30)
+layout_mode = 2
+texture = ExtResource("1_s3kg6")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 32
+text = "Today's Weather"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_na8mg")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("4_k4nyv")
+theme_override_font_sizes/font_size = 15
+text = "Manila"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+texture = ExtResource("1_s3kg6")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_0gb0h")
+theme_override_font_sizes/font_size = 60
+text = "29°C"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 32
+text = "Partly cloudy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+texture = ExtResource("6_a82ls")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 30
+text = "84%"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 26
+text = "Humidity"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+texture = ExtResource("7_7svnt")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 30
+text = "10 km/h"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 26
+text = "Wind Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Panel" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekesb")
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/Button/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/Button/TextureButton/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(35, 30)
+layout_mode = 2
+texture = ExtResource("1_s3kg6")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/Button/TextureButton/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("2_af41d")
+theme_override_font_sizes/font_size = 30
+text = "View 7-Day Forecast "
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.135
+anchor_right = 1.0
+anchor_bottom = 0.137
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_7eo2e")
+metadata/_edit_use_anchors_ = true

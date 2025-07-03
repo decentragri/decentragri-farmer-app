@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://b5glthd6cd62o"]
+[gd_scene load_steps=99 format=3 uid="uid://cm0738eibe7sh"]
 
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://c1bl2jwil1ci1" path="res://Scenes/main_menu.gd" id="1_jr6u5"]
@@ -433,7 +433,6 @@ size_flags_vertical = 3
 
 [node name="MainContainer" type="VBoxContainer" parent="VBoxContainer/WindowsContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 770)
 layout_mode = 2
 size_flags_vertical = 3
@@ -1572,6 +1571,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="CommunityContainer" parent="." instance=ExtResource("45_gq2ea")]
+visible = false
 layout_mode = 1
 
 [node name="LoadingPanel" type="Panel" parent="."]
