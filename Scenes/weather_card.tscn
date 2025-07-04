@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjwdx0d0mmrww"]
+[gd_scene load_steps=43 format=3 uid="uid://bjwdx0d0mmrww"]
 
+[ext_resource type="Script" uid="uid://cluwpdqifsmjy" path="res://Scenes/weather_card.gd" id="1_af41d"]
 [ext_resource type="Texture2D" uid="uid://cw8kt1o7ejr15" path="res://Assets/Icons/weather_icon_white.png" id="1_s3kg6"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_af41d"]
 [ext_resource type="Texture2D" uid="uid://bwgmsdkg2wnr6" path="res://Assets/Icons/location_pin_white.png" id="3_na8mg"]
@@ -7,6 +8,36 @@
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="5_0gb0h"]
 [ext_resource type="Texture2D" uid="uid://d08ye7peux4xx" path="res://Assets/Icons/humidity_icon_white.png" id="6_a82ls"]
 [ext_resource type="Texture2D" uid="uid://dwkyexudk8ly5" path="res://Assets/Icons/wind_icon_white.png" id="7_7svnt"]
+[ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="9_kc28h"]
+[ext_resource type="Texture2D" uid="uid://c0lnyp1ss0smc" path="res://Assets/Loader/2.png" id="10_burv1"]
+[ext_resource type="Texture2D" uid="uid://dtglqrnntgd8g" path="res://Assets/Loader/3.png" id="11_obs6f"]
+[ext_resource type="Texture2D" uid="uid://disnogvn0f117" path="res://Assets/Loader/4.png" id="12_tynor"]
+[ext_resource type="Texture2D" uid="uid://c47iywekf7x6o" path="res://Assets/Loader/5.png" id="13_1qbj7"]
+[ext_resource type="Texture2D" uid="uid://da1r3q6fh60jd" path="res://Assets/Loader/6.png" id="14_2pr0j"]
+[ext_resource type="Texture2D" uid="uid://bevw5svcw404c" path="res://Assets/Loader/7.png" id="15_6nsyi"]
+[ext_resource type="Texture2D" uid="uid://hks2c1yrk4g5" path="res://Assets/Loader/8.png" id="16_tgtru"]
+[ext_resource type="Texture2D" uid="uid://dywmfm3ua8mi1" path="res://Assets/Loader/9.png" id="17_vioid"]
+[ext_resource type="Texture2D" uid="uid://bw4wwgfb303ra" path="res://Assets/Loader/10.png" id="18_oee57"]
+[ext_resource type="Texture2D" uid="uid://yvo4ldjkmc66" path="res://Assets/Loader/11.png" id="19_nuabq"]
+[ext_resource type="Texture2D" uid="uid://bfmax1e1c5ol4" path="res://Assets/Loader/12.png" id="20_30vnn"]
+[ext_resource type="Texture2D" uid="uid://r8m7d65vpjoa" path="res://Assets/Loader/13.png" id="21_l4wt5"]
+[ext_resource type="Texture2D" uid="uid://d1dwtnv1kwxlx" path="res://Assets/Loader/14.png" id="22_r2p6a"]
+[ext_resource type="Texture2D" uid="uid://sq1hli1kpybf" path="res://Assets/Loader/15.png" id="23_2viiq"]
+[ext_resource type="Texture2D" uid="uid://d1af04e4luhmx" path="res://Assets/Loader/16.png" id="24_7cwx2"]
+[ext_resource type="Texture2D" uid="uid://cbd3jrwa0mp37" path="res://Assets/Loader/17.png" id="25_s5tpt"]
+[ext_resource type="Texture2D" uid="uid://3gi26pxvndbb" path="res://Assets/Loader/18.png" id="26_xk4pb"]
+[ext_resource type="Texture2D" uid="uid://cfcbvlnhjfhws" path="res://Assets/Loader/19.png" id="27_jqln8"]
+[ext_resource type="Texture2D" uid="uid://crdcjll36okvk" path="res://Assets/Loader/20.png" id="28_xiqhf"]
+[ext_resource type="Texture2D" uid="uid://df60chnyt35i" path="res://Assets/Loader/21.png" id="29_s50js"]
+[ext_resource type="Texture2D" uid="uid://b6fxhxo60jca" path="res://Assets/Loader/22.png" id="30_8rc8p"]
+[ext_resource type="Texture2D" uid="uid://daq47jak45x8k" path="res://Assets/Loader/23.png" id="31_c85nt"]
+[ext_resource type="Texture2D" uid="uid://b6bjlx1c0miob" path="res://Assets/Loader/24.png" id="32_83181"]
+[ext_resource type="Texture2D" uid="uid://csr808dglmm55" path="res://Assets/Loader/25.png" id="33_bdwa2"]
+[ext_resource type="Texture2D" uid="uid://blw10xxm77jg8" path="res://Assets/Loader/26.png" id="34_muyt0"]
+[ext_resource type="Texture2D" uid="uid://bpjquae3nqkn5" path="res://Assets/Loader/27.png" id="35_i04lj"]
+[ext_resource type="Texture2D" uid="uid://cxj61gddh17rl" path="res://Assets/Loader/28.png" id="36_ef07o"]
+[ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="37_lwbbr"]
+[ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="38_f71jj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -32,6 +63,104 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ttbag"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_kc28h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_burv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_obs6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tynor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1qbj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2pr0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_6nsyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tgtru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vioid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_oee57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_nuabq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_30vnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_l4wt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_r2p6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2viiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_7cwx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_s5tpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_xk4pb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jqln8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_xiqhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_s50js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_8rc8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_c85nt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_83181")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_bdwa2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_muyt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_i04lj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_ef07o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_lwbbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_f71jj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eo2e"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
 
@@ -44,6 +173,7 @@ offset_right = -650.0
 offset_bottom = -715.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+script = ExtResource("1_af41d")
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -100,7 +230,8 @@ size_flags_vertical = 4
 texture = ExtResource("3_na8mg")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Region" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -108,20 +239,21 @@ theme_override_fonts/font = ExtResource("4_k4nyv")
 theme_override_font_sizes/font_size = 15
 text = "Manila"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="WeatherConditionContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeatherConditionContainer"]
 custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WeatherConditionContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
@@ -130,11 +262,12 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Temperature" type="Label" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -143,22 +276,22 @@ theme_override_font_sizes/font_size = 60
 text = "29°C"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Condition" type="Label" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
 theme_override_fonts/font = ExtResource("2_af41d")
 theme_override_font_sizes/font_size = 32
 text = "Partly cloudy"
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/WeatherConditionContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer2"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
@@ -167,12 +300,13 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Humidity" type="Label" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -181,7 +315,7 @@ theme_override_font_sizes/font_size = 30
 text = "84%"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer2/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
@@ -191,12 +325,12 @@ text = "Humidity"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/WeatherConditionContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer3"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
@@ -205,12 +339,13 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="WindSpeed" type="Label" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer3/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -219,7 +354,7 @@ theme_override_font_sizes/font_size = 30
 text = "10 km/h"
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
@@ -229,13 +364,14 @@ text = "Wind Speed"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Panel" parent="VBoxContainer/VBoxContainer"]
+[node name="Button" type="Panel" parent="VBoxContainer/WeatherConditionContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ekesb")
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/Button"]
+[node name="ForecastButton" type="TextureButton" parent="VBoxContainer/WeatherConditionContainer/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -244,7 +380,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/Button/TextureButton"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WeatherConditionContainer/Button/ForecastButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -254,7 +390,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/VBoxContainer/Button/TextureButton/HBoxContainer"]
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/Button/ForecastButton/HBoxContainer"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(35, 30)
 layout_mode = 2
@@ -263,7 +399,7 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/Button/TextureButton/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/WeatherConditionContainer/Button/ForecastButton/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
@@ -271,6 +407,40 @@ theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
 theme_override_fonts/font = ExtResource("2_af41d")
 theme_override_font_sizes/font_size = 30
 text = "View 7-Day Forecast "
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LoaderContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureProgressBar" type="AnimatedSprite2D" parent="VBoxContainer/LoaderContainer"]
+unique_name_in_owner = true
+z_index = 9
+position = Vector2(293, 176)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ttbag")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="VBoxContainer/LoaderContainer/TextureProgressBar"]
+z_index = 9
+anchors_preset = -1
+anchor_left = -0.0625
+anchor_top = 1.05
+anchor_right = 1.0625
+anchor_bottom = 1.28
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("4_k4nyv")
+theme_override_font_sizes/font_size = 40
+text = "Please wait"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -286,3 +456,5 @@ grow_horizontal = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_7eo2e")
 metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="VBoxContainer/WeatherConditionContainer/Button/ForecastButton" to="." method="_on_forecast_button_pressed"]

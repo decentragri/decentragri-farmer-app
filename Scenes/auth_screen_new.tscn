@@ -1,11 +1,43 @@
-[gd_scene load_steps=12 format=3 uid="uid://d02vnk8cdvnb4"]
+[gd_scene load_steps=51 format=3 uid="uid://d02vnk8cdvnb4"]
 
 [ext_resource type="Texture2D" uid="uid://wglmkc4g02dg" path="res://Assets/Background/auth_bg.png" id="1_0i0ga"]
+[ext_resource type="Script" uid="uid://dmytnm6uk2vrg" path="res://Scenes/auth_screen_new.gd" id="1_x2d4e"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="2_86ujn"]
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="3_145xf"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="4_0n0yd"]
 [ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="5_r05d8"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="6_r05d8"]
+[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="7_2jah6"]
+[ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="9_x37as"]
+[ext_resource type="Texture2D" uid="uid://c0lnyp1ss0smc" path="res://Assets/Loader/2.png" id="10_b8xv3"]
+[ext_resource type="Texture2D" uid="uid://dtglqrnntgd8g" path="res://Assets/Loader/3.png" id="11_1gu75"]
+[ext_resource type="Texture2D" uid="uid://disnogvn0f117" path="res://Assets/Loader/4.png" id="12_6i6o1"]
+[ext_resource type="Texture2D" uid="uid://c47iywekf7x6o" path="res://Assets/Loader/5.png" id="13_0k7qt"]
+[ext_resource type="Texture2D" uid="uid://da1r3q6fh60jd" path="res://Assets/Loader/6.png" id="14_y0t18"]
+[ext_resource type="Texture2D" uid="uid://bevw5svcw404c" path="res://Assets/Loader/7.png" id="15_rc561"]
+[ext_resource type="Texture2D" uid="uid://hks2c1yrk4g5" path="res://Assets/Loader/8.png" id="16_svaxw"]
+[ext_resource type="Texture2D" uid="uid://dywmfm3ua8mi1" path="res://Assets/Loader/9.png" id="17_mrgth"]
+[ext_resource type="Texture2D" uid="uid://bw4wwgfb303ra" path="res://Assets/Loader/10.png" id="18_a7fc8"]
+[ext_resource type="Texture2D" uid="uid://yvo4ldjkmc66" path="res://Assets/Loader/11.png" id="19_bcbp3"]
+[ext_resource type="Texture2D" uid="uid://bfmax1e1c5ol4" path="res://Assets/Loader/12.png" id="20_rat4h"]
+[ext_resource type="Texture2D" uid="uid://r8m7d65vpjoa" path="res://Assets/Loader/13.png" id="21_qptxo"]
+[ext_resource type="Texture2D" uid="uid://d1dwtnv1kwxlx" path="res://Assets/Loader/14.png" id="22_yl6lc"]
+[ext_resource type="Texture2D" uid="uid://sq1hli1kpybf" path="res://Assets/Loader/15.png" id="23_ciaat"]
+[ext_resource type="Texture2D" uid="uid://d1af04e4luhmx" path="res://Assets/Loader/16.png" id="24_dowhw"]
+[ext_resource type="Texture2D" uid="uid://cbd3jrwa0mp37" path="res://Assets/Loader/17.png" id="25_lf5ck"]
+[ext_resource type="Texture2D" uid="uid://3gi26pxvndbb" path="res://Assets/Loader/18.png" id="26_wla4a"]
+[ext_resource type="Texture2D" uid="uid://cfcbvlnhjfhws" path="res://Assets/Loader/19.png" id="27_dr15d"]
+[ext_resource type="Texture2D" uid="uid://crdcjll36okvk" path="res://Assets/Loader/20.png" id="28_0lwsv"]
+[ext_resource type="Texture2D" uid="uid://df60chnyt35i" path="res://Assets/Loader/21.png" id="29_smo2w"]
+[ext_resource type="Texture2D" uid="uid://b6fxhxo60jca" path="res://Assets/Loader/22.png" id="30_670mt"]
+[ext_resource type="Texture2D" uid="uid://daq47jak45x8k" path="res://Assets/Loader/23.png" id="31_uln3g"]
+[ext_resource type="Texture2D" uid="uid://b6bjlx1c0miob" path="res://Assets/Loader/24.png" id="32_7d01j"]
+[ext_resource type="Texture2D" uid="uid://csr808dglmm55" path="res://Assets/Loader/25.png" id="33_yod5e"]
+[ext_resource type="Texture2D" uid="uid://blw10xxm77jg8" path="res://Assets/Loader/26.png" id="34_i0rcr"]
+[ext_resource type="Texture2D" uid="uid://bpjquae3nqkn5" path="res://Assets/Loader/27.png" id="35_n0epn"]
+[ext_resource type="Texture2D" uid="uid://cxj61gddh17rl" path="res://Assets/Loader/28.png" id="36_ivjl5"]
+[ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="37_rdo3q"]
+[ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="38_5rryc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2d4e"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -54,6 +86,13 @@ shadow_color = Color(0.658824, 1, 0.0156863, 0.188235)
 shadow_size = 12
 shadow_offset = Vector2(0, 6)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b032f"]
+bg_color = Color(0.337255, 0.337255, 0.337255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vyxt"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 corner_radius_top_left = 10
@@ -62,6 +101,161 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 15
 
+[sub_resource type="Animation" id="Animation_5n0dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -209)]
+}
+
+[sub_resource type="Animation" id="Animation_84iac"]
+resource_name = "error_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(104, -92), Vector2(104, 13), Vector2(104, 13), Vector2(104, -92)]
+}
+
+[sub_resource type="Animation" id="Animation_2jah6"]
+resource_name = "error_message"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 2.76667, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(30, -209), Vector2(30, 32), Vector2(30, 32), Vector2(30, -209)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6ao"]
+_data = {
+&"RESET": SubResource("Animation_5n0dv"),
+&"error_animation": SubResource("Animation_84iac"),
+&"error_message": SubResource("Animation_2jah6")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h13yn"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.94902)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuug5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_x37as")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b8xv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1gu75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6i6o1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0k7qt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_y0t18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rc561")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_svaxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_mrgth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_a7fc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_bcbp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_rat4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qptxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_yl6lc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ciaat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_dowhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lf5ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_wla4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_dr15d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0lwsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_smo2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_670mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_uln3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_7d01j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_yod5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_i0rcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_n0epn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_ivjl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_rdo3q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_5rryc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
 [node name="AuthScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -69,6 +263,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x2d4e")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(0.533333, 0.533333, 0.533333, 1)
@@ -209,12 +404,13 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Button" type="Panel" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_r05d8")
 
-[node name="TextureButton" type="TextureButton" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button"]
+[node name="LoginButton" type="TextureButton" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,7 +419,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button/TextureButton"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button/LoginButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -233,7 +429,7 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Label" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button/TextureButton/HBoxContainer"]
+[node name="Label" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button/LoginButton/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 mouse_filter = 1
@@ -244,6 +440,21 @@ text = "LOGIN"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="LoginButton" type="Button" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(615, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_0n0yd")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("7_2jah6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_b032f")
+theme_override_styles/hover = ExtResource("7_2jah6")
+theme_override_styles/pressed = ExtResource("7_2jah6")
+theme_override_styles/normal = ExtResource("7_2jah6")
+text = "LOGIN"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
@@ -266,10 +477,12 @@ vertical_alignment = 1
 z_index = 9
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.269444
-anchor_top = -0.084375
-anchor_right = 0.730556
-anchor_bottom = -0.0148437
+anchor_left = 0.0416667
+anchor_top = 0.025
+anchor_right = 0.963889
+anchor_bottom = 0.164062
+offset_top = -241.0
+offset_bottom = -241.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7vyxt")
 metadata/_edit_use_anchors_ = true
@@ -288,3 +501,60 @@ theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ne6ao")
+}
+
+[node name="LoadingPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 8
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h13yn")
+
+[node name="TextureProgressBar" type="AnimatedSprite2D" parent="LoadingPanel"]
+z_index = 9
+position = Vector2(360, 770)
+sprite_frames = SubResource("SpriteFrames_vuug5")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="LoadingPanel/TextureProgressBar"]
+z_index = 9
+anchors_preset = -1
+anchor_left = -0.0625
+anchor_top = 1.05
+anchor_right = 1.0625
+anchor_bottom = 1.28
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("6_r05d8")
+theme_override_font_sizes/font_size = 40
+text = "Please wait"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="text_changed" from="TextureRect/ColorRect/VBoxContainer/VBoxContainer/UsernameLogin" to="." method="_on_username_login_text_changed"]
+[connection signal="text_changed" from="TextureRect/ColorRect/VBoxContainer/VBoxContainer/PasswordLogin" to="." method="_on_password_login_text_changed"]
+[connection signal="pressed" from="TextureRect/ColorRect/VBoxContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]

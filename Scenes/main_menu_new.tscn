@@ -148,6 +148,7 @@ visible = false
 layout_mode = 2
 
 [node name="WeatherForecastContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("11_7eo2e")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -157,3 +158,5 @@ layout_mode = 2
 
 [node name="BotomMenuButtonsContainer" parent="ColorRect/VBoxContainer" instance=ExtResource("10_5j4ok")]
 layout_mode = 2
+
+[connection signal="forecast_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/HomeContainer" to="." method="_on_home_container_forecast_button_pressed"]

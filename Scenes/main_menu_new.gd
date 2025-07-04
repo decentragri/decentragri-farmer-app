@@ -44,5 +44,7 @@ func _on_toggle_container_visibility(button_name: String) -> void:
 			container.visible = false
 	
 	
-
-	
+func _on_home_container_forecast_button_pressed() -> void:
+	%WeatherForecastContainer.visible = true
+	_on_toggle_container_visibility("WeatherForecast")
+	_on_set_botton_menu_buttons_pressed("WeatherForecast")

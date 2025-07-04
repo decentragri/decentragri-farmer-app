@@ -24,10 +24,10 @@ func _on_session_check_complete(session: Dictionary) -> void:
 	
 	
 func change_to_auth_scene() -> void:
-	var scene: PackedScene = ResourceLoader.load("res://Scenes/auth_screen.tscn")
+	var scene: PackedScene = ResourceLoader.load("res://Scenes/auth_screen_new.tscn")
 	var _1: int = get_tree().change_scene_to_packed(scene)
 	
 	
 func change_to_main_menu_scene() -> void:
-	var scene: PackedScene = ResourceLoader.load("res://Scenes/main_menu.tscn")
+	var scene: PackedScene = ResourceLoader.load("res://Scenes/main_menu_new.tscn")
 	var _1: int = get_tree().change_scene_to_packed(scene)
