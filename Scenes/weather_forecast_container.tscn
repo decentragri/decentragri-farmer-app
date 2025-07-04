@@ -1,0 +1,176 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgbhg45itbv08"]
+
+[ext_resource type="Texture2D" uid="uid://os8sglv6amgj" path="res://Assets/Icons/rain_icon_white.png" id="1_hkdg4"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_jurwn"]
+[ext_resource type="PackedScene" uid="uid://bnjc1hvlv0nuh" path="res://Scenes/weather_forecast_card.tscn" id="3_0lceq"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_3i7db"]
+[ext_resource type="Texture2D" uid="uid://cni5xa0825jvv" path="res://Assets/Icons/calendar_icon_white.png" id="4_e7ht5"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_mqedf"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="5_uue2t"]
+[ext_resource type="PackedScene" uid="uid://bxb7ufgh1tkns" path="res://Scenes/seven_day_forecast_card.tscn" id="8_4gsro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 30
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eo2e"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="Resource" id="Resource_gv2d7"]
+script = ExtResource("4_mqedf")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_4gsro"]
+script = ExtResource("4_mqedf")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[node name="WeatherForecastContainer" type="VBoxContainer" groups=["MainContainers"]]
+custom_minimum_size = Vector2(650, 992)
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/HBoxContainer2"]
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("1_hkdg4")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_jurwn")
+theme_override_font_sizes/font_size = 40
+text = "Weather Forecast"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="WeatherForecastCard" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("3_0lceq")]
+custom_minimum_size = Vector2(650, 950)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+
+[node name="WeeklyForecast" type="Panel" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(650, 950)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="VBoxContainer2/VBoxContainer/WeeklyForecast"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.130526
+anchor_right = 1.0
+anchor_bottom = 0.132526
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_7eo2e")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast"]
+custom_minimum_size = Vector2(586, 435)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0492308
+anchor_top = 0.032028
+anchor_right = 0.950769
+anchor_bottom = 0.973566
+offset_top = 10.1
+offset_bottom = -10.1
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/HBoxContainer/HBoxContainer2"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(38, 50)
+layout_mode = 2
+texture = ExtResource("4_e7ht5")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_uue2t")
+theme_override_font_sizes/font_size = 35
+text = "7-Day Forecast"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("3_3i7db")
+wheel_scroll_damper = SubResource("Resource_gv2d7")
+dragging_scroll_damper = SubResource("Resource_4gsro")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/VBoxContainer/SmoothScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="SevenDayForecastCard" parent="VBoxContainer2/VBoxContainer/WeeklyForecast/VBoxContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer2" instance=ExtResource("8_4gsro")]
+layout_mode = 2

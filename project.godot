@@ -87,6 +87,7 @@ RootNode=""
 NumpadButtons=""
 WalletCopyButton=""
 BottonMenuButtons=""
+MainContainers=""
 
 [input_devices]
 

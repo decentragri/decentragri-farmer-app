@@ -1,0 +1,389 @@
+[gd_scene load_steps=14 format=3 uid="uid://cup6h27ib2a24"]
+
+[ext_resource type="Texture2D" uid="uid://bmcu2w26t2rj6" path="res://Assets/Icons/wallet_icon_white.png" id="1_qlidd"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_8hmoi"]
+[ext_resource type="Texture2D" uid="uid://cx4cbnxyxqfj5" path="res://Assets/Icons/copy_icon.png" id="3_wfgbx"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="4_8hmoi"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="5_ipxg7"]
+[ext_resource type="Texture2D" uid="uid://2klwas0kxu0t" path="res://Assets/Icons/ethereum_icon.png" id="5_snlmb"]
+[ext_resource type="Texture2D" uid="uid://o0f8f40y5b0u" path="res://Assets/Icons/rsweth_icon.png" id="6_qlidd"]
+[ext_resource type="Texture2D" uid="uid://c70rchwrqgd7n" path="res://Assets/Icons/swell_icon.png" id="7_8hmoi"]
+[ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="8_ecu4h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8c2x"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.219608)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snlmb"]
+content_margin_left = 10.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.219608)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7qql"]
+content_margin_left = 10.0
+bg_color = Color(0.913725, 0.913725, 0.913725, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 30
+shadow_offset = Vector2(0, 5)
+
+[node name="WalletContainer" type="VBoxContainer" groups=["MainContainers"]]
+custom_minimum_size = Vector2(650, 992)
+anchors_preset = -1
+anchor_right = 0.944444
+anchor_bottom = 0.775
+offset_right = -680.0
+offset_bottom = -992.0
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/HBoxContainer2"]
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("1_qlidd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_8hmoi")
+theme_override_font_sizes/font_size = 40
+text = "Wallet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 20
+text = " Username"
+
+[node name="UsernameLogin" type="LineEdit" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("4_8hmoi")
+theme_override_styles/focus = SubResource("StyleBoxFlat_r8c2x")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_snlmb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7qql")
+editable = false
+
+[node name="Username" type="TextureButton" parent="VBoxContainer2/VBoxContainer/VBoxContainer/UsernameLogin" groups=["WalletCopyButton"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.913636
+anchor_top = 0.166667
+anchor_right = 0.974242
+anchor_bottom = 0.833334
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("3_wfgbx")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 20
+text = "Smartwallet Address"
+
+[node name="SmartWalletAddress" type="LineEdit" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("4_8hmoi")
+theme_override_styles/focus = SubResource("StyleBoxFlat_r8c2x")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_snlmb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7qql")
+editable = false
+
+[node name="WalletAddress" type="TextureButton" parent="VBoxContainer2/VBoxContainer/VBoxContainer/SmartWalletAddress" groups=["WalletCopyButton"]]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.913636
+anchor_top = 0.166667
+anchor_right = 0.974242
+anchor_bottom = 0.833334
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("3_wfgbx")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(310, 310)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="ETHButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ETHTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_snlmb")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ETHBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 25
+text = "ETH 0.0001"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(310, 310)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="rswETHButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00198, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="rswETHTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_qlidd")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="rswETHBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 25
+text = "rswETH 0.0001"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(310, 310)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="SwellButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="SwellTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_8hmoi")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SwellBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 25
+text = "SWELL 0.0001"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(310, 310)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="DAGRIButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.03279, 0.985157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="DagriTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_ecu4h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DagriBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 25
+text = "DAGRI 0.0001"
+horizontal_alignment = 1
+vertical_alignment = 1

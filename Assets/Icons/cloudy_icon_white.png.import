@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coeuue10knx81"
-path="res://.godot/imported/community_icon.png-488eabcd40e6a2f0ff3d77131922cf57.ctex"
+uid="uid://cwcjv6bnd3uq4"
+path="res://.godot/imported/cloudy_icon_white.png-1ff53e6fd4e9bfe52c9ab4c12e9b43c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://community_icon.png"
-dest_files=["res://.godot/imported/community_icon.png-488eabcd40e6a2f0ff3d77131922cf57.ctex"]
+source_file="res://Assets/Icons/cloudy_icon_white.png"
+dest_files=["res://.godot/imported/cloudy_icon_white.png-1ff53e6fd4e9bfe52c9ab4c12e9b43c2.ctex"]
 
 [params]
 

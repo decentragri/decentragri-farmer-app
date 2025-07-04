@@ -1,6 +1,5 @@
-[gd_scene load_steps=35 format=3 uid="uid://f504lgfm2imt"]
+[gd_scene load_steps=36 format=3 uid="uid://f504lgfm2imt"]
 
-[ext_resource type="Texture2D" uid="uid://npigq4xe0y7v" path="res://Assets/Logo/decentra_logo.png" id="1_6b1b0"]
 [ext_resource type="Script" uid="uid://beax31v7wuets" path="res://Scenes/splash_screen.gd" id="1_h5jmx"]
 [ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="2_eqaj7"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="2_wwf30"]
@@ -33,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://cxj61gddh17rl" path="res://Assets/Loader/28.png" id="29_8q7cr"]
 [ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="30_2svsc"]
 [ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="31_5x12d"]
+[ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="32_k0iel"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="34_0ofe6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rjijb"]
 animations = [{
@@ -148,9 +149,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [node name="TextureProgressBar" type="AnimatedSprite2D" parent="ColorRect"]
-position = Vector2(276, 720)
+position = Vector2(360, 931)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_rjijb")
 autoplay = "default"
@@ -158,36 +160,51 @@ frame_progress = 0.595315
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -384.0
-offset_right = 300.0
-offset_bottom = 86.0
+anchors_preset = -1
+anchor_left = 0.222222
+anchor_top = 0.170312
+anchor_right = 0.777778
+anchor_bottom = 0.5375
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_6b1b0")
+texture = ExtResource("32_k0iel")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00138889
+anchor_top = 0.755469
+anchor_right = 0.998611
+anchor_bottom = 0.826563
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_wwf30")
+theme_override_font_sizes/font_size = 25
+text = "Please wait"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color(0.658824, 1, 0.0156863, 1)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = -206.0
-offset_bottom = -115.0
+offset_top = -639.0
+offset_bottom = -548.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
-theme_override_fonts/font = ExtResource("2_wwf30")
-theme_override_font_sizes/font_size = 25
-text = "Please wait"
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("34_0ofe6")
+theme_override_font_sizes/font_size = 60
+text = "DECENTRAGRI"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -201,7 +218,7 @@ offset_left = 2.0
 offset_top = -91.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("2_wwf30")
 theme_override_font_sizes/font_size = 15
 text = "ALL RIGHTS RESERVED 2025"

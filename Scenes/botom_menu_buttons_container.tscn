@@ -1,0 +1,403 @@
+[gd_scene load_steps=18 format=3 uid="uid://bw1icrtqhhuu4"]
+
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_53cml"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="2_ovkv2"]
+[ext_resource type="Texture2D" uid="uid://j4d4u6u82os1" path="res://Assets/Icons/house_icon_white.png" id="3_cwxbx"]
+[ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="4_2jb5e"]
+[ext_resource type="Texture2D" uid="uid://g31h2i6c5vih" path="res://Assets/Icons/staking_icon_white.png" id="5_n17re"]
+[ext_resource type="Texture2D" uid="uid://cox3yrlaghwgi" path="res://Assets/Icons/community_icon_white.png" id="6_4w8bk"]
+[ext_resource type="Texture2D" uid="uid://bmcu2w26t2rj6" path="res://Assets/Icons/wallet_icon_white.png" id="7_ckw43"]
+[ext_resource type="Texture2D" uid="uid://c8xyfi5v5h2ke" path="res://Assets/Icons/gear_icon_white.png" id="8_gk0oo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5j4ok"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.901961)
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+shadow_color = Color(0, 0, 0, 0.847059)
+
+[sub_resource type="Resource" id="Resource_vy8md"]
+script = ExtResource("2_ovkv2")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_onggt"]
+script = ExtResource("2_ovkv2")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekesb"]
+bg_color = Color(0.623529, 0.952941, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0ub0"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up55o"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ie7eg"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxj8g"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk8k"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[node name="BotomMenuButtonsContainer" type="HBoxContainer"]
+custom_minimum_size = Vector2(720, 130)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.101562
+offset_right = -720.0
+offset_bottom = -130.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5j4ok")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(670, 85)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0208333
+anchor_top = 0.115385
+anchor_right = 0.979167
+anchor_bottom = 0.884615
+offset_left = 10.0
+offset_top = 7.5
+offset_right = -10.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(690, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+scroll_horizontal = -10
+scroll_vertical = -7
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("1_53cml")
+wheel_scroll_damper = SubResource("Resource_vy8md")
+dragging_scroll_damper = SubResource("Resource_onggt")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/SmoothScrollContainer"]
+custom_minimum_size = Vector2(670, 85)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekesb")
+
+[node name="Home" type="TextureButton" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel" groups=["BottonMenuButtons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HomeButtonIcon" type="TextureRect" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel/Home"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.147059
+anchor_top = 0.147059
+anchor_right = 0.852941
+anchor_bottom = 0.852941
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cwxbx")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_l0ub0")
+
+[node name="Farms" type="TextureButton" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel2" groups=["BottonMenuButtons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="FarmButtonIcon" type="TextureRect" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel2/Farms"]
+modulate = Color(0.635294, 0.627451, 0.627451, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.147059
+anchor_top = 0.147059
+anchor_right = 0.852941
+anchor_bottom = 0.852941
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_2jb5e")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel4" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_up55o")
+
+[node name="Staking" type="TextureButton" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel4" groups=["BottonMenuButtons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="StakingButtonIcon" type="TextureRect" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel4/Staking"]
+modulate = Color(0.635294, 0.627451, 0.627451, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.147059
+anchor_top = 0.147059
+anchor_right = 0.852941
+anchor_bottom = 0.852941
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_n17re")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel5" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ie7eg")
+
+[node name="Community" type="TextureButton" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel5" groups=["BottonMenuButtons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CommunityButtonIcon" type="TextureRect" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel5/Community"]
+modulate = Color(0.635294, 0.627451, 0.627451, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.147059
+anchor_top = 0.147059
+anchor_right = 0.852941
+anchor_bottom = 0.852941
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_4w8bk")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel6" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_yxj8g")
+
+[node name="Wallet" type="TextureButton" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel6" groups=["BottonMenuButtons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="WalletButtonIcon" type="TextureRect" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel6/Wallet"]
+modulate = Color(0.635294, 0.627451, 0.627451, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.147059
+anchor_top = 0.147059
+anchor_right = 0.852941
+anchor_bottom = 0.852941
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ckw43")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel3" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_ogk8k")
+
+[node name="Settings" type="TextureButton" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel3" groups=["BottonMenuButtons"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SettingsButtonIcon" type="TextureRect" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer/Panel3/Settings"]
+modulate = Color(0.635294, 0.627451, 0.627451, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.147059
+anchor_top = 0.147059
+anchor_right = 0.852941
+anchor_bottom = 0.852941
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_gk0oo")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

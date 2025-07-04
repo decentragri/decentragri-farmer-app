@@ -1,0 +1,184 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxb7ufgh1tkns"]
+
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="1_lice4"]
+[ext_resource type="Texture2D" uid="uid://os8sglv6amgj" path="res://Assets/Icons/rain_icon_white.png" id="2_aigsw"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="3_v1aj6"]
+[ext_resource type="Texture2D" uid="uid://d08ye7peux4xx" path="res://Assets/Icons/humidity_icon_white.png" id="4_yjjov"]
+[ext_resource type="Texture2D" uid="uid://dwkyexudk8ly5" path="res://Assets/Icons/wind_icon_white.png" id="5_hmkue"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0nt1"]
+bg_color = Color(0.623529, 0.952941, 0, 0.0941176)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_us1e4"]
+bg_color = Color(0.623529, 0.952941, 0, 0.0941176)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.623529, 0.952941, 0, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="SevenDayForecastCard" type="Control"]
+custom_minimum_size = Vector2(586, 250)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(586, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0nt1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(517, 234)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0588737
+anchor_top = 0.032
+anchor_right = 0.941126
+anchor_bottom = 0.968
+offset_top = 19.5
+offset_bottom = -19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_lice4")
+theme_override_font_sizes/font_size = 35
+text = "Fri, Jul 4"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BarButtonIcon" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(38, 50)
+layout_mode = 2
+texture = ExtResource("2_aigsw")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_lice4")
+theme_override_font_sizes/font_size = 35
+text = "29° /  25°"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("3_v1aj6")
+theme_override_font_sizes/font_size = 28
+text = "Moderate Rain"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="BarButtonIcon" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer2"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(38, 50)
+layout_mode = 2
+texture = ExtResource("4_yjjov")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_lice4")
+theme_override_font_sizes/font_size = 24
+text = "84%"
+vertical_alignment = 1
+
+[node name="BarButtonIcon2" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer2"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(38, 50)
+layout_mode = 2
+texture = ExtResource("5_hmkue")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_lice4")
+theme_override_font_sizes/font_size = 24
+text = "200 km/h"
+vertical_alignment = 1
+
+[node name="BarButtonIcon3" type="TextureRect" parent="Panel/VBoxContainer/HBoxContainer2"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(38, 50)
+layout_mode = 2
+texture = ExtResource("4_yjjov")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_lice4")
+theme_override_font_sizes/font_size = 24
+text = "84%"
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(586, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_us1e4")

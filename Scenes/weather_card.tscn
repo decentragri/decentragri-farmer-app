@@ -37,8 +37,14 @@ bg_color = Color(0.227451, 0.227451, 0.227451, 1)
 
 [node name="WeatherCard" type="Panel"]
 custom_minimum_size = Vector2(650, 715)
+anchors_preset = -1
+anchor_right = 0.902778
+anchor_bottom = 0.558594
+offset_right = -650.0
+offset_bottom = -715.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(586, 435)
