@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://d02vnk8cdvnb4"]
+[gd_scene load_steps=50 format=3 uid="uid://d02vnk8cdvnb4"]
 
 [ext_resource type="Texture2D" uid="uid://wglmkc4g02dg" path="res://Assets/Background/auth_bg.png" id="1_0i0ga"]
 [ext_resource type="Script" uid="uid://dmytnm6uk2vrg" path="res://Scenes/auth_screen_new.gd" id="1_x2d4e"]
@@ -39,13 +39,18 @@
 [ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="37_rdo3q"]
 [ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="38_5rryc"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2d4e"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x37as"]
+content_margin_left = 15.0
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
-border_color = Color(0.0784314, 0.592157, 0.270588, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.658824, 1, 0.0156863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0.219608)
 shadow_size = 10
 shadow_offset = Vector2(0, 5)
@@ -63,9 +68,9 @@ shadow_size = 10
 shadow_offset = Vector2(0, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0n0yd"]
-content_margin_left = 10.0
+content_margin_left = 15.0
 bg_color = Color(0.205117, 0.205117, 0.205117, 0.560784)
-border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+border_color = Color(0.658824, 1, 0.0156863, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -74,24 +79,20 @@ shadow_color = Color(0, 0, 0, 0.192157)
 shadow_size = 20
 shadow_offset = Vector2(0, 5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r05d8"]
-bg_color = Color(0.658824, 1, 0.0156863, 1)
-border_color = Color(0.623529, 0.952941, 0, 1)
-border_blend = true
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0.658824, 1, 0.0156863, 0.188235)
-shadow_size = 12
-shadow_offset = Vector2(0, 6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b032f"]
-bg_color = Color(0.337255, 0.337255, 0.337255, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8xv3"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.658824, 1, 0.0156863, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.219608)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vyxt"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -145,7 +146,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 2.76667, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(30, -209), Vector2(30, 32), Vector2(30, 32), Vector2(30, -209)]
+"values": [Vector2(30, -341), Vector2(30, 32), Vector2(30, 32), Vector2(30, -209)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6ao"]
@@ -284,28 +285,32 @@ anchor_right = 0.996785
 anchor_bottom = 1.0
 offset_right = 4.31482
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 scale = Vector2(0.996785, 1)
 mouse_filter = 2
 color = Color(0.0705882, 0.0705882, 0.0705882, 0.862745)
-metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ColorRect"]
+[node name="ExpendableContainer" type="VBoxContainer" parent="TextureRect/ColorRect"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 48.0
-offset_right = -39.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ColorRect/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer" groups=["HideWhileTyping"]]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/ColorRect/VBoxContainer"]
-custom_minimum_size = Vector2(300, 300)
+[node name="LogoTexture" type="TextureRect" parent="TextureRect/ColorRect/ExpendableContainer"]
+custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -313,140 +318,109 @@ texture = ExtResource("2_86ujn")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="TextureRect/ColorRect/VBoxContainer"]
+[node name="Label" type="Label" parent="TextureRect/ColorRect/ExpendableContainer"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
 theme_override_fonts/font = ExtResource("3_145xf")
 theme_override_font_sizes/font_size = 60
 text = "DECENTRAGRI"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ColorRect/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="TextureRect/ColorRect/ExpendableContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("4_0n0yd")
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("4_0n0yd")
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("4_0n0yd")
 theme_override_font_sizes/font_size = 24
 text = "Please login to your account"
 horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer" groups=["HideWhileTyping"]]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer"]
+custom_minimum_size = Vector2(610, 403)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("4_0n0yd")
 theme_override_font_sizes/font_size = 20
 text = " Username"
 
-[node name="UsernameLogin" type="LineEdit" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+[node name="UsernameLogin" type="LineEdit" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_r05d8")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_x2d4e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_x37as")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_2jah6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0n0yd")
 
-[node name="Label2" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("4_0n0yd")
 theme_override_font_sizes/font_size = 20
 text = "Password"
 
-[node name="PasswordLogin" type="LineEdit" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+[node name="PasswordLogin" type="LineEdit" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 75)
+custom_minimum_size = Vector2(610, 75)
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_r05d8")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_x2d4e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_b8xv3")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_2jah6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0n0yd")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="Button" type="Panel" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_r05d8")
-
-[node name="LoginButton" type="TextureButton" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button/LoginButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer/Button/LoginButton/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-mouse_filter = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_0n0yd")
-theme_override_font_sizes/font_size = 30
-text = "LOGIN"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="LoginButton" type="Button" parent="TextureRect/ColorRect/VBoxContainer/VBoxContainer"]
+[node name="LoginButton" type="Button" parent="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(615, 75)
+custom_minimum_size = Vector2(590, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_colors/font_disabled_color = Color(0.646029, 0.646029, 0.646029, 1)
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
@@ -454,11 +428,22 @@ theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_0n0yd")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/focus = ExtResource("7_2jah6")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_b032f")
+theme_override_styles/disabled_mirrored = ExtResource("7_2jah6")
+theme_override_styles/disabled = ExtResource("7_2jah6")
+theme_override_styles/hover_pressed_mirrored = ExtResource("7_2jah6")
+theme_override_styles/hover_pressed = ExtResource("7_2jah6")
+theme_override_styles/hover_mirrored = ExtResource("7_2jah6")
 theme_override_styles/hover = ExtResource("7_2jah6")
+theme_override_styles/pressed_mirrored = ExtResource("7_2jah6")
 theme_override_styles/pressed = ExtResource("7_2jah6")
+theme_override_styles/normal_mirrored = ExtResource("7_2jah6")
 theme_override_styles/normal = ExtResource("7_2jah6")
 text = "LOGIN"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="TextureRect/ColorRect/ExpendableContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
@@ -482,12 +467,12 @@ z_index = 9
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0416667
-anchor_top = 0.025
+anchor_top = -0.266406
 anchor_right = 0.963889
-anchor_bottom = 0.164062
+anchor_bottom = -0.127344
 offset_left = -2.47955e-05
-offset_top = -241.0
-offset_bottom = -241.0
+offset_top = 132.0
+offset_bottom = 132.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7vyxt")
 metadata/_edit_use_anchors_ = true
@@ -503,7 +488,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_r05d8")
 theme_override_font_sizes/font_size = 32
-text = "ddad"
+text = "An error eyyy!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -561,6 +546,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="text_changed" from="TextureRect/ColorRect/VBoxContainer/VBoxContainer/UsernameLogin" to="." method="_on_username_login_text_changed"]
-[connection signal="text_changed" from="TextureRect/ColorRect/VBoxContainer/VBoxContainer/PasswordLogin" to="." method="_on_password_login_text_changed"]
-[connection signal="pressed" from="TextureRect/ColorRect/VBoxContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="focus_entered" from="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer/UsernameLogin" to="." method="_on_username_login_focus_entered"]
+[connection signal="text_changed" from="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer/UsernameLogin" to="." method="_on_username_login_text_changed"]
+[connection signal="focus_entered" from="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer/PasswordLogin" to="." method="_on_password_login_focus_entered"]
+[connection signal="text_changed" from="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer/PasswordLogin" to="." method="_on_password_login_text_changed"]
+[connection signal="focus_entered" from="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer/LoginButton" to="." method="_on_login_button_focus_entered"]
+[connection signal="pressed" from="TextureRect/ColorRect/ExpendableContainer/HBoxContainer4/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]

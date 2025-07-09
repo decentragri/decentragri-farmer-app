@@ -13,8 +13,9 @@ config_version=5
 config/name="decentragri-app"
 run/main_scene="uid://f504lgfm2imt"
 config/features=PackedStringArray("4.4", "Mobile")
-boot_splash/bg_color=Color(1, 1, 1, 1)
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.117647, 0.117647, 0.117647, 1)
+boot_splash/show_image=false
+config/icon="uid://cthpytca77qq0"
 
 [autoload]
 
@@ -68,10 +69,11 @@ gdscript/warnings/integer_division=2
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/size/mode=2
+window/size/initial_position_type=0
 window/size/resizable=false
 window/size/borderless=true
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
 [editor_plugins]
@@ -104,4 +106,7 @@ pointing/emulate_touch_from_mouse=true
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
 environment/defaults/default_clear_color=Color(0.439049, 0.439049, 0.439049, 1)
+anti_aliasing/quality/screen_space_aa=1

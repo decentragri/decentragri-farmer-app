@@ -152,11 +152,30 @@ grow_vertical = 2
 color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [node name="TextureProgressBar" type="AnimatedSprite2D" parent="ColorRect"]
-position = Vector2(360, 931)
+position = Vector2(360, 997)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_rjijb")
 autoplay = "default"
 frame_progress = 0.595315
+
+[node name="Label" type="Label" parent="ColorRect/TextureProgressBar"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.5
+offset_top = -98.3334
+offset_right = -87.5
+offset_bottom = -52.3334
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_wwf30")
+theme_override_font_sizes/font_size = 40
+text = "Please wait"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -172,33 +191,15 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.00138889
-anchor_top = 0.755469
-anchor_right = 0.998611
-anchor_bottom = 0.826563
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("2_wwf30")
-theme_override_font_sizes/font_size = 25
-text = "Please wait"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="Label" parent="TextureRect"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -639.0
-offset_bottom = -548.0
+anchors_preset = -1
+anchor_left = -0.0562495
+anchor_top = 0.906383
+anchor_right = 1.05625
+anchor_bottom = 1.05532
+offset_right = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -207,6 +208,7 @@ theme_override_font_sizes/font_size = 60
 text = "DECENTRAGRI"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1

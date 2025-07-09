@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://byxfjbt7tlb00"]
+[gd_scene load_steps=24 format=3 uid="uid://byxfjbt7tlb00"]
 
 [ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://bw1icrtqhhuu4" path="res://Scenes/botom_menu_buttons_container.tscn" id="10_5j4ok"]
 [ext_resource type="PackedScene" uid="uid://bb37ddue6i5bg" path="res://Scenes/staking_container2.tscn" id="10_8ac43"]
 [ext_resource type="PackedScene" uid="uid://dgbhg45itbv08" path="res://Scenes/weather_forecast_container.tscn" id="11_7eo2e"]
-[ext_resource type="Script" uid="uid://cskr6aoytrfnf" path="res://Scenes/staking_container_2.gd" id="11_qiamd"]
 [ext_resource type="PackedScene" uid="uid://cup6h27ib2a24" path="res://Scenes/wallet_container.tscn" id="12_b8l4x"]
 [ext_resource type="Script" uid="uid://tb70vgt6rjy6" path="res://Scenes/settings_container.gd" id="13_otjln"]
 [ext_resource type="PackedScene" uid="uid://cp8a2yrg3b283" path="res://Scenes/add_new_farm_modal.tscn" id="14_dim5j"]
@@ -158,7 +157,6 @@ layout_mode = 2
 [node name="StakingContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("10_8ac43")]
 visible = false
 layout_mode = 2
-script = ExtResource("11_qiamd")
 
 [node name="SettingsContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" groups=["MainContainers"] instance=ExtResource("7_ekesb")]
 layout_mode = 2
