@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://cup6h27ib2a24"]
+[gd_scene load_steps=15 format=3 uid="uid://cup6h27ib2a24"]
 
+[ext_resource type="Script" uid="uid://03birdo82x6i" path="res://Scenes/wallet_container.gd" id="1_ecu4h"]
 [ext_resource type="Texture2D" uid="uid://bmcu2w26t2rj6" path="res://Assets/Icons/wallet_icon_white.png" id="1_qlidd"]
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_8hmoi"]
 [ext_resource type="Texture2D" uid="uid://cx4cbnxyxqfj5" path="res://Assets/Icons/copy_icon.png" id="3_wfgbx"]
@@ -65,6 +66,7 @@ anchor_bottom = 0.775
 offset_right = -680.0
 offset_bottom = -992.0
 size_flags_vertical = 3
+script = ExtResource("1_ecu4h")
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -105,6 +107,15 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
+[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer4"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("2_8hmoi")
+theme_override_font_sizes/font_size = 20
+text = "Successfully copied!"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -122,7 +133,7 @@ theme_override_fonts/font = ExtResource("5_ipxg7")
 theme_override_font_sizes/font_size = 20
 text = " Username"
 
-[node name="UsernameLogin" type="LineEdit" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
+[node name="Username" type="LineEdit" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -136,7 +147,7 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_snlmb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w7qql")
 editable = false
 
-[node name="Username" type="TextureButton" parent="VBoxContainer2/VBoxContainer/VBoxContainer/UsernameLogin" groups=["WalletCopyButton"]]
+[node name="UsernameCopy" type="TextureButton" parent="VBoxContainer2/VBoxContainer/VBoxContainer/Username" groups=["WalletCopyButton"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.913636
@@ -172,7 +183,7 @@ theme_override_styles/read_only = SubResource("StyleBoxFlat_snlmb")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w7qql")
 editable = false
 
-[node name="WalletAddress" type="TextureButton" parent="VBoxContainer2/VBoxContainer/VBoxContainer/SmartWalletAddress" groups=["WalletCopyButton"]]
+[node name="WalletAddressCopy" type="TextureButton" parent="VBoxContainer2/VBoxContainer/VBoxContainer/SmartWalletAddress" groups=["WalletCopyButton"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.913636
@@ -195,11 +206,11 @@ alignment = 1
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
 metadata/_edit_use_anchors_ = true
 
-[node name="ETHButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2"]
+[node name="ETHButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2" groups=["WalletTokenButton"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,11 +225,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ETHTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 unique_name_in_owner = true
@@ -226,6 +239,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("5_snlmb")
 expand_mode = 1
 stretch_mode = 6
@@ -244,11 +258,11 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
 metadata/_edit_use_anchors_ = true
 
-[node name="rswETHButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel"]
+[node name="rswETHButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel" groups=["WalletTokenButton"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -264,22 +278,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="rswETHTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("6_qlidd")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="rswETHBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
@@ -297,11 +315,11 @@ alignment = 1
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
 metadata/_edit_use_anchors_ = true
 
-[node name="SwellButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2"]
+[node name="SwellButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2" groups=["WalletTokenButton"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -316,22 +334,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="SwellTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("7_8hmoi")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="SwellBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
@@ -344,11 +366,11 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
 metadata/_edit_use_anchors_ = true
 
-[node name="DAGRIButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel"]
+[node name="DAGRIButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel" groups=["WalletTokenButton"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -364,22 +386,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="DagriTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("8_ecu4h")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="DagriBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
@@ -387,3 +413,7 @@ theme_override_font_sizes/font_size = 25
 text = "DAGRI 0.0001"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/VBoxContainer/Username/UsernameCopy" to="." method="_on_username_copy_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/VBoxContainer/SmartWalletAddress/WalletAddressCopy" to="." method="_on_wallet_address_copy_pressed"]

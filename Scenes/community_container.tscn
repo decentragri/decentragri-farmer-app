@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="1_4wyrj"]
 [ext_resource type="Script" uid="uid://c53mwerbgjcej" path="res://Scenes/community_container.gd" id="1_hvsp2"]
-[ext_resource type="Texture2D" uid="uid://coeuue10knx81" path="res://community_icon.png" id="1_qymog"]
+[ext_resource type="Texture2D" path="res://community_icon.png" id="1_qymog"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="3_tk5gd"]
 [ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_j2c4d"]
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_fkptt"]

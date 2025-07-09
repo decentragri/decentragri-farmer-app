@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://bb37ddue6i5bg"]
+[gd_scene load_steps=21 format=3 uid="uid://bb37ddue6i5bg"]
 
+[ext_resource type="Script" uid="uid://cskr6aoytrfnf" path="res://Scenes/staking_container_2.gd" id="1_23c6m"]
 [ext_resource type="Texture2D" uid="uid://g31h2i6c5vih" path="res://Assets/Icons/staking_icon_white.png" id="1_24nrk"]
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_24nrk"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="3_xqdpj"]
@@ -70,10 +71,10 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.623529, 0.952941, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [node name="StakingContainer" type="VBoxContainer" groups=["MainContainers"]]
 custom_minimum_size = Vector2(650, 992)
@@ -83,6 +84,7 @@ anchor_bottom = 0.775
 offset_right = -650.0
 offset_bottom = -992.0
 size_flags_vertical = 3
+script = ExtResource("1_23c6m")
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -209,7 +211,8 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xwqtx")
 
-[node name="Label" type="Label" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer/Panel"]
+[node name="ETHBalance" type="Label" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -286,10 +289,11 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/caret_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/clear_button_color_pressed = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("7_xqdpj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 36
 theme_override_styles/focus = SubResource("StyleBoxFlat_khs51")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_23c6m")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpxda")
@@ -315,6 +319,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MaxButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer3/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -396,14 +401,16 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 alignment = 2
 
-[node name="StakeAmount" type="LineEdit" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer5"]
+[node name="ReceiveAmount" type="LineEdit" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer5"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/caret_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/clear_button_color_pressed = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("7_xqdpj")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 36
 theme_override_styles/focus = SubResource("StyleBoxFlat_khs51")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_23c6m")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpxda")
@@ -533,6 +540,17 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
+[node name="ErrorLabel" type="Label" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer9" groups=["TokenTransferModalFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.927545, 0.283676, 0.258753, 1)
+theme_override_fonts/font = ExtResource("2_24nrk")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [node name="SubmitStakeButton" type="Button" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 65)
@@ -545,3 +563,9 @@ theme_override_styles/hover = ExtResource("10_khs51")
 theme_override_styles/pressed = ExtResource("10_khs51")
 theme_override_styles/normal = ExtResource("10_khs51")
 text = "Submit"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer3/StakeAmount" to="." method="_on_stake_amount_text_changed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer3/Panel/MaxButton" to="." method="_on_max_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer5/ReceiveAmount" to="." method="_on_receive_amount_text_changed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/SubmitStakeButton" to="." method="_on_submit_stake_button_pressed"]

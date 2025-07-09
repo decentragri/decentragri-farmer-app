@@ -88,6 +88,13 @@ NumpadButtons=""
 WalletCopyButton=""
 BottonMenuButtons=""
 MainContainers=""
+MainMenu=""
+ModalContainer=""
+FarmModalFields=""
+PlantScanFields=""
+SoilAnalysisFields=""
+TokenTransferModalFields=""
+WalletTokenButton=""
 
 [input_devices]
 

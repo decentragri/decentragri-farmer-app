@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-const farm_slot: PackedScene = preload("res://Scenes/farm_slot.tscn")
+const farm_card: PackedScene = preload("res://Scenes/farm_card.tscn")
 
 signal _create_farm_button_pressed
 signal _on_error_encountered(message: String)
@@ -18,10 +18,10 @@ func connect_signals() -> void:
 	
 func _on_get_farms_complete(farms: Array) -> void:
 	for farm: Dictionary in farms:
-		var farm_slot_instance: Control = farm_slot.instantiate()
-		farm_slot_instance.farm_slot_data(farm)
-		farm_slot_instance.farm_button_pressed.connect(_on_farm_button_pressed)
-		%FarmContainer.add_child(farm_slot_instance)
+		var farm_card_instance: Control = farm_card.instantiate()
+		farm_card_instance.farm_slot_data(farm)
+		farm_card_instance.farm_button_pressed.connect(_on_farm_button_pressed)
+		%FarmContainer.add_child(farm_card_instance)
 	
 	
 func _on_create_farm_button_pressed() -> void:

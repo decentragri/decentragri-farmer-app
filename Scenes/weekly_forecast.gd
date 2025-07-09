@@ -10,9 +10,7 @@ func _ready() -> void:
 	# Connect the signal
 	var _1: int = Weather.get_weather_forecast_complete.connect(_on_get_weather_forecast_complete)
 	
-	# Request the forecast
-	Weather.get_weather_forecast("Camarines Sur")
-
+	
 func _on_get_weather_forecast_complete(weather_forecast: Dictionary) -> void:
 	if weather_forecast.has("error"):
 		return

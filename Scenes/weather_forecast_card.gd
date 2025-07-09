@@ -26,7 +26,7 @@ func _on_get_weather_forecast_complete(forecast_data: Dictionary) -> void:
 	
 	# Set location
 	%Region.text = forecast_data.location.region
-	%Date.text = forecast_data.location.localtime
+	%Date.text = forecast_data.forecast.forecastday[0].date
 	
 	# Set current conditions
 	if current.has("condition"):
@@ -55,15 +55,18 @@ func _on_get_weather_forecast_complete(forecast_data: Dictionary) -> void:
 		]
 	
 	
-	
 func get_weather_icon(condition: String) -> void:
 	var lower_condition: String = condition.to_lower()
 	
+	var cloudy_icon: Texture = preload("res://Assets/Icons/cloudy_icon_white.png")
+	var rainy_icon: Texture = preload("res://Assets/Icons/rain_icon_white.png")
+	var sunny_icon: Texture = preload("res://Assets/Icons/sunny_white_icon.png")
+	
 	if lower_condition.contains("rain") or lower_condition.contains("drizzle"):
-		print("Show rain icon")
+		%WeatherIcon.texture = rainy_icon
 	elif lower_condition.contains("cloud"):
-		print("Show cloud icon")
+		%WeatherIcon.texture = cloudy_icon
 	elif lower_condition.contains("sun") or lower_condition.contains("clear"):
-		print("Show sun icon")
+		%WeatherIcon.texture = sunny_icon
 	else:
-		print("Show default icon")
+		%WeatherIcon.texture = sunny_icon

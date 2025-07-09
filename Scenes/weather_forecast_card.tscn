@@ -125,7 +125,8 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 alignment = 1
 
-[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/VBoxContainer2/HBoxContainer"]
+[node name="WeatherIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/VBoxContainer2/HBoxContainer"]
+unique_name_in_owner = true
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(180, 50)
 layout_mode = 2

@@ -14,7 +14,7 @@ const auth_config: Dictionary[String, int] = {
 
 
 
-# Prepares an HTTP request and returns a dictionary containing the request object and its WeakRef.
+# Prepares an HTTP request and returns a dictiothe unary containing the request object and its WeakRef.
 func prepare_http_request() -> Dictionary[String, Variant]:
 	var request: HTTPRequest = HTTPRequest.new()
 	var weak_ref: WeakRef = weakref(request)

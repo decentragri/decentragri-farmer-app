@@ -253,7 +253,8 @@ custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer"]
+[node name="WeatherIcon" type="TextureRect" parent="VBoxContainer/WeatherConditionContainer/HBoxContainer"]
+unique_name_in_owner = true
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
@@ -378,7 +379,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/WeatherConditionContainer/Button/ForecastButton"]
 layout_mode = 1
@@ -387,6 +387,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -394,6 +395,7 @@ alignment = 1
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(35, 30)
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("1_s3kg6")
 expand_mode = 1
 stretch_mode = 5
@@ -402,7 +404,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="VBoxContainer/WeatherConditionContainer/Button/ForecastButton/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-mouse_filter = 1
 theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
 theme_override_fonts/font = ExtResource("2_af41d")
 theme_override_font_sizes/font_size = 30
@@ -413,19 +414,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LoaderContainer" type="VBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TextureProgressBar" type="AnimatedSprite2D" parent="VBoxContainer/LoaderContainer"]
 unique_name_in_owner = true
-z_index = 9
 position = Vector2(293, 176)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_ttbag")
 autoplay = "default"
 
 [node name="Label" type="Label" parent="VBoxContainer/LoaderContainer/TextureProgressBar"]
-z_index = 9
 anchors_preset = -1
 anchor_left = -0.0625
 anchor_top = 1.05
