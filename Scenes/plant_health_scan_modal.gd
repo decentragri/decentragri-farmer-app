@@ -3,6 +3,9 @@ extends VBoxContainer
 var original_content_container_y: float
 var keyboard_is_open: bool = false
 
+var data_image: Image
+
+
 func _ready() -> void:
 	original_content_container_y = size.y
 	connect_signals()
@@ -17,24 +20,28 @@ func connect_signals() -> void:
 func _on_image_request_completed(image_data: Dictionary) -> void:
 	if visible:
 		if not image_data.has("0"):
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Failed to load image")
 			return
 		
-
 		var image: Image = Image.new()
 		var buffer: Array = image_data["0"]
 		var error: Error = image.load_png_buffer(buffer)
 		if error != OK:
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Failed to load image")
 			return
 		var picture: Texture2D = ImageTexture.create_from_image(image)
 		%PlantImage.texture = picture
 		%ImageLabel.visible = false
 		%ImageIcon.visible = false
+		data_image = image
 	
 	
 func _on_image_request_failed(error: String) -> void:
-	print("Image request failed: " + error)
-	
-	
+	for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+		main.message_box(error)
+		
 	
 func _on_farm_profile_container_on_plant_scan_button_pressed(_farm_id: String) -> void:
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
@@ -79,3 +86,40 @@ func _on_open_gallery_button_pressed() -> void:
 	
 func _on_open_camera_button_pressed() -> void:
 	Camera.get_camera_image()
+
+
+func _on_submit_button_pressed() -> void:
+	if %CropTypeLine.text.strip_edges() == "":
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Please enter a crop type")
+		return
+
+	if %UploadedPic.texture == null:
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Please upload an image")
+		return
+	
+	var string_image_byte_data: String  = str(get_scaled_png_bytes(data_image))
+	var _plant_scan_data: Dictionary[String, Variant] = {
+		"imageBytes": string_image_byte_data,
+		"cropType": %CropTypeLine.text.strip_edges(),
+		"farmName": %FarmName.text.strip_edges(),
+		"location": {
+			"lat": %LatitudeLine.text.to_float(),
+			"lng": %LongtitudeLine.text.to_float(),
+		},
+		"note": %NotesLine.text.strip_edges()
+	}
+	Scan.save_plant_scan(_plant_scan_data)
+
+func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArray:
+	var w: float = image.get_width()
+	var h: float = image.get_height()
+
+	if w > max_size or h > max_size:
+		var maxim: float = max(w, h)
+		var scale_down: float = float(max_size) / float(maxim)
+		@warning_ignore("narrowing_conversion")
+		image.resize(w * scale_down, h * scale_down, Image.INTERPOLATE_LANCZOS)
+		
+	return image.save_png_to_buffer()

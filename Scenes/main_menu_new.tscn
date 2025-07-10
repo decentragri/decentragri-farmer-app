@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://byxfjbt7tlb00"]
+[gd_scene load_steps=30 format=3 uid="uid://byxfjbt7tlb00"]
 
 [ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://83ivxjek7n3p" path="res://Scenes/plant_health_scan_modal.tscn" id="16_l0ub0"]
 [ext_resource type="PackedScene" uid="uid://b84e6076pf2cp" path="res://Scenes/soil_analysis_modal.tscn" id="17_up55o"]
 [ext_resource type="PackedScene" uid="uid://blkh4eq1sj21v" path="res://Scenes/token_transfer_modal.tscn" id="18_ie7eg"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="20_ogk8k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf5tc"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 0.901961)
@@ -41,6 +42,68 @@ rebound_strength = 7.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dim5j"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiamd"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 15
+
+[sub_resource type="Animation" id="Animation_5n0dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30, -209)]
+}
+
+[sub_resource type="Animation" id="Animation_84iac"]
+resource_name = "error_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(104, -92), Vector2(104, 13), Vector2(104, 13), Vector2(104, -92)]
+}
+
+[sub_resource type="Animation" id="Animation_2jah6"]
+resource_name = "error_message"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 2.76667, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(30, -341), Vector2(30, 32), Vector2(30, 32), Vector2(30, -209)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ne6ao"]
+_data = {
+&"RESET": SubResource("Animation_5n0dv"),
+&"error_animation": SubResource("Animation_84iac"),
+&"error_message": SubResource("Animation_2jah6")
+}
 
 [node name="MainMenu" type="Control" groups=["MainMenu"]]
 layout_mode = 3
@@ -244,6 +307,42 @@ layout_mode = 2
 visible = false
 custom_minimum_size = Vector2(11, 0)
 layout_mode = 2
+
+[node name="MessageBox" type="Panel" parent="."]
+z_index = 9
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0416667
+anchor_top = -0.163281
+anchor_right = 0.963889
+anchor_bottom = -0.024219
+offset_top = -0.000305176
+offset_bottom = -0.000305176
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qiamd")
+metadata/_edit_use_anchors_ = true
+
+[node name="ErrorLabel" type="Label" parent="MessageBox"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("20_ogk8k")
+theme_override_font_sizes/font_size = 32
+text = "An error eyyy!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_ne6ao")
+}
 
 [connection signal="forecast_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/HomeContainer" to="." method="_on_home_container_forecast_button_pressed"]
 [connection signal="on_add_farm_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/AddNewFarmModal" method="_on_farms_container_on_add_farm_button_pressed"]
