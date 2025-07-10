@@ -31,7 +31,7 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-shadow_color = Color(0, 0, 0, 0.219608)
+shadow_color = Color(0, 0, 0, 0.247059)
 shadow_size = 10
 shadow_offset = Vector2(0, 5)
 
@@ -46,7 +46,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0.219608)
-shadow_size = 10
+shadow_size = 20
 shadow_offset = Vector2(0, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk8k"]
@@ -136,23 +136,26 @@ theme_override_constants/separation = 30
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal = -27
+scroll_horizontal = -23
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 script = ExtResource("3_d7o7k")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+[node name="ContentContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(635, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -161,7 +164,7 @@ theme_override_fonts/font = ExtResource("5_oq08h")
 theme_override_font_sizes/font_size = 20
 text = "Plant Image"
 
-[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 mouse_filter = 1
@@ -170,7 +173,7 @@ theme_override_styles/hover = ExtResource("6_m4c5s")
 theme_override_styles/pressed = ExtResource("6_m4c5s")
 theme_override_styles/normal = ExtResource("6_m4c5s")
 
-[node name="PlantImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Button"]
+[node name="PlantImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/Button"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -181,7 +184,7 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Button/PlantImage"]
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/Button/PlantImage"]
 custom_minimum_size = Vector2(359, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -203,7 +206,7 @@ vertical_alignment = 1
 justification_flags = 161
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Button/PlantImage"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/Button/PlantImage"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
@@ -218,7 +221,7 @@ texture = ExtResource("7_553c7")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -227,7 +230,7 @@ theme_override_fonts/font = ExtResource("5_oq08h")
 theme_override_font_sizes/font_size = 20
 text = "Crop Type"
 
-[node name="CropType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["PlantScanFields"]]
+[node name="CropType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["PlantScanFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -242,7 +245,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -251,27 +254,32 @@ theme_override_fonts/font = ExtResource("5_oq08h")
 theme_override_font_sizes/font_size = 20
 text = "Note"
 
-[node name="Note" type="TextEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="CropType2" type="TextEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["PlantScanFields"]]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 160)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 mouse_filter = 1
-theme_override_colors/font_placeholder_color = Color(0.376471, 0.376471, 0.376471, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("8_my57c")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
-placeholder_text = "Leave an optional note here..."
-wrap_mode = 1
+text = "dadaddad"
 
-[node name="LoginButton" type="Button" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="LoginButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(615, 75)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_oq08h")
 theme_override_font_sizes/font_size = 28
