@@ -2,7 +2,11 @@ extends Control
 
 func _ready() -> void:
 	connect_signals()
+	if OS.get_name() == "Android":
+		DisplayServer.window_set_size(Vector2(1080, 1920))
 
+	
+	
 func connect_signals() -> void:
 	var _1: int = Auth.session_check_complete.connect(_on_session_check_complete)
 	var _timer: int = get_tree().create_timer(2.0).timeout.connect(_on_timer_timeout)

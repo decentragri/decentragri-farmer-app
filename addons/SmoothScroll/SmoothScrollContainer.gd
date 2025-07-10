@@ -287,7 +287,6 @@ func _on_focus_changed(control: Control) -> void:
 		self.ensure_control_visible(control)
 
 func _on_VScrollBar_scrolling() -> void:
-	print("hello")
 	v_scrollbar_dragging = true
 	last_scroll_type = SCROLL_TYPE.BAR
 

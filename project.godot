@@ -72,8 +72,8 @@ window/size/mode=2
 window/size/initial_position_type=0
 window/size/resizable=false
 window/size/borderless=true
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_width"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [editor_plugins]

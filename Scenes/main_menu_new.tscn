@@ -129,6 +129,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+scroll_horizontal = -35
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 script = ExtResource("1_rf5tc")

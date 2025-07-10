@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b84e6076pf2cp"]
+[gd_scene load_steps=17 format=3 uid="uid://b84e6076pf2cp"]
 
 [ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="1_2y8r1"]
 [ext_resource type="Script" uid="uid://brm4hayrnxttn" path="res://Scenes/soil_analysis_modal.gd" id="1_b42x3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_qbc21"]
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_6aa16"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="5_qes28"]
+[ext_resource type="Theme" uid="uid://cddjsyoc7ebqj" path="res://Assets/StyleRes/scroll_themel.tres" id="5_tt1uw"]
 [ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="8_rme3p"]
 [ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="9_uw5wo"]
 
@@ -132,23 +133,26 @@ theme_override_constants/separation = 30
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal = -23
+theme = ExtResource("5_tt1uw")
+scroll_horizontal = -22
+vertical_scroll_mode = 2
 script = ExtResource("3_qbc21")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
-custom_minimum_size = Vector2(635, 0)
+[node name="ContentContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(635, 2000)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -157,7 +161,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "Moisture Level (%)"
 
-[node name="Moisture" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="Moisture" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -172,7 +176,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -181,7 +185,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "pH Level"
 
-[node name="PH" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="PH" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -196,7 +200,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -205,7 +209,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "Temperature (°C)"
 
-[node name="Temperature" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="Temperature" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -220,7 +224,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label4" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -229,7 +233,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "Fertility Index"
 
-[node name="Fertility" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="Fertility" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -244,7 +248,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label5" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label5" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -253,7 +257,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "Sunlight Exposure (lux)"
 
-[node name="Sunlight" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="Sunlight" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -268,7 +272,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label6" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label6" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -277,7 +281,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "Humidity (%)"
 
-[node name="Humidity" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="Humidity" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -292,7 +296,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="Label7" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="Label7" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
@@ -301,7 +305,7 @@ theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 20
 text = "Crop Type"
 
-[node name="CropType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["SoilAnalysisFields"]]
+[node name="CropType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["SoilAnalysisFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -316,16 +320,16 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 
-[node name="FarmName8" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 150)
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="LoginButton" type="Button" parent="."]
+[node name="LoginButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(615, 75)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_qes28")
 theme_override_font_sizes/font_size = 28

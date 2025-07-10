@@ -187,6 +187,9 @@ theme_override_fonts/font = ExtResource("4_asxm1")
 theme_override_font_sizes/font_size = 20
 text = "5vadijdajd"
 horizontal_alignment = 2
+text_overrun_behavior = 1
+visible_characters = 20
+visible_ratio = 2.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
