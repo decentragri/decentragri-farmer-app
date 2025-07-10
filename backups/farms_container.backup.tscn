@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://b36sauht3xi64"]
+
+[ext_resource type="Script" uid="uid://vrsmv5eclyf6" path="res://Scenes/farms_container.gd" id="1_o84hn"]
+[ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="2_2h7w5"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_o84hn"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_6dxgj"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="5_y1old"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_jketr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qxv2"]
+bg_color = Color(0.187176, 0.187176, 0.187176, 1)
+border_color = Color(0.623529, 0.952941, 0, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.207843)
+shadow_size = 15
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="Resource" id="Resource_8eo63"]
+script = ExtResource("6_jketr")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_il777"]
+script = ExtResource("6_jketr")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[node name="FarmsContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(650, 992)
+anchors_preset = -1
+anchor_right = 0.902778
+anchor_bottom = 0.775
+offset_right = -650.0
+offset_bottom = -992.0
+size_flags_vertical = 3
+script = ExtResource("1_o84hn")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/HBoxContainer2"]
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("2_2h7w5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_o84hn")
+theme_override_font_sizes/font_size = 40
+text = "My Farms"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button" type="Panel" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3qxv2")
+
+[node name="AddFarmButton" type="TextureButton" parent="VBoxContainer2/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/Button/AddFarmButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/Button/AddFarmButton/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(35, 30)
+layout_mode = 2
+texture = ExtResource("2_2h7w5")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/Button/AddFarmButton/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("5_y1old")
+theme_override_font_sizes/font_size = 30
+text = "Add Farm"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+script = ExtResource("5_6dxgj")
+wheel_scroll_damper = SubResource("Resource_8eo63")
+dragging_scroll_damper = SubResource("Resource_il777")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="FarmContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/SmoothScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[connection signal="pressed" from="VBoxContainer2/Button/AddFarmButton" to="." method="_on_add_farm_button_pressed"]

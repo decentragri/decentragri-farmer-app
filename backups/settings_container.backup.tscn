@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cljfleb4arvk5"]
+
+[ext_resource type="Texture2D" uid="uid://c8xyfi5v5h2ke" path="res://Assets/Icons/gear_icon_white.png" id="1_fj580"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_mykdy"]
+
+[node name="SettingsContainer" type="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(650, 992)
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/HBoxContainer2"]
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("1_fj580")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_mykdy")
+theme_override_font_sizes/font_size = 40
+text = "Settings "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2

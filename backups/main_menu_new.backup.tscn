@@ -1,0 +1,253 @@
+[gd_scene load_steps=24 format=3 uid="uid://byxfjbt7tlb00"]
+
+[ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
+[ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_rf5tc"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="2_qjsf3"]
+[ext_resource type="Texture2D" uid="uid://5i40iea3mepf" path="res://Assets/Icons/notification_icon_white.png" id="4_vy8md"]
+[ext_resource type="PackedScene" uid="uid://cljfleb4arvk5" path="res://Scenes/settings_container.tscn" id="7_ekesb"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="7_xp8ai"]
+[ext_resource type="PackedScene" uid="uid://b36sauht3xi64" path="res://Scenes/farms_container.tscn" id="8_l0ub0"]
+[ext_resource type="PackedScene" uid="uid://b1ny1c0qhv6q8" path="res://Scenes/farm_profile.tscn" id="9_ekesb"]
+[ext_resource type="PackedScene" uid="uid://dpg11miv8aygh" path="res://Scenes/home_container.tscn" id="9_up55o"]
+[ext_resource type="PackedScene" uid="uid://bw1icrtqhhuu4" path="res://Scenes/botom_menu_buttons_container.tscn" id="10_5j4ok"]
+[ext_resource type="PackedScene" uid="uid://bb37ddue6i5bg" path="res://Scenes/staking_container2.tscn" id="10_8ac43"]
+[ext_resource type="PackedScene" uid="uid://dgbhg45itbv08" path="res://Scenes/weather_forecast_container.tscn" id="11_7eo2e"]
+[ext_resource type="PackedScene" uid="uid://cup6h27ib2a24" path="res://Scenes/wallet_container.tscn" id="12_b8l4x"]
+[ext_resource type="Script" uid="uid://tb70vgt6rjy6" path="res://Scenes/settings_container.gd" id="13_otjln"]
+[ext_resource type="PackedScene" uid="uid://cp8a2yrg3b283" path="res://Scenes/add_new_farm_modal.tscn" id="14_dim5j"]
+[ext_resource type="PackedScene" uid="uid://83ivxjek7n3p" path="res://Scenes/plant_health_scan_modal.tscn" id="16_l0ub0"]
+[ext_resource type="PackedScene" uid="uid://b84e6076pf2cp" path="res://Scenes/soil_analysis_modal.tscn" id="17_up55o"]
+[ext_resource type="PackedScene" uid="uid://blkh4eq1sj21v" path="res://Scenes/token_transfer_modal.tscn" id="18_ie7eg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf5tc"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.901961)
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+shadow_color = Color(0, 0, 0, 0.435294)
+shadow_size = 20
+
+[sub_resource type="Resource" id="Resource_nwcvr"]
+script = ExtResource("2_qjsf3")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_d7bum"]
+script = ExtResource("2_qjsf3")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dim5j"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+
+[node name="MainMenu" type="Control" groups=["MainMenu"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_d7bum")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rf5tc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(680, 128)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0277778
+anchor_top = 0.0733333
+anchor_right = 0.972222
+anchor_bottom = 0.926667
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+texture = ExtResource("1_qjsf3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("7_xp8ai")
+theme_override_font_sizes/font_size = 36
+text = "DECENTRAGRI"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureButton" type="TextureButton" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture_normal = ExtResource("4_vy8md")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+scroll_horizontal = -35
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("1_rf5tc")
+wheel_scroll_damper = SubResource("Resource_nwcvr")
+dragging_scroll_damper = SubResource("Resource_d7bum")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="ContentContainer" type="VBoxContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer"]
+custom_minimum_size = Vector2(650, 800)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="HomeContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" groups=["MainContainers"] instance=ExtResource("9_up55o")]
+layout_mode = 2
+
+[node name="FarmsContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" groups=["MainContainers"] instance=ExtResource("8_l0ub0")]
+visible = false
+layout_mode = 2
+
+[node name="FarmProfileContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("9_ekesb")]
+visible = false
+layout_mode = 2
+
+[node name="StakingContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("10_8ac43")]
+visible = false
+layout_mode = 2
+
+[node name="SettingsContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" groups=["MainContainers"] instance=ExtResource("7_ekesb")]
+layout_mode = 2
+script = ExtResource("13_otjln")
+
+[node name="WeatherForecastContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("11_7eo2e")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="WalletContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("12_b8l4x")]
+visible = false
+layout_mode = 2
+
+[node name="BotomMenuButtonsContainer" parent="ColorRect/VBoxContainer" instance=ExtResource("10_5j4ok")]
+layout_mode = 2
+
+[node name="ModalContainer" type="VBoxContainer" parent="." groups=["ModalContainer"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="ModalContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
+[node name="Panel" type="Panel" parent="ModalContainer/ColorRect"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0820312
+anchor_right = 1.0
+anchor_bottom = 0.0828125
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_dim5j")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModalContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModalContainer/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ModalContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+
+[node name="AddNewFarmModal" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer" instance=ExtResource("14_dim5j")]
+visible = false
+custom_minimum_size = Vector2(689, 1214)
+layout_mode = 2
+
+[node name="PlantHealthScanModal" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer" instance=ExtResource("16_l0ub0")]
+visible = false
+layout_mode = 2
+
+[node name="SoilAnalysisModal" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer" instance=ExtResource("17_up55o")]
+visible = false
+layout_mode = 2
+
+[node name="TokenTransferModal" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer" instance=ExtResource("18_ie7eg")]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(11, 0)
+layout_mode = 2
+
+[connection signal="forecast_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/HomeContainer" to="." method="_on_home_container_forecast_button_pressed"]
+[connection signal="on_add_farm_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/AddNewFarmModal" method="_on_farms_container_on_add_farm_button_pressed"]
+[connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" method="_on_farms_container_on_farm_card_button_pressed"]
+[connection signal="on_plant_scan_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/PlantHealthScanModal" method="_on_farm_profile_container_on_plant_scan_button_pressed"]
+[connection signal="on_soil_analysis_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/SoilAnalysisModal" method="_on_farm_profile_container_on_soil_analysis_button_pressed"]
+[connection signal="wallet_token_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/WalletContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/TokenTransferModal" method="_on_wallet_container_wallet_token_button_pressed"]

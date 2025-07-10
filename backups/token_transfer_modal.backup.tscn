@@ -1,0 +1,284 @@
+[gd_scene load_steps=16 format=3 uid="uid://blkh4eq1sj21v"]
+
+[ext_resource type="Texture2D" uid="uid://c70rchwrqgd7n" path="res://Assets/Icons/swell_icon.png" id="1_41evd"]
+[ext_resource type="Script" uid="uid://cls1ka7vc7bgr" path="res://Scenes/token_transfer_modal.gd" id="1_wlcv8"]
+[ext_resource type="Texture2D" uid="uid://k1ixag2t3jkq" path="res://Assets/Icons/back_icon_white.png" id="1_y4ae3"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_y4ae3"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_wlcv8"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_nbbw8"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="5_tnwmf"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="6_5px6v"]
+[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="7_w1m8i"]
+
+[sub_resource type="Resource" id="Resource_l0ub0"]
+script = ExtResource("4_nbbw8")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_up55o"]
+script = ExtResource("4_nbbw8")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ie7eg"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.219608)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxj8g"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.219608)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk8k"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 0.0
+content_margin_bottom = 20.0
+bg_color = Color(0.205117, 0.205117, 0.205117, 0.560784)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 20
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiamd"]
+bg_color = Color(0.337255, 0.337255, 0.337255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TokenTransferModal" type="VBoxContainer"]
+z_index = 99
+custom_minimum_size = Vector2(689, 1214)
+anchors_preset = -1
+anchor_right = 0.956944
+anchor_bottom = 0.948438
+offset_right = -689.0
+offset_bottom = -1214.0
+script = ExtResource("1_wlcv8")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BackButton" type="TextureButton" parent="HBoxContainer2"]
+modulate = Color(0.707967, 0.707967, 0.707966, 1)
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_y4ae3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TokenIcon" type="TextureRect" parent="HBoxContainer2"]
+unique_name_in_owner = true
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_41evd")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TokenTransferLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_y4ae3")
+theme_override_font_sizes/font_size = 40
+text = "Transfer Swell"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 1060)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1041)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_wlcv8")
+wheel_scroll_damper = SubResource("Resource_l0ub0")
+dragging_scroll_damper = SubResource("Resource_up55o")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+custom_minimum_size = Vector2(635, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+alignment = 1
+
+[node name="TokenIconMain" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+texture = ExtResource("1_41evd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TokenName" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_y4ae3")
+theme_override_font_sizes/font_size = 30
+text = "SWELL TOKEN(SWELL CHAIN)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Balance" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("5_tnwmf")
+theme_override_font_sizes/font_size = 28
+text = "Balance: 0.001"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_tnwmf")
+theme_override_font_sizes/font_size = 20
+text = "Amount "
+
+[node name="Amount" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("6_5px6v")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
+virtual_keyboard_type = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_tnwmf")
+theme_override_font_sizes/font_size = 20
+text = "To"
+
+[node name="ReceiverAddress" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("6_5px6v")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
+
+[node name="PesoEquivalent" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_tnwmf")
+theme_override_font_sizes/font_size = 20
+text = "~ ₱ 100,100.99"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.929412, 0.282353, 0.258824, 1)
+theme_override_fonts/font = ExtResource("2_y4ae3")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="TransferButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(615, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_tnwmf")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("7_w1m8i")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qiamd")
+theme_override_styles/hover = ExtResource("7_w1m8i")
+theme_override_styles/pressed = ExtResource("7_w1m8i")
+theme_override_styles/normal = ExtResource("7_w1m8i")
+disabled = true
+text = "Transfer"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Amount" to="." method="_on_amount_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/ReceiverAddress" to="." method="_on_receiver_address_text_changed"]

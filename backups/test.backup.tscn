@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfh7hrwgadwq0"]
+
+[ext_resource type="Script" uid="uid://dkti05ymqh5pb" path="res://example/test.gd" id="1_2wfck"]
+[ext_resource type="Theme" uid="uid://dnelevd6vqpti" path="res://example/theme.tres" id="1_ilcrk"]
+
+[node name="Test" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ilcrk")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_2wfck")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="StateLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "has network:"
+
+[node name="StateValueLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "null"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="getStateButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "get state"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="SubscriptionLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Subscription:"
+
+[node name="SubscriptionState" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "false"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="SubscribeButton" type="Button" parent="VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "Subscribe"
+
+[node name="UnsubscribeButton" type="Button" parent="VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "Unsubscribe"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/getStateButton" to="." method="updateInternetConnectionState"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer4/SubscribeButton" to="." method="_onSubscribeButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer4/UnsubscribeButton" to="." method="_onUnsubscribeButtonPressed"]

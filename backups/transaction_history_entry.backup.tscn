@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://h4kxcseq3ug2"]
+
+[ext_resource type="Texture2D" uid="uid://brfrp1qq7u373" path="res://Assets/Icons/send_icon.png" id="1_1e6pa"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="2_d8njg"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="3_770t2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne6ao"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.227451)
+shadow_size = 5
+shadow_offset = Vector2(0, 1)
+
+[node name="TransactionHistoryEntry" type="Control"]
+custom_minimum_size = Vector2(490, 150)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ne6ao")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(890, 130)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -445.0
+offset_top = -65.0
+offset_right = 445.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(80, 100)
+layout_mode = 2
+texture = ExtResource("1_1e6pa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.340339, 0.340339, 0.340339, 1)
+theme_override_fonts/font = ExtResource("2_d8njg")
+theme_override_font_sizes/font_size = 30
+text = "Send"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.340339, 0.340339, 0.340339, 1)
+theme_override_fonts/font = ExtResource("3_770t2")
+theme_override_font_sizes/font_size = 30
+text = "May 10, 2025"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="Panel/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(427, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.0784314, 0.592157, 0.270588, 1)
+theme_override_fonts/font = ExtResource("2_d8njg")
+theme_override_font_sizes/font_size = 30
+text = "+10,000,000,000 DECENTRA"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1

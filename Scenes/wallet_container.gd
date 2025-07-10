@@ -36,6 +36,13 @@ func _on_wallet_copy_button_pressed(button: TextureButton) -> void:
 	var username_or_wallet_line_edit: LineEdit = button.get_parent()
 	var username_or_wallet_address: String = username_or_wallet_line_edit.text
 	DisplayServer.clipboard_set(username_or_wallet_address)
+	button.texture_normal = preload("res://Assets/Icons/confirm_button.png")
+	var _1: int = get_tree().create_timer(1.5).timeout.connect(
+		func() -> void:
+			button.texture_normal = preload("res://Assets/Icons/copy_icon.png")
+	)
+	
+	
 
 
 func _on_token_button_pressed(token_texture: Texture, balance: String, label_name: String) -> void:
@@ -92,11 +99,3 @@ func _on_user_data_received(user_data: Dictionary) -> void:
 
 func four_digit_balance_format(balance: float) -> String:
 	return "0" if balance == 0.0 else String.num(balance, 4)
-
-
-func _on_username_copy_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_wallet_address_copy_pressed() -> void:
-	pass # Replace with function body.

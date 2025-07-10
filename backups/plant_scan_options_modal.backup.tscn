@@ -1,0 +1,439 @@
+[gd_scene load_steps=15 format=3 uid="uid://nrwixf0abbwp"]
+
+[ext_resource type="Script" uid="uid://djgvhowerlo53" path="res://Popups/plant_scan_options_modal.gd" id="1_wfh0p"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_4u4r4"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_vtyim"]
+[ext_resource type="Texture2D" uid="uid://cs5fdrni74shv" path="res://Assets/Icons/camera_icon.png" id="3_4u4r4"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="4_kqg3m"]
+[ext_resource type="Texture2D" uid="uid://cjjf0jb8l8kwu" path="res://Assets/Icons/gallery_icon.png" id="5_e568w"]
+[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="6_vtyim"]
+[ext_resource type="Texture2D" uid="uid://boo5l23scoya1" path="res://Assets/Icons/back_icon.png" id="8_kqg3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idi3j"]
+bg_color = Color(1, 1, 1, 1)
+shadow_color = Color(0, 0, 0, 0.270588)
+shadow_size = 15
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abi7b"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u4r4"]
+bg_color = Color(0.913725, 0.913725, 0.913725, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqg3m"]
+content_margin_left = 10.0
+bg_color = Color(0.913725, 0.913725, 0.913725, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t317f"]
+content_margin_left = 10.0
+bg_color = Color(0.683077, 0.683077, 0.683077, 1)
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e568w"]
+bg_color = Color(1, 1, 1, 0.729412)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="PlantScanOptionsModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wfh0p")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_idi3j")
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 49.0
+offset_bottom = 179.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_fonts/font = ExtResource("2_4u4r4")
+theme_override_font_sizes/font_size = 40
+text = "Crop scan options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.5
+offset_top = -209.0
+offset_right = 179.5
+offset_bottom = 430.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/OptionsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Panel2" type="Panel" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_abi7b")
+
+[node name="ImageCaptureButton" type="TextureButton" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel2/ImageCaptureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0705882
+anchor_right = 1.0
+anchor_bottom = 0.776471
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_4u4r4")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel2/ImageCaptureButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_kqg3m")
+theme_override_font_sizes/font_size = 25
+text = "TAKE A PICTURE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_abi7b")
+
+[node name="ChooseImageButton" type="TextureButton" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel3/ChooseImageButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0705882
+anchor_right = 1.0
+anchor_bottom = 0.776471
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_e568w")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel3/ChooseImageButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -61.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_kqg3m")
+theme_override_font_sizes/font_size = 25
+text = "CHOOSE PICTURE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FormContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -865.0
+offset_right = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="UploadedPic" type="TextureRect" parent="Panel/VBoxContainer/Panel/FormContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/FormContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Label7" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 40
+
+[node name="Label8" type="VBoxContainer" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 20
+text = "Crop type"
+
+[node name="CropTypeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_4u4r4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 20
+text = "Notes"
+
+[node name="NotesLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_4u4r4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
+
+[node name="Label3" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 25
+text = "GPS Location"
+vertical_alignment = 2
+
+[node name="Label6" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 20
+text = "Longitude"
+
+[node name="LongtitudeLine" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 47)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.396889, 0.396889, 0.396889, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_4u4r4")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_t317f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
+editable = false
+
+[node name="Label9" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 20
+text = "Longitude"
+
+[node name="LongtitudeLine2" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 47)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.396889, 0.396889, 0.396889, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_4u4r4")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_t317f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
+editable = false
+
+[node name="Label4" type="Label" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.548963, 0.548963, 0.548962, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 20
+text = "Farm name (auto-filled)"
+
+[node name="FarmName" type="LineEdit" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer" groups=["MeterValuesLine"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 47)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0.396889, 0.396889, 0.396889, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = SubResource("StyleBoxFlat_4u4r4")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_t317f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kqg3m")
+editable = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="SubmitButton" type="Button" parent="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_vtyim")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("6_vtyim")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_e568w")
+theme_override_styles/hover = ExtResource("6_vtyim")
+theme_override_styles/pressed = ExtResource("6_vtyim")
+theme_override_styles/normal = ExtResource("6_vtyim")
+text = "SUBMIT"
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/Panel"]
+visible = false
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -367.0
+offset_right = 164.0
+offset_bottom = -307.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_fonts/font = ExtResource("2_4u4r4")
+theme_override_font_sizes/font_size = 32
+text = "Submit Plant Photo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 85)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0351852
+anchor_top = 0.0260417
+anchor_right = 0.164815
+anchor_bottom = 0.114583
+texture_normal = ExtResource("8_kqg3m")
+ignore_texture_size = true
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]
+[connection signal="visibility_changed" from="Panel" to="." method="_on_panel_visibility_changed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel2/ImageCaptureButton" to="." method="_on_image_capture_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Panel/OptionsContainer/VBoxContainer/Panel3/ChooseImageButton" to="." method="_on_choose_image_button_pressed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer/CropTypeLine" to="." method="_on_crop_type_line_text_changed"]
+[connection signal="text_changed" from="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer/NotesLine" to="." method="_on_notes_line_text_changed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Panel/FormContainer/VBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="Panel/BackButton" to="." method="_on_back_button_pressed"]

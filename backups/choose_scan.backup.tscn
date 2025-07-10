@@ -1,0 +1,185 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm4unskb71ta3"]
+
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="1_2pkg1"]
+[ext_resource type="Script" uid="uid://ck688omca6iel" path="res://Popups/choose_scan.gd" id="1_d8vjg"]
+[ext_resource type="Texture2D" uid="uid://bpdskkprwi0r6" path="res://Assets/Icons/plant_icon.png" id="2_d8vjg"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="3_xn1sy"]
+[ext_resource type="Texture2D" uid="uid://cpgolslae8a58" path="res://Assets/Icons/soil_icon.png" id="4_qgj0l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suygs"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8gs7"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 3
+
+[node name="ChooseScanModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d8vjg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -294.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_suygs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 25.0
+offset_right = -13.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_2pkg1")
+theme_override_font_sizes/font_size = 22
+text = "CHOOSE YOUR SCAN"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8gs7")
+
+[node name="PlantScanButton" type="TextureButton" parent="Panel/Panel/VBoxContainer/HBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/Panel/PlantScanButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0705882
+anchor_right = 1.0
+anchor_bottom = 0.747059
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d8vjg")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer/Panel/PlantScanButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("3_xn1sy")
+theme_override_font_sizes/font_size = 18
+text = "PLANT SCAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Panel/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8gs7")
+
+[node name="SoilScanButton" type="TextureButton" parent="Panel/Panel/VBoxContainer/HBoxContainer/Panel2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/VBoxContainer/HBoxContainer/Panel2/SoilScanButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.0705882
+anchor_right = 1.0
+anchor_bottom = 0.776471
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_qgj0l")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel/Panel/VBoxContainer/HBoxContainer/Panel2/SoilScanButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("3_xn1sy")
+theme_override_font_sizes/font_size = 18
+text = "SOIL SCAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8gs7")
+
+[node name="Panel2" type="Panel" parent="Panel/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_p8gs7")
+
+[connection signal="gui_input" from="Panel" to="." method="_on_panel_gui_input"]

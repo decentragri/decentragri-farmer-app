@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgbhg45itbv08"]
+
+[ext_resource type="Script" uid="uid://cw1wmmb8qlijb" path="res://Scenes/weather_forecast_container.gd" id="1_e0nt1"]
+[ext_resource type="Texture2D" uid="uid://os8sglv6amgj" path="res://Assets/Icons/rain_icon_white.png" id="1_hkdg4"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_jurwn"]
+[ext_resource type="PackedScene" uid="uid://bnjc1hvlv0nuh" path="res://Scenes/weather_forecast_card.tscn" id="3_0lceq"]
+[ext_resource type="PackedScene" uid="uid://dc77xcq0irqlj" path="res://Scenes/weekly_forecast.tscn" id="5_e7ht5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 30
+shadow_offset = Vector2(0, 5)
+
+[node name="WeatherForecastContainer" type="VBoxContainer" groups=["MainContainers"]]
+custom_minimum_size = Vector2(650, 992)
+size_flags_vertical = 3
+script = ExtResource("1_e0nt1")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BarButtonIcon" type="TextureRect" parent="VBoxContainer2/HBoxContainer2"]
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("1_hkdg4")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_jurwn")
+theme_override_font_sizes/font_size = 40
+text = "Weather Forecast"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
+
+[node name="WeatherForecastCard" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("3_0lceq")]
+custom_minimum_size = Vector2(650, 950)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+
+[node name="WeeklyForecast" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("5_e7ht5")]
+layout_mode = 2

@@ -1,0 +1,396 @@
+[gd_scene load_steps=18 format=3 uid="uid://bb8mpk4bvv70u"]
+
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="1_32fo8"]
+[ext_resource type="Script" uid="uid://vqxtaphypmo3" path="res://Scenes/staking_container.gd" id="1_yqfwp"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_nyv4a"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_yqfwp"]
+[ext_resource type="Texture2D" uid="uid://2klwas0kxu0t" path="res://Assets/Icons/ethereum_icon.png" id="3_nyv4a"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="4_j7wne"]
+[ext_resource type="Texture2D" uid="uid://o0f8f40y5b0u" path="res://Assets/Icons/rsweth_icon.png" id="5_cm8ls"]
+[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="6_vwog5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tt8ml"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0784314, 0.592157, 0.270588, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqfwp"]
+bg_color = Color(0.2484, 0.2484, 0.2484, 1)
+draw_center = false
+border_color = Color(0.337367, 0.922776, 0.673191, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyv4a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j7wne"]
+content_margin_top = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+bg_color = Color(0.778153, 0.778047, 0.745007, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cm8ls"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwog5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4k6a"]
+content_margin_top = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmarx"]
+bg_color = Color(0.0244817, 0.298111, 0.123689, 1)
+
+[node name="StakingContainer" type="VBoxContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_yqfwp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133196, 0.133196, 0.133196, 1)
+theme_override_fonts/font = ExtResource("2_nyv4a")
+theme_override_font_sizes/font_size = 32
+text = "Staking"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(503, 670)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tt8ml")
+
+[node name="ETHBalance" type="Label" parent="VBoxContainer/HBoxContainer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_32fo8")
+text = "0.000000 ETH AVAILABLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 30
+text = "Stake"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.85
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("3_nyv4a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 30
+text = "ETH"
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+alignment = 2
+
+[node name="StakeAmount" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_j7wne")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_yqfwp")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_nyv4a")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j7wne")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tt8ml")
+
+[node name="ETHBalance" type="Label" parent="VBoxContainer/HBoxContainer3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("1_32fo8")
+text = "MAX "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxButton" type="TextureButton" parent="VBoxContainer/HBoxContainer3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n45e2")
+
+[node name="HBoxContainer5" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="DollarValue" type="Label" parent="VBoxContainer/HBoxContainer5"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.335841, 0.335657, 0.303798, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 30
+text = "Receive"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.85
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer6/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("5_cm8ls")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer6/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 30
+text = "rswETH"
+vertical_alignment = 1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ReceiveAmount" type="LineEdit" parent="VBoxContainer/HBoxContainer7"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_uneditable_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("4_j7wne")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cm8ls")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_vwog5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v4k6a")
+editable = false
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/HBoxContainer7/ReceiveAmount"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n45e2")
+
+[node name="HBoxContainer8" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+
+[node name="DollarValue2" type="Label" parent="VBoxContainer/HBoxContainer8/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.335841, 0.335657, 0.303798, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+
+[node name="RSWETHBalance" type="Label" parent="VBoxContainer/HBoxContainer8/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.335841, 0.335657, 0.303798, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 16
+text = "0.96 rswETH"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fmarx")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 9)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ETHBalance" type="Label" parent="VBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+text = "rswETH APR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ETHBalance2" type="Label" parent="VBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+text = "1.80%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer3/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+text = "Exchange rate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExchangeRate" type="Label" parent="VBoxContainer/VBoxContainer3/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+text = "1 rswETH = 1.04 ETH"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer3/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+text = "Transaction fee"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExchangeRate" type="Label" parent="VBoxContainer/VBoxContainer3/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+text = "Free"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="SubmitStakeButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_yqfwp")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/hover = ExtResource("6_vwog5")
+theme_override_styles/pressed = ExtResource("6_vwog5")
+theme_override_styles/normal = ExtResource("6_vwog5")
+text = "Submit"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer3/StakeAmount" to="." method="_on_stake_amount_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Panel/MaxButton" to="." method="_on_max_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SubmitStakeButton" to="." method="_on_submit_stake_button_pressed"]

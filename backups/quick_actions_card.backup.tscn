@@ -109,7 +109,6 @@ columns = 2
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_kkdix")
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel"]
@@ -119,7 +118,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/TextureButton"]
 layout_mode = 1
@@ -156,7 +154,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_kkdix")
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel2"]
@@ -166,7 +163,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel2/TextureButton"]
 layout_mode = 1
@@ -202,7 +198,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_kkdix")
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel3"]
@@ -212,7 +207,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel3/TextureButton"]
 layout_mode = 1
@@ -248,7 +242,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_kkdix")
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel4"]
@@ -258,7 +251,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel4/TextureButton"]
 layout_mode = 1
