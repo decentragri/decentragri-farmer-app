@@ -7,7 +7,22 @@ var keyboard_is_open: bool = false
 
 func _ready() -> void:
 	original_content_container_y = %ContentContainer.size.y
-
+	connect_signals()
+	
+	
+func connect_signals() -> void:
+	var _1: int = Scan.save_soil_meter_scan_complete.connect(_on_save_soil_meter_scan_complete)
+	
+	
+func _on_save_soil_meter_scan_complete(message: Dictionary) -> void:
+	if message.has("error"):
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box(str(message.error )+ " Please try again")
+		
+	else:
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Scan was submitted successfully")
+		reset_fields()
 
 func _on_farm_profile_container_on_soil_analysis_button_pressed(_farm_id: String) -> void:
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
@@ -36,3 +51,151 @@ func _on_back_button_pressed() -> void:
 func reset_fields() -> void:
 	for field: Variant in get_tree().get_nodes_in_group(&"SoilAnalysisFields"):
 		field.text = ""
+
+
+func _on_crop_type_text_changed(new_text: String) -> void:
+	var trimmed_text: String = new_text.strip_edges()
+	if trimmed_text == "":
+		%CropTypeLine.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Crop type cannot be empty.")
+		return
+
+	# Optional: Check for only letters/spaces (no numbers/symbols)
+	if not trimmed_text.is_valid_identifier() and not trimmed_text.is_valid_float(): # crude check
+		var pattern: RegEx = RegEx.new()
+		var _1: Error = pattern.compile("^[A-Za-z ]+$")
+		if not pattern.search(trimmed_text):
+			%CropTypeLine.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("Crop type must only contain letters and spaces.")
+			return
+
+func _on_moisture_text_changed(new_text: String) -> void:
+	if _is_valid_float(new_text):
+		var value: float  = new_text.to_float()
+		if value < 0.0 or value > 100.0:
+			%Moisture.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("Moisture value must be between 0% and 100%.")
+	else:
+		%Moisture.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Invalid moisture input. Please enter a number.")
+
+
+func _on_ph_text_changed(new_text: String) -> void:
+	if _is_valid_float(new_text):
+		var value: float  = new_text.to_float()
+		if value < 0.0 or value > 14.0:
+			%PH.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("pH value out of range (0–14).")
+	else:
+		%PH.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Invalid pH input. Please enter a number.")
+
+
+func _on_temperature_text_changed(new_text: String) -> void:
+	if _is_valid_float(new_text):
+		var value: float  = new_text.to_float()
+		if value < -20.0 or value > 60.0:
+			%Temperature.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("Temperature value out of range (-20°C to 60°C).")
+	else:
+		%Temperature.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Invalid temperature input. Please enter a number.")
+
+
+func _on_fertility_text_changed(new_text: String) -> void:
+	if _is_valid_float(new_text):
+		var value: float = new_text.to_float()
+		if value < 0.0 or value > 2000.0:
+			%Fertility.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("Fertility value out of range (0-2000 µS/cm).")
+	else:
+		%Fertility.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Invalid fertility input. Please enter a number.")
+
+
+func _on_sunlight_text_changed(new_text: String) -> void:
+	if _is_valid_float(new_text):
+		var value: float  = new_text.to_float()
+		if value < 0.0 or value > 100000.0:
+			%Sunlight.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("Sunlight value out of range (0–100000 lux).")
+	else:
+		%Sunlight.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Invalid sunlight input. Please enter a number.")
+
+
+func _on_humidity_text_changed(new_text: String) -> void:
+	if _is_valid_float(new_text):
+		var value: float  = new_text.to_float()
+		if value < 0.0 or value > 100.0:
+			%Humidity.text = ""
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("Humidity value out of range (0–100).")
+	else:
+		%Humidity.text = ""
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Invalid humidity input. Please enter a number.")
+
+func _is_valid_float(text: String) -> bool:
+	return text.is_valid_float()
+
+func _on_submit_button_pressed() -> void:
+	var fields: Dictionary[String, Variant] = {
+		"fertility": %Fertility,
+		"moisture": %Moisture,
+		"ph": %PH,
+		"temperature": %Temperature,
+		"sunlight": %Sunlight,
+		"humidity": %Humidity,
+	}
+
+	var data: Dictionary[String, Variant] = {}
+
+	for key: String in fields.keys():
+		var text: String = fields[key].text.strip_edges()
+		if text == "":
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("%s field is empty." % key.capitalize())
+			return
+		if not _is_valid_float(text):
+			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				menu.message_box("%s value is not a valid number." % key.capitalize())
+			return
+		data[key] = text.to_float()
+
+	if %CropTypeLine != null and %CropTypeLine.text.strip_edges() != "":
+		data["cropType"] = %CropTypeLine.text.strip_edges()
+	else:
+		data["cropType"] = null
+
+	data["username"] = User.username
+	data["sensorId"] = "sensor_def"
+	data["createdAt"] = Time.get_datetime_string_from_system()
+	data["id"] = Utils.generate_uuid_v4()
+
+	var sensor_data: Dictionary = {
+		"sensorData": data
+	}
+
+	print(sensor_data)
+
+	if NetworkState.hasNetwork():
+		Scan.save_soil_meter_scan(sensor_data)
+	else:
+		sensor_data["pending"] = true	
+		RealmDB.save_data(JSON.stringify(sensor_data), "SoilAnalysisScan")
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Data saved locally - No internet")
+	visible = false

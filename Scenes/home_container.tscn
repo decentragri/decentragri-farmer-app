@@ -80,4 +80,8 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
 [connection signal="forecast_button_pressed" from="VBoxContainer2/VBoxContainer/WeatherCard" to="." method="_on_weather_card_forecast_button_pressed"]

@@ -50,9 +50,8 @@ func _on_home_container_forecast_button_pressed() -> void:
 	%WeatherForecastContainer.visible = true
 	on_toggle_container_visibility("WeatherForecast")
 	on_set_botton_menu_buttons_pressed("WeatherForecast")
-
-
-
+	
+	
 func message_box(message: String) -> void:
 	%ErrorLabel.text = message
 	%AnimationPlayer.play(&"error_message")

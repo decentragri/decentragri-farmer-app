@@ -1,0 +1,348 @@
+[gd_scene load_steps=44 format=3 uid="uid://dpmeruvrsv70e"]
+
+[ext_resource type="Script" uid="uid://df743yqeho1mf" path="res://scans_card.gd" id="1_i726i"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="1_m2t2a"]
+[ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="8_tw2hh"]
+[ext_resource type="Texture2D" uid="uid://c0lnyp1ss0smc" path="res://Assets/Loader/2.png" id="9_o7x5f"]
+[ext_resource type="Texture2D" uid="uid://dtglqrnntgd8g" path="res://Assets/Loader/3.png" id="10_3l6kh"]
+[ext_resource type="Texture2D" uid="uid://disnogvn0f117" path="res://Assets/Loader/4.png" id="11_78a4l"]
+[ext_resource type="Texture2D" uid="uid://c47iywekf7x6o" path="res://Assets/Loader/5.png" id="12_mv16n"]
+[ext_resource type="Texture2D" uid="uid://da1r3q6fh60jd" path="res://Assets/Loader/6.png" id="13_ggu0o"]
+[ext_resource type="Texture2D" uid="uid://bevw5svcw404c" path="res://Assets/Loader/7.png" id="14_loup8"]
+[ext_resource type="Texture2D" uid="uid://hks2c1yrk4g5" path="res://Assets/Loader/8.png" id="15_rrf2w"]
+[ext_resource type="Texture2D" uid="uid://dywmfm3ua8mi1" path="res://Assets/Loader/9.png" id="16_d7q6v"]
+[ext_resource type="Texture2D" uid="uid://bw4wwgfb303ra" path="res://Assets/Loader/10.png" id="17_a5ugx"]
+[ext_resource type="Texture2D" uid="uid://yvo4ldjkmc66" path="res://Assets/Loader/11.png" id="18_rnqax"]
+[ext_resource type="Texture2D" uid="uid://bfmax1e1c5ol4" path="res://Assets/Loader/12.png" id="19_6volw"]
+[ext_resource type="Texture2D" uid="uid://r8m7d65vpjoa" path="res://Assets/Loader/13.png" id="20_8ij2l"]
+[ext_resource type="Texture2D" uid="uid://d1dwtnv1kwxlx" path="res://Assets/Loader/14.png" id="21_jeufn"]
+[ext_resource type="Texture2D" uid="uid://sq1hli1kpybf" path="res://Assets/Loader/15.png" id="22_kqd00"]
+[ext_resource type="Texture2D" uid="uid://d1af04e4luhmx" path="res://Assets/Loader/16.png" id="23_37jk5"]
+[ext_resource type="Texture2D" uid="uid://cbd3jrwa0mp37" path="res://Assets/Loader/17.png" id="24_t6p2e"]
+[ext_resource type="Texture2D" uid="uid://3gi26pxvndbb" path="res://Assets/Loader/18.png" id="25_88rki"]
+[ext_resource type="Texture2D" uid="uid://cfcbvlnhjfhws" path="res://Assets/Loader/19.png" id="26_dpwby"]
+[ext_resource type="Texture2D" uid="uid://crdcjll36okvk" path="res://Assets/Loader/20.png" id="27_ct4d7"]
+[ext_resource type="Texture2D" uid="uid://df60chnyt35i" path="res://Assets/Loader/21.png" id="28_yncuq"]
+[ext_resource type="Texture2D" uid="uid://b6fxhxo60jca" path="res://Assets/Loader/22.png" id="29_d33u7"]
+[ext_resource type="Texture2D" uid="uid://daq47jak45x8k" path="res://Assets/Loader/23.png" id="30_6fifg"]
+[ext_resource type="Texture2D" uid="uid://b6bjlx1c0miob" path="res://Assets/Loader/24.png" id="31_g26us"]
+[ext_resource type="Texture2D" uid="uid://csr808dglmm55" path="res://Assets/Loader/25.png" id="32_c5ocf"]
+[ext_resource type="StyleBox" uid="uid://cd83l0si04krw" path="res://Assets/StyleRes/scan_button.tres" id="33_fa7b0"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="33_j4jqk"]
+[ext_resource type="Texture2D" uid="uid://blw10xxm77jg8" path="res://Assets/Loader/26.png" id="33_x43c2"]
+[ext_resource type="Texture2D" uid="uid://bpjquae3nqkn5" path="res://Assets/Loader/27.png" id="34_6pq2d"]
+[ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="34_ch8rx"]
+[ext_resource type="Texture2D" uid="uid://cxj61gddh17rl" path="res://Assets/Loader/28.png" id="35_a4xe8"]
+[ext_resource type="Texture2D" uid="uid://8s12snriir2v" path="res://Assets/Icons/soil_icon_white.png" id="35_i726i"]
+[ext_resource type="StyleBox" uid="uid://mxgioethcwa4" path="res://Assets/StyleRes/normal_scan_button.tres" id="35_m2t2a"]
+[ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="36_rpxyh"]
+[ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="37_xo8x2"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="38_a4plw"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="39_cgy76"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6jn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_tw2hh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_o7x5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3l6kh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_78a4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mv16n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ggu0o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_loup8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rrf2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_d7q6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_a5ugx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rnqax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_6volw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8ij2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_jeufn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_kqd00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_37jk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_t6p2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_88rki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_dpwby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ct4d7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_yncuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_d33u7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_6fifg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_g26us")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_c5ocf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_x43c2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_6pq2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_a4xe8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_rpxyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_xo8x2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fb5b"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 30
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="Resource" id="Resource_57np8"]
+script = ExtResource("39_cgy76")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_h0mfg"]
+script = ExtResource("39_cgy76")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[node name="HBoxContainer" type="VBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.902778
+anchor_bottom = 1.16953
+script = ExtResource("1_i726i")
+metadata/_edit_use_anchors_ = true
+
+[node name="StatisticsContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatisticsContainer"]
+custom_minimum_size = Vector2(55, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="StatisticsContainer"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_m2t2a")
+theme_override_font_sizes/font_size = 50
+text = "Farm Scans"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="StatisticsContainer"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LoaderContainer3" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureProgressBar3" type="AnimatedSprite2D" parent="LoaderContainer3"]
+position = Vector2(268, 129)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_o6jn7")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="LoaderContainer3/TextureProgressBar3"]
+anchors_preset = -1
+anchor_left = -0.0625
+anchor_top = 1.05
+anchor_right = 1.0625
+anchor_bottom = 1.28
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("38_a4plw")
+theme_override_font_sizes/font_size = 40
+text = "Please wait"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(55, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="FarmScanCard" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(650, 100)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_7fb5b")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/FarmScanCard"]
+custom_minimum_size = Vector2(600, 60)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0384615
+anchor_top = 0.2
+anchor_right = 0.961538
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantScan" type="Button" parent="HBoxContainer/FarmScanCard/HBoxContainer" groups=["SelectScanButton"]]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_m2t2a")
+theme_override_styles/focus = ExtResource("33_fa7b0")
+theme_override_styles/disabled = ExtResource("35_m2t2a")
+theme_override_styles/hover = ExtResource("35_m2t2a")
+theme_override_styles/pressed = ExtResource("33_fa7b0")
+theme_override_styles/normal = ExtResource("35_m2t2a")
+toggle_mode = true
+button_pressed = true
+text = "Plant Scan"
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/FarmScanCard/HBoxContainer/PlantScan"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175862
+anchor_top = 0.166667
+anchor_right = 0.313793
+anchor_bottom = 0.833333
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("34_ch8rx")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="SoilAnalysis" type="Button" parent="HBoxContainer/FarmScanCard/HBoxContainer" groups=["SelectScanButton"]]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("1_m2t2a")
+theme_override_styles/focus = ExtResource("33_fa7b0")
+theme_override_styles/disabled = ExtResource("35_m2t2a")
+theme_override_styles/hover = ExtResource("35_m2t2a")
+theme_override_styles/pressed = ExtResource("33_fa7b0")
+theme_override_styles/normal = ExtResource("35_m2t2a")
+toggle_mode = true
+text = "Soil Analysis"
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/FarmScanCard/HBoxContainer/SoilAnalysis"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12069
+anchor_top = 0.166667
+anchor_right = 0.258621
+anchor_bottom = 0.833333
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("35_i726i")
+expand_mode = 1
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(55, 30)
+layout_mode = 2
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("33_j4jqk")
+wheel_scroll_damper = SubResource("Resource_57np8")
+dragging_scroll_damper = SubResource("Resource_h0mfg")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="PlantScanContainer" type="VBoxContainer" parent="SmoothScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="SoilAnalysisContainer" type="VBoxContainer" parent="SmoothScrollContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

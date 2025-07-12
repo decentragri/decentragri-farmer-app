@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://b1ny1c0qhv6q8"]
+[gd_scene load_steps=55 format=3 uid="uid://b1ny1c0qhv6q8"]
 
 [ext_resource type="Texture2D" uid="uid://wglmkc4g02dg" path="res://Assets/Background/auth_bg.png" id="1_7qwoo"]
 [ext_resource type="Script" uid="uid://1wxv6ii4apik" path="res://Scenes/farm_profile.gd" id="1_dgyrt"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="38_cry21"]
 [ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="39_i780d"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="40_onmma"]
+[ext_resource type="PackedScene" uid="uid://dpmeruvrsv70e" path="res://scans_card.tscn" id="47_k21yp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -859,7 +860,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("3_om7xg")
 theme_override_font_sizes/font_size = 50
-text = "Farm Statistics"
+text = "Farm Details"
 vertical_alignment = 1
 text_overrun_behavior = 3
 
@@ -1080,6 +1081,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/FarmStatisticsCard/HBoxContainer"]
 custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="ScansCard" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("47_k21yp")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/ActionsCard/HBoxContainer/ActionsContainer/VBoxContainer2/Button/PlantScanButton" to="." method="_on_plant_scan_button_pressed"]

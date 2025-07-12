@@ -48,3 +48,17 @@ func clear_pending_data() -> void:
 func load_all_sensor_data() -> void:
 	if android_plugin:
 		android_plugin.loadAllSensorData()
+
+
+func save_data(data: String, origin: String = "") -> void:
+	save_data_origin(origin)
+	if android_plugin:
+		android_plugin.save_data()
+
+func save_data_origin(origin: String) -> void:
+	match origin:
+		"PlantHealthScan":
+			Scan.save_plant_scan_complete.emit({"error": "Data saved locally - No internet"})
+		"SoilAnalysisScan":
+			Scan.save_soil_meter_scan_complete.emit({"error": "Data saved locally - No internet"})
+			

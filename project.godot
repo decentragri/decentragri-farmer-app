@@ -97,6 +97,7 @@ PlantScanFields=""
 SoilAnalysisFields=""
 TokenTransferModalFields=""
 WalletTokenButton=""
+SelectScanButton=""
 
 [input_devices]
 

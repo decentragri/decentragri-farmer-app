@@ -15,7 +15,27 @@ func _ready() -> void:
 func connect_signals() -> void:
 	var _1: int = Camera.image_request_completed.connect(_on_image_request_completed)
 	var _2: int = Camera.image_request_failed.connect(_on_image_request_failed)
+	var _3: int = Scan.save_plant_scan_complete.connect(_on_save_plant_scan_complete)
 
+
+func _on_save_plant_scan_complete(message: Dictionary) -> void:
+	if message.has("error"):
+		match message.error:
+			"Data saved locally - No internet":
+				for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+					menu.message_box("Data saved locally - No internet")
+				return
+			_:
+				for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+					menu.message_box(message.error)
+				return
+	else:
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Scan was submitted successfully")
+	reset_fields()
+	visible = false
+		
+	
 
 func _on_image_request_completed(image_data: Dictionary) -> void:
 	if visible:
@@ -100,17 +120,25 @@ func _on_submit_button_pressed() -> void:
 		return
 	
 	var string_image_byte_data: String  = str(get_scaled_png_bytes(data_image))
-	var _plant_scan_data: Dictionary[String, Variant] = {
+	var plant_scan_data: Dictionary[String, Variant] = {
 		"imageBytes": string_image_byte_data,
 		"cropType": %CropTypeLine.text.strip_edges(),
 		"farmName": %FarmName.text.strip_edges(),
-		"location": {
-			"lat": %LatitudeLine.text.to_float(),
-			"lng": %LongtitudeLine.text.to_float(),
-		},
 		"note": %NotesLine.text.strip_edges()
 	}
-	Scan.save_plant_scan(_plant_scan_data)
+	
+	if NetworkState.hasNetwork():
+		Scan.save_plant_scan(plant_scan_data)
+	else:
+		plant_scan_data["pending"] = true
+		RealmDB.save_data(JSON.stringify(plant_scan_data), "PlantHealthScan")
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Data saved locally - No internet")
+	visible = false
+
+
+
+
 
 func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArray:
 	var w: float = image.get_width()

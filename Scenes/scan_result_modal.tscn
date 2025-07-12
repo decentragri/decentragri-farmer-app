@@ -1,0 +1,996 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgvq41miknhff"]
+
+[ext_resource type="Texture2D" uid="uid://k1ixag2t3jkq" path="res://Assets/Icons/back_icon_white.png" id="1_bedac"]
+[ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="2_hklsb"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="3_nt6qg"]
+[ext_resource type="Theme" uid="uid://cddjsyoc7ebqj" path="res://Assets/StyleRes/scroll_themel.tres" id="4_8hwa1"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="5_wjp34"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_yq7uo"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="7_nn0xf"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="8_j567j"]
+
+[sub_resource type="Resource" id="Resource_l0ub0"]
+script = ExtResource("6_yq7uo")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="Resource" id="Resource_up55o"]
+script = ExtResource("6_yq7uo")
+friction = 4.0
+minimum_velocity = 0.4
+rebound_strength = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ok5uj"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[node name="ScanResultModal" type="VBoxContainer"]
+z_index = 99
+custom_minimum_size = Vector2(689, 1214)
+anchors_preset = -1
+anchor_right = 0.956944
+anchor_bottom = 0.948438
+offset_right = -689.0
+offset_bottom = -1214.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BackButton" type="TextureButton" parent="HBoxContainer2"]
+modulate = Color(0.707967, 0.707967, 0.707966, 1)
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_bedac")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="BarButtonIcon" type="TextureRect" parent="HBoxContainer2"]
+modulate = Color(0.878431, 0.878431, 0.878431, 1)
+custom_minimum_size = Vector2(55, 55)
+layout_mode = 2
+texture = ExtResource("2_hklsb")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("3_nt6qg")
+theme_override_font_sizes/font_size = 40
+text = "Soil Analysis Result"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_8hwa1")
+scroll_horizontal = -22
+vertical_scroll_mode = 2
+script = ExtResource("5_wjp34")
+wheel_scroll_damper = SubResource("Resource_l0ub0")
+dragging_scroll_damper = SubResource("Resource_up55o")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="SoilAnalysisResultContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SCAN ID:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SENSOR ID:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SCAN DATE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "FARM NAME:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "CROP TYPE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "MOISTURE"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "PH:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "TEMPERATURE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SUNLIGHT:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "HUMIDITY:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "INTERPRETATION:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "FERTILITY:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
