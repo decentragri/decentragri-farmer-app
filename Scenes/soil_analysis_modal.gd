@@ -189,8 +189,6 @@ func _on_submit_button_pressed() -> void:
 		"sensorData": data
 	}
 
-	print(sensor_data)
-
 	if NetworkState.hasNetwork():
 		Scan.save_soil_meter_scan(sensor_data)
 	else:
