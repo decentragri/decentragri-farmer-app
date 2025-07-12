@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg2mpludg7ke2"]
+
+[ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="1_33uvk"]
+[ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="2_qrkyb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3kc7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="NotificationCard" type="Panel"]
+custom_minimum_size = Vector2(625, 199)
+anchors_preset = -1
+anchor_right = 0.868056
+anchor_bottom = 0.155469
+offset_right = -625.0
+offset_bottom = -199.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_j3kc7")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("1_33uvk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_qrkyb")
+theme_override_font_sizes/font_size = 24
+text = "Your crop scan is ready. View results to check health and recommendations"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.658824, 1, 0.0156863, 1)
+theme_override_fonts/font = ExtResource("2_qrkyb")
+theme_override_font_sizes/font_size = 20
+text = "1D"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2

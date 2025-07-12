@@ -32,11 +32,9 @@ func _on_save_plant_scan_complete(message: Dictionary) -> void:
 	else:
 		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			menu.message_box("Scan was submitted successfully")
-	reset_fields()
-	visible = false
 		
 	
-
+	
 func _on_image_request_completed(image_data: Dictionary) -> void:
 	if visible:
 		if not image_data.has("0"):
@@ -135,7 +133,7 @@ func _on_submit_button_pressed() -> void:
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Data saved locally - No internet")
 	visible = false
-
+	
 
 
 

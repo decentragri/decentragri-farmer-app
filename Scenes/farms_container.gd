@@ -41,20 +41,7 @@ func _on_get_farms_complete(farms: Array) -> void:
 	
 func _on_farm_card_button_pressed(farm_id: String) -> void:
 	on_farm_card_button_pressed.emit(farm_id)
-	toggle_container_visibiliy()
 	
 	
-func toggle_container_visibiliy() -> void:
-	for container: VBoxContainer in get_tree().get_nodes_in_group(&"MainContainers"):
-		if "FarmProfile" + "Container" == container.name:
-			container.visible = true
-		else:
-			container.visible = false
-	
-	for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-		menu.on_set_botton_menu_buttons_pressed("FarmProfileContainer")
-
-
 func _on_add_farm_button_pressed() -> void:
-	print("tae")
 	on_add_farm_button_pressed.emit()

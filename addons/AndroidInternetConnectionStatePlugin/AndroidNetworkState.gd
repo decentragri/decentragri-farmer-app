@@ -11,7 +11,7 @@ const MAX_RETRY_ATTEMPTS: int = 3
 const INITIAL_RETRY_DELAY: float = 2.0  # seconds
 const MAX_RETRY_DELAY: float = 60.0  # 1 minute max delay
 
-var android_plugin: Object = Engine.get_singleton(PLUGIN_NAME)
+var android_plugin: Object
 var has_network: bool = false
 var sync_queue: Array[String] = []
 var failed_syncs: Dictionary[String, Variant] = {}  # Dictionary[String, Dictionary] - entry_id: {attempts: int, last_error: String, next_retry: float}
@@ -20,15 +20,18 @@ var current_sync_operations: int = 0
 var total_sync_operations: int = 0
 
 func _ready() -> void:
-	print("AndroidInternetConnectionStatePlugin loaded")
-	connect_signals()
-	has_network = hasNetwork()
+	if OS.get_name() == "Android": 
+		Engine.get_singleton(PLUGIN_NAME)
+		print("AndroidInternetConnectionStatePlugin loaded")
+		connect_signals()
+		has_network = hasNetwork()
 
 func connect_signals() -> void:
-	android_plugin.stateChanged.connect(_on_android_state_changed)
-	NetworkState.stateChanged.connect(_on_network_state_changed)
-	Scan.save_soil_meter_scan_complete.connect(_on_scan_sync_complete)
-	Scan.save_plant_scan_complete.connect(_on_scan_sync_complete)
+	if android_plugin:
+		android_plugin.stateChanged.connect(_on_android_state_changed)
+		NetworkState.stateChanged.connect(_on_network_state_changed)
+		Scan.save_soil_meter_scan_complete.connect(_on_scan_sync_complete)
+		Scan.save_plant_scan_complete.connect(_on_scan_sync_complete)
 
 func _on_android_state_changed(state: String) -> void:
 	var is_connected = state == "true"
@@ -46,8 +49,10 @@ func _on_network_state_changed(network: bool) -> void:
 		print("Network connection lost")
 
 func hasNetwork() -> bool:
-	return bool(android_plugin.isNetworkConnected())
-
+	if android_plugin:
+		return bool(android_plugin.isNetworkConnected())
+	return false
+	
 func _sync_pending_data(force: bool = false) -> void:
 	if is_syncing and not force:
 		print("Sync already in progress")
@@ -303,15 +308,12 @@ func _sync_soil_meter_scan_with_error_handling(entry_id: String, entry_data: Dic
 		result["error"] = "No network connection"
 		return result
 
-	# In GDScript, we'll use a flag to track success/failure
 	var success: bool = false
 	var error_message: String = ""
 	
-	# Make the API call
 	Scan.save_soil_meter_scan(entry_data)
 	var response: Variant = await Scan.save_soil_meter_scan_complete
 	
-	# Check the response
 	if response is Dictionary and response.has("error"):
 		error_message = str(response.error)
 	else:

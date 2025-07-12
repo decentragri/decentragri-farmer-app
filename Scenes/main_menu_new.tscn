@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://byxfjbt7tlb00"]
+[gd_scene load_steps=32 format=3 uid="uid://byxfjbt7tlb00"]
 
 [ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="7_xp8ai"]
 [ext_resource type="PackedScene" uid="uid://b36sauht3xi64" path="res://Scenes/farms_container.tscn" id="8_l0ub0"]
 [ext_resource type="PackedScene" uid="uid://b1ny1c0qhv6q8" path="res://Scenes/farm_profile.tscn" id="9_ekesb"]
+[ext_resource type="PackedScene" uid="uid://cn5cpx7m32ilk" path="res://Scenes/notifications_container.tscn" id="9_otjln"]
 [ext_resource type="PackedScene" uid="uid://dpg11miv8aygh" path="res://Scenes/home_container.tscn" id="9_up55o"]
 [ext_resource type="PackedScene" uid="uid://bw1icrtqhhuu4" path="res://Scenes/botom_menu_buttons_container.tscn" id="10_5j4ok"]
 [ext_resource type="PackedScene" uid="uid://bb37ddue6i5bg" path="res://Scenes/staking_container2.tscn" id="10_8ac43"]
@@ -181,7 +182,7 @@ text = "DECENTRAGRI"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="NotificationButton" type="TextureButton" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
@@ -350,8 +351,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_ne6ao")
 }
 
+[node name="NotificationsContainer" parent="." instance=ExtResource("9_otjln")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(655, 1112)
+layout_mode = 1
+anchor_left = 0.0430556
+anchor_top = 0.0960938
+anchor_right = 0.952778
+anchor_bottom = 0.964844
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton" to="." method="_on_notification_button_pressed"]
 [connection signal="forecast_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/HomeContainer" to="." method="_on_home_container_forecast_button_pressed"]
 [connection signal="on_add_farm_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/AddNewFarmModal" method="_on_farms_container_on_add_farm_button_pressed"]
+[connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="." method="_on_farms_container_on_farm_card_button_pressed"]
 [connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" method="_on_farms_container_on_farm_card_button_pressed"]
 [connection signal="on_plant_scan_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/PlantHealthScanModal" method="_on_farm_profile_container_on_plant_scan_button_pressed"]
 [connection signal="on_soil_analysis_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/SoilAnalysisModal" method="_on_farm_profile_container_on_soil_analysis_button_pressed"]

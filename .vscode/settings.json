@@ -20,6 +20,7 @@
         "mintemp",
         "printerr",
         "rsweth",
+        "stylebox",
         "tscn",
         "weakref",
         "weatherapi"

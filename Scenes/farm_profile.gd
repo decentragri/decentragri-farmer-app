@@ -4,9 +4,6 @@ signal on_plant_scan_button_pressed(farm_id: String)
 signal on_soil_analysis_button_pressed(farm_id: String)
 
 
-
-
-
 func _on_farms_container_on_farm_card_button_pressed(farm_id: String) -> void:
 	%FarmHeaderContainer.visible = false
 	%LoaderContainer.visible = true
@@ -60,16 +57,6 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 	%LoaderContainer4.visible = false
 	%ActionsContainer.visible = true
 	%TextureProgressBar4.play()
-
-	
-
-
-	
-	
-	
-
-
-
 	
 func _on_plant_scan_button_pressed() -> void:
 	on_plant_scan_button_pressed.emit(%FarmID.text)
