@@ -127,6 +127,8 @@ func _on_submit_button_pressed() -> void:
 	
 	if NetworkState.hasNetwork():
 		Scan.save_plant_scan(plant_scan_data)
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Plant scan was submitted successfully")
 	else:
 		plant_scan_data["pending"] = true
 		RealmDB.save_data(JSON.stringify(plant_scan_data), "PlantHealthScan")

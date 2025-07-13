@@ -1640,7 +1640,6 @@ text = "VERIFY"
 [connection signal="pressed" from="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel/ScanHistoryButton" to="." method="_on_scan_history_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/WindowsContainer/MainContainer/HBoxContainer/Panel3/StakingButton" to="." method="_on_staking_button_pressed"]
 [connection signal="scan_entry_details_button_pressed" from="VBoxContainer/WindowsContainer/ScanHistoryContainer" to="." method="_on_scan_history_container_scan_entry_details_button_pressed"]
-[connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/StakingContainer" to="." method="_on_staking_container_on_error_encountered"]
 [connection signal="on_error_encountered" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_on_error_encountered"]
 [connection signal="wallet_token_button_pressed" from="VBoxContainer/WindowsContainer/ProfileContainer" to="." method="_on_profile_container_wallet_token_button_pressed"]
 [connection signal="_create_farm_button_pressed" from="VBoxContainer/WindowsContainer/MyFarmContainer" to="." method="_on_my_farm_container__create_farm_button_pressed"]

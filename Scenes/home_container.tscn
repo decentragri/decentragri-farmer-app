@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpg11miv8aygh"]
+[gd_scene load_steps=7 format=3 uid="uid://dpg11miv8aygh"]
 
 [ext_resource type="Texture2D" uid="uid://nnnqpxm5he08" path="res://Assets/ButtonTexture/buton_big_main.png" id="1_61ogl"]
 [ext_resource type="Script" uid="uid://58mwf2dkkj18" path="res://Scenes/home_container.gd" id="1_uiowc"]
 [ext_resource type="PackedScene" uid="uid://bjwdx0d0mmrww" path="res://Scenes/weather_card.tscn" id="2_uiowc"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="3_661as"]
 [ext_resource type="PackedScene" uid="uid://eoixy2lyy743" path="res://Scenes/quick_actions_card.tscn" id="3_ghbwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
@@ -60,13 +61,42 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_61ogl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GreetingsLabel" type="Label" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect/HBoxContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_661as")
+theme_override_font_sizes/font_size = 36
+text = "Hello Mary Ann!
+It's a wonderful day!"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer/Panel/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2

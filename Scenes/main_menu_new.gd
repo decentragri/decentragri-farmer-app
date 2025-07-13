@@ -5,7 +5,7 @@ extends Control
 
 func _ready() -> void:
 	connect_signals()
-
+	
 
 func connect_signals() -> void:
 	set_bottom_menu_buttons()

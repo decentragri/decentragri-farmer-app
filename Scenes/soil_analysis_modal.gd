@@ -51,8 +51,8 @@ func _on_back_button_pressed() -> void:
 func reset_fields() -> void:
 	for field: Variant in get_tree().get_nodes_in_group(&"SoilAnalysisFields"):
 		field.text = ""
-
-
+	
+	
 func _on_crop_type_text_changed(new_text: String) -> void:
 	var trimmed_text: String = new_text.strip_edges()
 	if trimmed_text == "":
@@ -70,7 +70,8 @@ func _on_crop_type_text_changed(new_text: String) -> void:
 			for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 				menu.message_box("Crop type must only contain letters and spaces.")
 			return
-
+	
+	
 func _on_moisture_text_changed(new_text: String) -> void:
 	if _is_valid_float(new_text):
 		var value: float  = new_text.to_float()
@@ -82,8 +83,8 @@ func _on_moisture_text_changed(new_text: String) -> void:
 		%Moisture.text = ""
 		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			menu.message_box("Invalid moisture input. Please enter a number.")
-
-
+	
+	
 func _on_ph_text_changed(new_text: String) -> void:
 	if _is_valid_float(new_text):
 		var value: float  = new_text.to_float()
@@ -95,8 +96,8 @@ func _on_ph_text_changed(new_text: String) -> void:
 		%PH.text = ""
 		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			menu.message_box("Invalid pH input. Please enter a number.")
-
-
+	
+	
 func _on_temperature_text_changed(new_text: String) -> void:
 	if _is_valid_float(new_text):
 		var value: float  = new_text.to_float()
@@ -191,6 +192,8 @@ func _on_submit_button_pressed() -> void:
 
 	if NetworkState.hasNetwork():
 		Scan.save_soil_meter_scan(sensor_data)
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Scan was submitted successfully")
 	else:
 		sensor_data["pending"] = true	
 		RealmDB.save_data(JSON.stringify(sensor_data), "SoilAnalysisScan")
