@@ -17,6 +17,10 @@ var GetPlantScan: HTTPRequest
 var wrGetPlantScan: WeakRef
 signal get_plant_scan_complete(message: Array)
 
+var GetPlantScanByFarm: HTTPRequest
+var wrGetPlantScanByFarm: WeakRef
+signal get_plant_scan_by_farm_complete(message: Array)
+
 
 var farm_name: String
 var crop_type: String
@@ -160,4 +164,34 @@ func _on_GetPlantScan_request_completed(_result: int, response_code: int, header
 			get_plant_scan_complete.emit({"error": "Unknown server error"})
 	else:
 		get_plant_scan_complete.emit({"error": "Unknown server error"})
+	
+
+func get_plant_scan_by_farm(name_farm: String) -> void:
+	# Prepare an HTTP request for fetching leaderboard data.
+	var prepared_http_req: Dictionary = Utils.prepare_http_request()
+	GetPlantScanByFarm = prepared_http_req.request
+	wrGetPlantScanByFarm = prepared_http_req.weakref
+
+	var _connect: int = GetPlantScanByFarm.request_completed.connect(_on_GetPlantScanByFarm_request_completed)
+	Utils.logger.info("Calling to get plant scan data")
+	var request_url: String = Utils.host + "/api/get-scan/" + name_farm
+
+	# Send the GET request using the prepared URL.
+	Utils.send_get_request(GetPlantScanByFarm, request_url)
+	
+	
+func _on_GetPlantScanByFarm_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+	# Check the HTTP response status.
+	var status_check: bool = Utils.logger.check_http_response(response_code, headers, body)
+	if status_check:
+		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+		if json_body != null:
+			if json_body.has("error"):
+				get_plant_scan_by_farm_complete.emit({"error": json_body.error})
+			else:
+				get_plant_scan_by_farm_complete.emit(json_body)
+		else:
+			get_plant_scan_by_farm_complete.emit({"error": "Unknown server error"})
+	else:
+		get_plant_scan_by_farm_complete.emit({"error": "Unknown server error"})
 	

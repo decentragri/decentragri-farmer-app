@@ -179,6 +179,9 @@ func _on_file_dialog_file_selected(path: String) -> void:
 
 
 func hide_modal_container() -> void:
+	%ImageLabel.visible = true
+	%ImageIcon.visible = true
+	%PlantImage.texture = null
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		container.visible = false
 	visible = false

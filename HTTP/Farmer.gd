@@ -72,6 +72,7 @@ func _on_get_farms_request_completed(_result: int, response_code: int, headers: 
 	if status_check:
 		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
 		if json_body != null:
+			
 			if json_body.has("error"):
 				get_farms_complete.emit({ "error": json_body.error })
 			else:
@@ -79,7 +80,9 @@ func _on_get_farms_request_completed(_result: int, response_code: int, headers: 
 		else:
 			get_farms_complete.emit({ "error": "Unknown server error" })
 	else:
-		get_farms_complete.emit({ "error": "Unknown server error" })
+		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+		print("error: ", json_body)
+		get_farms_complete.emit([])
 
 
 func get_farm_data(farm_id: String) -> void:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=44 format=3 uid="uid://dpmeruvrsv70e"]
 
-[ext_resource type="Script" uid="uid://df743yqeho1mf" path="res://scans_card.gd" id="1_i726i"]
+[ext_resource type="Script" uid="uid://df743yqeho1mf" path="res://Scenes/scans_card.gd" id="1_i726i"]
 [ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="1_m2t2a"]
 [ext_resource type="Texture2D" uid="uid://gt6vdrttwhj3" path="res://Assets/Loader/1.png" id="8_tw2hh"]
 [ext_resource type="Texture2D" uid="uid://c0lnyp1ss0smc" path="res://Assets/Loader/2.png" id="9_o7x5f"]
@@ -346,3 +346,5 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

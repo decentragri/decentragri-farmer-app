@@ -46,7 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="38_cry21"]
 [ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="39_i780d"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="40_onmma"]
-[ext_resource type="PackedScene" uid="uid://dpmeruvrsv70e" path="res://scans_card.tscn" id="47_k21yp"]
+[ext_resource type="PackedScene" uid="uid://dpmeruvrsv70e" path="res://Scenes/scans_card.tscn" id="47_k21yp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ac43"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -260,9 +260,9 @@ shadow_offset = Vector2(0, 8)
 custom_minimum_size = Vector2(650, 992)
 anchors_preset = -1
 anchor_right = 0.902778
-anchor_bottom = 1.63125
+anchor_bottom = 2.19844
 offset_right = -650.0
-offset_bottom = -2088.0
+offset_bottom = -2814.0
 size_flags_vertical = 3
 script = ExtResource("1_dgyrt")
 metadata/_edit_use_anchors_ = true
