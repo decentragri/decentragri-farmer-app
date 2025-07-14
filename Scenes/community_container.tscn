@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://cw48wufhj4rir"]
+[gd_scene load_steps=14 format=3 uid="uid://bwbl3dpve5o3f"]
 
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="1_4wyrj"]
-[ext_resource type="Script" uid="uid://c53mwerbgjcej" path="res://Scenes/community_container.gd" id="1_hvsp2"]
-[ext_resource type="Texture2D" path="res://community_icon.png" id="1_qymog"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="3_tk5gd"]
 [ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_j2c4d"]
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_fkptt"]
+
+[sub_resource type="GDScript" id="GDScript_tdfk7"]
+script/source = "extends Control
+"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tk5gd"]
 
@@ -46,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hvsp2")
+script = SubResource("GDScript_tdfk7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -83,7 +85,6 @@ theme_override_constants/separation = 15
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 size_flags_vertical = 0
-texture = ExtResource("1_qymog")
 expand_mode = 1
 stretch_mode = 5
 

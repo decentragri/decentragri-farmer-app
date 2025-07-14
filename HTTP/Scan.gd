@@ -61,7 +61,7 @@ func _on_SaveSoilMeterScan_request_completed(_result: int, response_code: int, h
 		save_soil_meter_scan_complete.emit({ "error": "Unknown server error" })
 
 
-func get_soil_meter_scan() -> void:
+func get_soil_analysis_data() -> void:
 	# Prepare an HTTP request for fetching leaderboard data.
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
 	GetSoilMeterScan = prepared_http_req.request
@@ -69,7 +69,7 @@ func get_soil_meter_scan() -> void:
 
 	var _connect: int = GetSoilMeterScan.request_completed.connect(_on_GetSoilMeterScan_request_completed)
 	Utils.logger.info("Calling to get soil meter data")
-	var request_url: String = Utils.host + "/api/get-sensor-readings"
+	var request_url: String = Utils.host + "/api/get-soil-analysis-data"
 
 	# Send the GET request using the prepared URL.
 	Utils.send_get_request(GetSoilMeterScan, request_url)

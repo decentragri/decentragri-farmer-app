@@ -18,7 +18,7 @@ func connect_signals() -> void:
 func set_history_mode(history: String) -> void:
 	match history:
 		"SoilScan":
-			Scan.get_soil_meter_scan()
+			Scan.get_soil_analysis_data()
 		"PlantScan":
 			print("tae")
 			Scan.get_plant_scan()

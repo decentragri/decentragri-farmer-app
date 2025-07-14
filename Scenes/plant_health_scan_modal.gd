@@ -9,15 +9,14 @@ var data_image: Image
 func _ready() -> void:
 	original_content_container_y = size.y
 	connect_signals()
-
-
-
+	
+	
 func connect_signals() -> void:
 	var _1: int = Camera.image_request_completed.connect(_on_image_request_completed)
 	var _2: int = Camera.image_request_failed.connect(_on_image_request_failed)
 	var _3: int = Scan.save_plant_scan_complete.connect(_on_save_plant_scan_complete)
-
-
+	
+	
 func _on_save_plant_scan_complete(message: Dictionary) -> void:
 	if message.has("error"):
 		match message.error:
@@ -61,11 +60,13 @@ func _on_image_request_failed(error: String) -> void:
 		main.message_box(error)
 		
 	
-func _on_farm_profile_container_on_plant_scan_button_pressed(_farm_id: String) -> void:
+func _on_farm_profile_container_on_plant_scan_button_pressed(farm_name: String) -> void:
+	reset_fields()
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		container.visible = true
 	visible = true
-	reset_fields()
+	%FarmName.text = farm_name
+	
 	
 	
 func _process(_delta: float) -> void:
@@ -81,10 +82,8 @@ func _process(_delta: float) -> void:
 	
 	
 func _on_back_button_pressed() -> void:
-	for modal_container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
-		modal_container.visible = false
-	visible = false
 	reset_fields()
+	hide_modal_container()
 	
 	
 func reset_fields() -> void:
@@ -95,7 +94,11 @@ func reset_fields() -> void:
 	
 func _on_open_gallery_button_pressed() -> void:
 	if %PlantImage.texture == null:
-		Camera.get_gallery_image()
+		if OS.get_name() == "Android":
+			Camera.get_gallery_image()
+		
+		elif OS.get_name() == "Linux":
+			%FileDialog.visible = true
 	else:
 		%PlantImage.texture = null
 		%ImageLabel.visible = true
@@ -107,39 +110,41 @@ func _on_open_camera_button_pressed() -> void:
 
 
 func _on_submit_button_pressed() -> void:
-	if %CropTypeLine.text.strip_edges() == "":
+	if %CropType.text.strip_edges() == "":
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Please enter a crop type")
 		return
 
-	if %UploadedPic.texture == null:
+	if %PlantImage.texture == null:
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Please upload an image")
 		return
 	
-	var string_image_byte_data: String  = str(get_scaled_png_bytes(data_image))
+	var string_image_byte_data: String = str(get_scaled_png_bytes(data_image))
 	var plant_scan_data: Dictionary[String, Variant] = {
 		"imageBytes": string_image_byte_data,
-		"cropType": %CropTypeLine.text.strip_edges(),
+		"cropType": %CropType.text.strip_edges(),
 		"farmName": %FarmName.text.strip_edges(),
-		"note": %NotesLine.text.strip_edges()
+		"note": %Note.text.strip_edges()
 	}
 	
-	if NetworkState.hasNetwork():
+	if OS.get_name() == "Android":
+		if NetworkState.hasNetwork():
+			Scan.save_plant_scan(plant_scan_data)
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Plant scan was submitted successfully")
+			
+		else:
+			plant_scan_data["pending"] = true
+			RealmDB.save_data(JSON.stringify(plant_scan_data), "PlantHealthScan")
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Data saved locally - No internet")
+		hide_modal_container()
+	elif OS.get_name() == "Linux":
 		Scan.save_plant_scan(plant_scan_data)
-		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("Plant scan was submitted successfully")
-	else:
-		plant_scan_data["pending"] = true
-		RealmDB.save_data(JSON.stringify(plant_scan_data), "PlantHealthScan")
-		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("Data saved locally - No internet")
-	visible = false
-	
-
-
-
-
+		hide_modal_container()
+		
+		
 func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArray:
 	var w: float = image.get_width()
 	var h: float = image.get_height()
@@ -151,3 +156,29 @@ func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArra
 		image.resize(w * scale_down, h * scale_down, Image.INTERPOLATE_LANCZOS)
 		
 	return image.save_png_to_buffer()
+
+
+func _on_crop_type_text_changed(_new_text: String) -> void:
+	var is_crop_type_filled: bool = %CropType.text.strip_edges() != ""
+	var has_image: bool = %PlantImage.texture != null
+	%SubmitButton.disabled = not (is_crop_type_filled and has_image)
+	
+	
+func _on_file_dialog_file_selected(path: String) -> void:
+	var image: Image = Image.new()
+	var error: Error = image.load(path)
+	if error != OK:
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Failed to load image")
+		return
+	var picture: Texture2D = ImageTexture.create_from_image(image)
+	%PlantImage.texture = picture
+	%ImageLabel.visible = false
+	%ImageIcon.visible = false
+	data_image = image
+
+
+func hide_modal_container() -> void:
+	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
+		container.visible = false
+	visible = false

@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-signal on_plant_scan_button_pressed(farm_id: String)
+signal on_plant_scan_button_pressed(farm_name: String)
 signal on_soil_analysis_button_pressed(farm_id: String)
 
 
@@ -58,8 +58,9 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 	%ActionsContainer.visible = true
 	%TextureProgressBar4.play()
 	
+	
 func _on_plant_scan_button_pressed() -> void:
-	on_plant_scan_button_pressed.emit(%FarmID.text)
+	on_plant_scan_button_pressed.emit(%FarmName.text)
 	
 	
 func _on_soil_analysis_button_pressed() -> void:

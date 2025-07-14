@@ -157,7 +157,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2"]
-custom_minimum_size = Vector2(35, 0)
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 
 [node name="BarButtonIcon" type="TextureRect" parent="HBoxContainer2"]
@@ -174,7 +174,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("2_wkw8o")
 theme_override_font_sizes/font_size = 40
-text = "Plant Health Scan"
+text = "Plant Scan"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -237,13 +237,16 @@ theme_override_styles/normal = ExtResource("6_m4c5s")
 [node name="PlantImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/OpenGalleryButton"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.0125984
+anchor_top = 0.00666667
+anchor_right = 0.985827
+anchor_bottom = 0.993333
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="ImageLabel" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/OpenGalleryButton/PlantImage"]
 unique_name_in_owner = true
@@ -324,6 +327,31 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_oq08h")
 theme_override_font_sizes/font_size = 20
+text = "Farm Name (auto-filled)"
+
+[node name="FarmName" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["PlantScanFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_my57c")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
+editable = false
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_oq08h")
+theme_override_font_sizes/font_size = 20
 text = "Crop Type"
 
 [node name="CropType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["PlantScanFields"]]
@@ -350,7 +378,7 @@ theme_override_fonts/font = ExtResource("5_oq08h")
 theme_override_font_sizes/font_size = 20
 text = "Note"
 
-[node name="CropType2" type="TextEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["PlantScanFields"]]
+[node name="Note" type="TextEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer" groups=["PlantScanFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
@@ -364,7 +392,6 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
-text = "dadaddad"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -386,7 +413,18 @@ theme_override_styles/pressed = ExtResource("9_pi7pr")
 theme_override_styles/normal = ExtResource("9_pi7pr")
 text = "Submit"
 
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(665, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+
 [connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/OpenGalleryButton" to="." method="_on_open_gallery_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/OpenCameraButton" to="." method="_on_open_camera_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/CropType" to="." method="_on_crop_type_text_changed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

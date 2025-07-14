@@ -25,4 +25,5 @@ func set_greetings_label() -> void:
 		"Let’s turn dirt into gold!"
 	]
 	var random_greeting: String = greetings[randi() % greetings.size()]
-	%GreetingsLabel.text = "Hello " + User.username + "!\n" + random_greeting
+	%GreetingsLabel.text = "Hello " + User.username +"!"
+	%GreetingQuote.text = random_greeting

@@ -16,7 +16,7 @@ func get_farm_data(farm_id: String) -> void:
 	Farmer.get_farm_data(farm_id)
 	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
 	root_node.loading_start(true , "not bio")
-	Scan.get_soil_meter_scan()
+	Scan.get_soil_analysis_data()
 	visible = true
 
 
@@ -112,7 +112,7 @@ func get_scans(button_name: String) -> void:
 		return
 	match button_name:
 		"SoilScan":
-			Scan.get_soil_meter_scan()
+			Scan.get_soil_analysis_data()
 		"PlantScan":
 			Scan.get_plant_scan()
 	

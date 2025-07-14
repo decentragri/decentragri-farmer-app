@@ -3,6 +3,9 @@ extends Panel
 signal on_farm_card_button_pressed(farm_id: String)
 
 func farm_data(farm: Dictionary) -> void:
+	
+	
+	print("farmst: ", farm)
 	%FarmName.text = farm.farmName
 	%FarmID.text = farm.id
 	%CropType.text = farm.cropType

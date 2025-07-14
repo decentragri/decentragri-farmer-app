@@ -59,7 +59,7 @@
 [ext_resource type="Texture2D" uid="uid://boo5l23scoya1" path="res://Assets/Icons/back_icon.png" id="44_f6864"]
 [ext_resource type="Texture2D" uid="uid://d1af04e4luhmx" path="res://Assets/Loader/16.png" id="44_go1vp"]
 [ext_resource type="Texture2D" uid="uid://cbd3jrwa0mp37" path="res://Assets/Loader/17.png" id="45_aoijc"]
-[ext_resource type="PackedScene" uid="uid://cw48wufhj4rir" path="res://Scenes/community_container.tscn" id="45_gq2ea"]
+[ext_resource type="PackedScene" uid="uid://bwbl3dpve5o3f" path="res://Scenes/community_container.tscn" id="45_gq2ea"]
 [ext_resource type="Texture2D" uid="uid://3gi26pxvndbb" path="res://Assets/Loader/18.png" id="46_xm43g"]
 [ext_resource type="Texture2D" uid="uid://cfcbvlnhjfhws" path="res://Assets/Loader/19.png" id="47_gq2ea"]
 [ext_resource type="Texture2D" uid="uid://crdcjll36okvk" path="res://Assets/Loader/20.png" id="48_4vppj"]
