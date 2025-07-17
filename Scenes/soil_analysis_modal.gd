@@ -24,10 +24,13 @@ func _on_save_soil_meter_scan_complete(message: Dictionary) -> void:
 			menu.message_box("Scan was submitted successfully")
 		reset_fields()
 
-func _on_farm_profile_container_on_soil_analysis_button_pressed(_farm_id: String) -> void:
+func _on_farm_profile_container_on_soil_analysis_button_pressed(_farm_id: String, farm_name: String, crop_type: String) -> void:
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		container.visible = true
+		_show_modal_with_animation(container)
 	visible = true
+	%FarmName.text = farm_name
+	%CropType.text = crop_type
 	
 	
 func _process(_delta: float) -> void:
@@ -42,10 +45,10 @@ func _process(_delta: float) -> void:
 	
 	
 func _on_back_button_pressed() -> void:
-	for modal_container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
-		modal_container.visible = false
-	visible = false
 	reset_fields()
+	for modal_container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
+		_hide_modal_with_animation(modal_container)
+	visible = false
 	
 	
 func reset_fields() -> void:
@@ -148,16 +151,18 @@ func _on_humidity_text_changed(new_text: String) -> void:
 		%Humidity.text = ""
 		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			menu.message_box("Invalid humidity input. Please enter a number.")
-
+	
+	
 func _is_valid_float(text: String) -> bool:
 	return text.is_valid_float()
-
+	
+	
 func _on_submit_button_pressed() -> void:
 	var fields: Dictionary[String, Variant] = {
-		"fertility": %Fertility,
 		"moisture": %Moisture,
 		"ph": %PH,
 		"temperature": %Temperature,
+		"fertility": %Fertility,
 		"sunlight": %Sunlight,
 		"humidity": %Humidity,
 	}
@@ -176,12 +181,13 @@ func _on_submit_button_pressed() -> void:
 			return
 		data[key] = text.to_float()
 
-	if %CropTypeLine != null and %CropTypeLine.text.strip_edges() != "":
-		data["cropType"] = %CropTypeLine.text.strip_edges()
+	if %CropType != null and %CropType.text.strip_edges() != "":
+		data["cropType"] = %CropType.text.strip_edges()
+		data["farmName"] = %FarmName.text.strip_edges()
 	else:
 		data["cropType"] = null
+	
 
-	data["username"] = User.username
 	data["sensorId"] = "sensor_def"
 	data["createdAt"] = Time.get_datetime_string_from_system()
 	data["id"] = Utils.generate_uuid_v4()
@@ -189,14 +195,40 @@ func _on_submit_button_pressed() -> void:
 	var sensor_data: Dictionary = {
 		"sensorData": data
 	}
-
-	if NetworkState.hasNetwork():
+	if OS.get_name() == "Android":
+		if NetworkState.hasNetwork():
+			Scan.save_soil_meter_scan(sensor_data)
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Scan was submitted successfully")
+		else:
+			sensor_data["pending"] = true	
+			RealmDB.save_data(JSON.stringify(sensor_data), "SoilAnalysisScan")
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Data saved locally - No internet")
+				
+	elif OS.get_name() == "Linux":
 		Scan.save_soil_meter_scan(sensor_data)
-		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("Scan was submitted successfully")
-	else:
-		sensor_data["pending"] = true	
-		RealmDB.save_data(JSON.stringify(sensor_data), "SoilAnalysisScan")
-		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("Data saved locally - No internet")
+		hide_modal_container()
+	
+	
+func hide_modal_container() -> void:
+	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
+		container.visible = false
 	visible = false
+	
+	
+func _show_modal_with_animation(container: VBoxContainer) -> void:
+	container.visible = true
+	container.modulate.a = 0.0
+	var tween: Tween = create_tween()
+	var _1: Tween = tween.set_trans(Tween.TRANS_SINE)
+	var _2: Tween = tween.set_ease(Tween.EASE_OUT)
+	var _3: PropertyTweener = tween.tween_property(container, "modulate:a", 1.0, 0.25)
+	
+	
+func _hide_modal_with_animation(container: VBoxContainer) -> void:
+	var tween: Tween = create_tween()
+	var _1: Tween = tween.set_trans(Tween.TRANS_SINE)
+	var _2: Tween = tween.set_ease(Tween.EASE_IN)
+	var _3: PropertyTweener = tween.tween_property(container, "modulate:a", 0.0, 0.2)
+	var _4: CallbackTweener = tween.tween_callback(Callable(container, "hide"))

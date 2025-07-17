@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="32_fbp74"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="33_un4u2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fb5b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5ic2"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 border_width_left = 1
 border_width_top = 1
@@ -151,12 +151,12 @@ animations = [{
 [node name="FarmScanCard" type="Panel"]
 custom_minimum_size = Vector2(650, 170)
 anchors_preset = -1
-anchor_right = 0.902778
-anchor_bottom = 0.132812
+anchor_right = 1.80556
+anchor_bottom = 0.279687
 offset_right = -650.0
 offset_bottom = -170.0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_7fb5b")
+theme_override_styles/panel = SubResource("StyleBoxFlat_j5ic2")
 script = ExtResource("1_j5ic2")
 metadata/_edit_use_anchors_ = true
 
@@ -173,12 +173,13 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutContainer"]
+[node name="PlantScanContainer" type="VBoxContainer" parent="AboutContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="Diagnosis" type="Label" parent="AboutContainer/VBoxContainer"]
+[node name="Diagnosis" type="Label" parent="AboutContainer/PlantScanContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
@@ -189,16 +190,15 @@ text = "Diagnosis: Good"
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="AboutContainer/VBoxContainer"]
-visible = false
+[node name="VBoxContainer2" type="VBoxContainer" parent="AboutContainer/PlantScanContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AboutContainer/PlantScanContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AboutContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="CropType" type="Label" parent="AboutContainer/VBoxContainer"]
+[node name="CropType" type="Label" parent="AboutContainer/PlantScanContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -214,7 +214,7 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="Date" type="Label" parent="AboutContainer/VBoxContainer"]
+[node name="Date" type="Label" parent="AboutContainer/PlantScanContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -225,12 +225,79 @@ theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
 theme_override_fonts/font = ExtResource("2_j5ic2")
 theme_override_font_sizes/font_size = 20
 text = "Date: May 4, 2025"
+justification_flags = 161
+
+[node name="ID" type="Label" parent="AboutContainer/PlantScanContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("2_j5ic2")
+theme_override_font_sizes/font_size = 20
+text = "ID: fjmamdkmdafmlzdsadsds"
+autowrap_mode = 1
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="SoilAnalysisContainer" type="VBoxContainer" parent="AboutContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Evaluation" type="Label" parent="AboutContainer/SoilAnalysisContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("1_fbsaf")
+theme_override_font_sizes/font_size = 30
+text = "Diagnosis: Good"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="AboutContainer/SoilAnalysisContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AboutContainer/SoilAnalysisContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="CropType2" type="Label" parent="AboutContainer/SoilAnalysisContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("2_j5ic2")
+theme_override_font_sizes/font_size = 20
+text = "Crop: Corn"
 autowrap_mode = 3
 justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="ID" type="Label" parent="AboutContainer/VBoxContainer"]
+[node name="Date2" type="Label" parent="AboutContainer/SoilAnalysisContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("2_j5ic2")
+theme_override_font_sizes/font_size = 20
+text = "Date: May 4, 2025"
+justification_flags = 161
+
+[node name="ID2" type="Label" parent="AboutContainer/SoilAnalysisContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -297,3 +364,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1

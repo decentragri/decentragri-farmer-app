@@ -1,8 +1,8 @@
 extends VBoxContainer
 
 signal on_plant_scan_button_pressed(farm_name: String)
-signal on_soil_analysis_button_pressed(farm_id: String)
-
+signal on_soil_analysis_button_pressed(farm_id: String, farm_name: String, crop_type: String)
+signal farm_scan_card_button_pressed(scan_data: Dictionary)
 
 var farm_name: String 
 
@@ -32,7 +32,6 @@ func _ready() -> void:
 	
 func connect_signals() -> void:
 	var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
-
 	
 	
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
@@ -59,15 +58,20 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 	%LoaderContainer4.visible = false
 	%ActionsContainer.visible = true
 	%TextureProgressBar4.play()
-	farm_name = farm_data.farmName
+	%ScansCard.set_farm_name(farm_data.farmName)
 	
 func _on_plant_scan_button_pressed() -> void:
 	on_plant_scan_button_pressed.emit(%FarmName.text)
 	
 	
 func _on_soil_analysis_button_pressed() -> void:
-	on_soil_analysis_button_pressed.emit(%FarmID.text)
+	on_soil_analysis_button_pressed.emit(%FarmID.text, %FarmName.text, %CropType.text)
 	
 	
 func _on_delete_farm_button_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_scans_card_farm_scan_card_button_pressed(scan_data: Dictionary) -> void:
+	print(scan_data)
+	farm_scan_card_button_pressed.emit(scan_data)

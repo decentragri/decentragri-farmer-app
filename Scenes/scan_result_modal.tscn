@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgvq41miknhff"]
+[gd_scene load_steps=14 format=3 uid="uid://dgvq41miknhff"]
 
 [ext_resource type="Texture2D" uid="uid://k1ixag2t3jkq" path="res://Assets/Icons/back_icon_white.png" id="1_bedac"]
+[ext_resource type="Script" uid="uid://coobg1byxo6yw" path="res://Scenes/scan_result_modal.gd" id="1_hklsb"]
 [ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="2_hklsb"]
 [ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="3_nt6qg"]
 [ext_resource type="Theme" uid="uid://cddjsyoc7ebqj" path="res://Assets/StyleRes/scroll_themel.tres" id="4_8hwa1"]
@@ -8,6 +9,7 @@
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="6_yq7uo"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="7_nn0xf"]
 [ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="8_j567j"]
+[ext_resource type="Texture2D" uid="uid://wglmkc4g02dg" path="res://Assets/Background/auth_bg.png" id="10_hklsb"]
 
 [sub_resource type="Resource" id="Resource_l0ub0"]
 script = ExtResource("6_yq7uo")
@@ -40,10 +42,9 @@ shadow_offset = Vector2(0, 5)
 z_index = 99
 custom_minimum_size = Vector2(689, 1214)
 anchors_preset = -1
-anchor_right = 0.956944
-anchor_bottom = 0.948438
-offset_right = -689.0
-offset_bottom = -1214.0
+anchor_right = 0.956946
+anchor_bottom = 1.51875
+script = ExtResource("1_hklsb")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -70,7 +71,8 @@ texture = ExtResource("2_hklsb")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="HBoxContainer2"]
+[node name="ActiveResultLabel" type="Label" parent="HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -95,38 +97,47 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
+[node name="SmoothScrollContainerPlant" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(689, 1121)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_8hwa1")
-scroll_horizontal = -22
-vertical_scroll_mode = 2
+vertical_scroll_mode = 3
 script = ExtResource("5_wjp34")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="SoilAnalysisResultContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer"]
-custom_minimum_size = Vector2(0, 300)
+[node name="PlantScanResultContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(689, 2079)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
-custom_minimum_size = Vector2(0, 250)
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer"]
+custom_minimum_size = Vector2(679, 679)
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 20
-
-[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer"]
-custom_minimum_size = Vector2(329, 300)
-layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel"]
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,24 +145,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+[node name="VboxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer/HBoxContainer/VboxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -160,121 +171,43 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
 theme_override_fonts/font = ExtResource("7_nn0xf")
 theme_override_font_sizes/font_size = 20
-text = "SCAN ID:"
+text = "SCAN IMAGE"
 horizontal_alignment = 1
 autowrap_mode = 3
 justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="PlantScanImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer/HBoxContainer/VboxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_j567j")
-theme_override_font_sizes/font_size = 28
-text = "DADDASADAD"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 15)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer"]
-custom_minimum_size = Vector2(329, 300)
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
-layout_mode = 2
 size_flags_vertical = 3
+texture = ExtResource("10_hklsb")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
-theme_override_fonts/font = ExtResource("7_nn0xf")
-theme_override_font_sizes/font_size = 20
-text = "SENSOR ID:"
-horizontal_alignment = 1
-autowrap_mode = 3
-justification_flags = 161
-clip_text = true
-text_overrun_behavior = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_j567j")
-theme_override_font_sizes/font_size = 28
-text = "DADDASADAD"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 15)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/Panel/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2"]
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,23 +215,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -314,11 +247,522 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CropType2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SCAN DATE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScanDate" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SCAN ID:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScanID" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "NOTE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Note" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 228)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(329, 700)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "PLANT SCAN RESULT:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DIAGNOSIS:"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Diagnosis2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "INFESTED"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "REASON"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Reason" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "RECOMMENDATION"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Recommendations" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+autowrap_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerPlant/PlantScanResultContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="SmoothScrollContainerSoil" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(689, 1121)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_8hwa1")
+vertical_scroll_mode = 3
+script = ExtResource("5_wjp34")
+wheel_scroll_damper = SubResource("Resource_l0ub0")
+dragging_scroll_damper = SubResource("Resource_up55o")
+metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+
+[node name="SoilAnalysisResultContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil"]
+custom_minimum_size = Vector2(689, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "ANALYSIS ID:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ID" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -329,22 +773,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2"]
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -352,23 +796,174 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SENSOR ID:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SensorID" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SCAN DATE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CreatedAt" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(329, 300)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -384,11 +979,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="FarmName" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -399,28 +995,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -428,23 +1024,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -460,11 +1056,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -475,22 +1072,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3"]
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -498,23 +1095,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -530,11 +1127,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Moisture" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -545,28 +1143,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer3/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4"]
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -574,23 +1172,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -606,11 +1204,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="PH" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -621,22 +1220,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4"]
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -644,23 +1243,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -676,11 +1275,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Temperature" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -691,28 +1291,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer4/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5"]
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -720,23 +1320,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -752,11 +1352,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Sunlight" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -767,22 +1368,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5"]
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -790,23 +1391,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -822,11 +1423,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Humidity" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -837,28 +1439,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer5/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 20
 
-[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6"]
+[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6"]
 custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -866,93 +1468,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
-theme_override_fonts/font = ExtResource("7_nn0xf")
-theme_override_font_sizes/font_size = 20
-text = "INTERPRETATION:"
-horizontal_alignment = 1
-autowrap_mode = 3
-justification_flags = 161
-clip_text = true
-text_overrun_behavior = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_j567j")
-theme_override_font_sizes/font_size = 28
-text = "DADDASADAD"
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 3
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 15)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6"]
-custom_minimum_size = Vector2(329, 300)
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 15)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CropType" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -968,11 +1500,12 @@ justification_flags = 161
 clip_text = true
 text_overrun_behavior = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Diagnosis" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Fertility" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -983,14 +1516,405 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel2/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/SoilAnalysisResultContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(329, 300)
 layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SUBMITTED DATE:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubmittedAt" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "DADDASADAD"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer6/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer"]
+custom_minimum_size = Vector2(0, 1300)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(329, 700)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ok5uj")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SOIL ANALYSIS RESULT:"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "OVERALL EVALUATION:"
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="Evaluation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("8_j567j")
+theme_override_font_sizes/font_size = 28
+text = "GOOD"
+horizontal_alignment = 2
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "FERTILITY"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="FertilityIntrerpretation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "HUMIDITY"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="HumidityInterpretation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+autowrap_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "MOISTURE"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MoistureInterpretation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+autowrap_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "PH"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="PHInterpretation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+autowrap_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "SUNLIGHT"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="SunlightInterpretation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+autowrap_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer7"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 20
+text = "TEMPERATURE"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 161
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="TemperatureInterpretation" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("7_nn0xf")
+theme_override_font_sizes/font_size = 24
+text = "Noticeable holes and irregular damage on the leaf’s surface and edges indicate pest damage or disease"
+autowrap_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 15)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer7/Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

@@ -315,7 +315,7 @@ custom_minimum_size = Vector2(11, 0)
 layout_mode = 2
 
 [node name="MessageBox" type="Panel" parent="."]
-z_index = 9
+z_index = 99
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0416667
@@ -366,6 +366,7 @@ anchor_bottom = 0.964844
 [connection signal="on_add_farm_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/AddNewFarmModal" method="_on_farms_container_on_add_farm_button_pressed"]
 [connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="." method="_on_farms_container_on_farm_card_button_pressed"]
 [connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" method="_on_farms_container_on_farm_card_button_pressed"]
+[connection signal="farm_scan_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/ScanResultModal" method="_on_farm_profile_container_farm_scan_card_button_pressed"]
 [connection signal="on_plant_scan_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/PlantHealthScanModal" method="_on_farm_profile_container_on_plant_scan_button_pressed"]
 [connection signal="on_soil_analysis_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/SoilAnalysisModal" method="_on_farm_profile_container_on_soil_analysis_button_pressed"]
 [connection signal="wallet_token_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/WalletContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/TokenTransferModal" method="_on_wallet_container_wallet_token_button_pressed"]

@@ -64,6 +64,7 @@ func _on_farm_profile_container_on_plant_scan_button_pressed(farm_name: String) 
 	reset_fields()
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		container.visible = true
+		_show_modal_with_animation(container)
 	visible = true
 	%FarmName.text = farm_name
 	
@@ -83,7 +84,27 @@ func _process(_delta: float) -> void:
 	
 func _on_back_button_pressed() -> void:
 	reset_fields()
-	hide_modal_container()
+	for modal_container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
+		_hide_modal_with_animation(modal_container)
+	visible = false
+	
+
+func _show_modal_with_animation(container: VBoxContainer) -> void:
+	container.visible = true
+	container.modulate.a = 0.0
+	var tween: Tween = create_tween()
+	var _1: Tween = tween.set_trans(Tween.TRANS_SINE)
+	var _2: Tween = tween.set_ease(Tween.EASE_OUT)
+	var _3: PropertyTweener = tween.tween_property(container, "modulate:a", 1.0, 0.25)
+	
+	
+func _hide_modal_with_animation(container: VBoxContainer) -> void:
+	var tween: Tween = create_tween()
+	var _1: Tween = tween.set_trans(Tween.TRANS_SINE)
+	var _2: Tween = tween.set_ease(Tween.EASE_IN)
+	var _3: PropertyTweener = tween.tween_property(container, "modulate:a", 0.0, 0.2)
+	var _4: CallbackTweener = tween.tween_callback(Callable(container, "hide"))
+	visible = false
 	
 	
 func reset_fields() -> void:

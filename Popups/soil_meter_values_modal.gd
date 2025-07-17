@@ -119,6 +119,8 @@ func _on_submit_button_pressed() -> void:
 		"temperature": %TemperatureLine,
 		"sunlight": %SunlightLine,
 		"humidity": %HumidityLine,
+		"farmName": %FarmName,
+		"cropType": %CropTypeLine
 	}
 
 	var data: Dictionary[String, Variant] = {}
@@ -141,14 +143,10 @@ func _on_submit_button_pressed() -> void:
 	data["username"] = User.username
 	data["sensorId"] = "sensor_def"
 	data["createdAt"] = Time.get_datetime_string_from_system()
-	data["id"] = uuid.generate_uuid_v4()
 
 	var sensor_data: Dictionary = {
 		"sensorData": data
 	}
-
-	print(sensor_data)
-
 	if NetworkState.hasNetwork():
 		Scan.save_soil_meter_scan(sensor_data)
 	else:

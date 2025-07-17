@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dpmeruvrsv70e"]
+[gd_scene load_steps=40 format=3 uid="uid://dpmeruvrsv70e"]
 
 [ext_resource type="Script" uid="uid://df743yqeho1mf" path="res://Scenes/scans_card.gd" id="1_i726i"]
 [ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="1_m2t2a"]
@@ -28,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://b6bjlx1c0miob" path="res://Assets/Loader/24.png" id="31_g26us"]
 [ext_resource type="Texture2D" uid="uid://csr808dglmm55" path="res://Assets/Loader/25.png" id="32_c5ocf"]
 [ext_resource type="StyleBox" uid="uid://cd83l0si04krw" path="res://Assets/StyleRes/scan_button.tres" id="33_fa7b0"]
-[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="33_j4jqk"]
 [ext_resource type="Texture2D" uid="uid://blw10xxm77jg8" path="res://Assets/Loader/26.png" id="33_x43c2"]
 [ext_resource type="Texture2D" uid="uid://bpjquae3nqkn5" path="res://Assets/Loader/27.png" id="34_6pq2d"]
 [ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="34_ch8rx"]
@@ -38,7 +37,6 @@
 [ext_resource type="Texture2D" uid="uid://iuxxxa4h4qv4" path="res://Assets/Loader/29.png" id="36_rpxyh"]
 [ext_resource type="Texture2D" uid="uid://g516mtnlmtxn" path="res://Assets/Loader/30.png" id="37_xo8x2"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="38_a4plw"]
-[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="39_cgy76"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6jn7"]
 animations = [{
@@ -153,19 +151,8 @@ shadow_color = Color(0, 0, 0, 0.192157)
 shadow_size = 30
 shadow_offset = Vector2(0, 5)
 
-[sub_resource type="Resource" id="Resource_57np8"]
-script = ExtResource("39_cgy76")
-friction = 4.0
-minimum_velocity = 0.4
-rebound_strength = 7.0
-
-[sub_resource type="Resource" id="Resource_h0mfg"]
-script = ExtResource("39_cgy76")
-friction = 4.0
-minimum_velocity = 0.4
-rebound_strength = 7.0
-
 [node name="HBoxContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(650, 1497)
 anchors_preset = -1
 anchor_right = 0.902778
 anchor_bottom = 1.16953
@@ -323,28 +310,16 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(55, 30)
 layout_mode = 2
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+[node name="PlantScanContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(650, 0)
 layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 3
-script = ExtResource("33_j4jqk")
-wheel_scroll_damper = SubResource("Resource_57np8")
-dragging_scroll_damper = SubResource("Resource_h0mfg")
-metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
+size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
-[node name="PlantScanContainer" type="VBoxContainer" parent="SmoothScrollContainer"]
+[node name="SoilAnalysisContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
-
-[node name="SoilAnalysisContainer" type="VBoxContainer" parent="SmoothScrollContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
