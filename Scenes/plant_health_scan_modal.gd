@@ -32,8 +32,7 @@ func _on_save_plant_scan_complete(message: Dictionary) -> void:
 		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			menu.message_box("Scan was submitted successfully")
 		
-	
-	
+		
 func _on_image_request_completed(image_data: Dictionary) -> void:
 	if visible:
 		if not image_data.has("0"):
@@ -43,7 +42,7 @@ func _on_image_request_completed(image_data: Dictionary) -> void:
 		
 		var image: Image = Image.new()
 		var buffer: Array = image_data["0"]
-		var error: Error = image.load_png_buffer(buffer)
+		var error: Error = image.load_png_from_buffer(buffer)
 		if error != OK:
 			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 				main.message_box("Failed to load image")
@@ -67,7 +66,6 @@ func _on_farm_profile_container_on_plant_scan_button_pressed(farm_name: String) 
 		_show_modal_with_animation(container)
 	visible = true
 	%FarmName.text = farm_name
-	
 	
 	
 func _process(_delta: float) -> void:

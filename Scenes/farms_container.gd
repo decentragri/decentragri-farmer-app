@@ -11,11 +11,11 @@ const farm_slot: PackedScene = preload("res://Scenes/farm_card.tscn")
 
 func _ready() -> void:
 	connect_signal()
-	Farmer.get_farms()
+	Farm.get_farms()
 	
 
 func connect_signal() -> void:
-	var _1: int = Farmer.get_farms_complete.connect(_on_get_farms_complete)
+	var _1: int = Farm.get_farms_complete.connect(_on_get_farms_complete)
 	
 	
 func _on_get_farms_complete(farms: Array) -> void:
@@ -23,7 +23,7 @@ func _on_get_farms_complete(farms: Array) -> void:
 		if farm_retry_count < MAX_RETRIES:
 			farm_retry_count += 1
 			print("Farm fetch failed. Retrying... (%d/%d)" % [farm_retry_count, MAX_RETRIES])
-			Farmer.get_farms()
+			Farm.get_farms()
 		else:
 			print("Farm fetch failed after %d attempts." % MAX_RETRIES)
 		return 

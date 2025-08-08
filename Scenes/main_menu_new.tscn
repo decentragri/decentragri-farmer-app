@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://byxfjbt7tlb00"]
+[gd_scene load_steps=33 format=3 uid="uid://byxfjbt7tlb00"]
 
 [ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
@@ -29,6 +29,13 @@ border_width_bottom = 1
 border_color = Color(0.227451, 0.227451, 0.227451, 1)
 shadow_color = Color(0, 0, 0, 0.435294)
 shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otjln"]
+bg_color = Color(0.998127, 0, 0.210859, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
 
 [sub_resource type="Resource" id="Resource_nwcvr"]
 script = ExtResource("2_qjsf3")
@@ -183,12 +190,39 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="NotificationButton" type="TextureButton" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer"]
-modulate = Color(0.658824, 1, 0.0156863, 1)
+self_modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 texture_normal = ExtResource("4_vy8md")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -25.9999
+offset_top = -12.0
+offset_right = 4.00006
+offset_bottom = 18.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_otjln")
+
+[node name="NotificationCount" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.996078, 0.996078, 0.996078, 1)
+theme_override_fonts/font = ExtResource("20_ogk8k")
+theme_override_font_sizes/font_size = 14
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="ColorRect/VBoxContainer"]
 unique_name_in_owner = true
@@ -370,3 +404,4 @@ anchor_bottom = 0.964844
 [connection signal="on_plant_scan_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/PlantHealthScanModal" method="_on_farm_profile_container_on_plant_scan_button_pressed"]
 [connection signal="on_soil_analysis_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/SoilAnalysisModal" method="_on_farm_profile_container_on_soil_analysis_button_pressed"]
 [connection signal="wallet_token_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/WalletContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/TokenTransferModal" method="_on_wallet_container_wallet_token_button_pressed"]
+[connection signal="unread_count_updated" from="NotificationsContainer" to="." method="_on_notifications_container_unread_count_updated"]

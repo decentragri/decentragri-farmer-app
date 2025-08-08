@@ -24,6 +24,13 @@ friction = 4.0
 minimum_velocity = 0.4
 rebound_strength = 7.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiamd"]
+bg_color = Color(0.337255, 0.337255, 0.337255, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ie7eg"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 border_color = Color(0.0784314, 0.592157, 0.270588, 1)
@@ -63,13 +70,6 @@ corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0.192157)
 shadow_size = 20
 shadow_offset = Vector2(0, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiamd"]
-bg_color = Color(0.337255, 0.337255, 0.337255, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [node name="AddNewFarmModal" type="VBoxContainer"]
 z_index = 99
@@ -136,7 +136,6 @@ theme_override_constants/separation = 30
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal = -23
 script = ExtResource("3_u020p")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
@@ -161,7 +160,7 @@ theme_override_fonts/font = ExtResource("5_yr8r7")
 theme_override_font_sizes/font_size = 20
 text = "Farm Image"
 
-[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="UploadFarmImageButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 mouse_filter = 1
@@ -170,7 +169,7 @@ theme_override_styles/hover = ExtResource("6_r51qt")
 theme_override_styles/pressed = ExtResource("6_r51qt")
 theme_override_styles/normal = ExtResource("6_r51qt")
 
-[node name="FarmImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Button"]
+[node name="FarmImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -181,7 +180,8 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Button/FarmImage"]
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton/FarmImage"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(359, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -201,9 +201,9 @@ image"
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 161
-metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Button/FarmImage"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton/FarmImage"]
+unique_name_in_owner = true
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 1
@@ -213,6 +213,33 @@ anchor_top = 0.313014
 anchor_right = 0.53244
 anchor_bottom = 0.513014
 grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_haqph")
+expand_mode = 1
+
+[node name="CaputreImageButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(615, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/focus = ExtResource("9_pyv2i")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qiamd")
+theme_override_styles/hover = ExtResource("9_pyv2i")
+theme_override_styles/pressed = ExtResource("9_pyv2i")
+theme_override_styles/normal = ExtResource("9_pyv2i")
+text = "Press here to take a picture"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/CaputreImageButton"]
+modulate = Color(0.658824, 1, 0.0156863, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0967481
+anchor_top = 0.233333
+anchor_right = 0.161789
+anchor_bottom = 0.766667
 grow_vertical = 2
 texture = ExtResource("7_haqph")
 expand_mode = 1
@@ -306,6 +333,7 @@ layout_mode = 2
 theme_override_constants/separation = 50
 
 [node name="Long" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/HBoxContainer" groups=["FarmModalFields"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -319,9 +347,11 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
+text = "0.0"
 editable = false
 
 [node name="Lat" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/HBoxContainer" groups=["FarmModalFields"]]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -335,6 +365,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
+text = "0.0"
 editable = false
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
@@ -342,7 +373,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="LoginButton" type="Button" parent="."]
+[node name="SubmitButton" type="Button" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(615, 75)
 layout_mode = 2
@@ -357,4 +388,18 @@ theme_override_styles/pressed = ExtResource("9_pyv2i")
 theme_override_styles/normal = ExtResource("9_pyv2i")
 text = "Submit"
 
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+auto_translate_mode = 1
+title = "Open a File"
+size = Vector2i(665, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+use_native_dialog = true
+
 [connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton" to="." method="_on_upload_farm_image_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/CaputreImageButton" to="." method="_on_caputre_image_button_pressed"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

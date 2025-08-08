@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cn5cpx7m32ilk"]
+[gd_scene load_steps=11 format=3 uid="uid://cn5cpx7m32ilk"]
 
 [ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="1_k0n6y"]
 [ext_resource type="Script" uid="uid://dngqqqfdistr" path="res://Scenes/notifications_container.gd" id="1_qiwku"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_augws"]
 [ext_resource type="Theme" uid="uid://cddjsyoc7ebqj" path="res://Assets/StyleRes/scroll_themel.tres" id="5_augws"]
 [ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_yahf5"]
-[ext_resource type="PackedScene" uid="uid://bg2mpludg7ke2" path="res://Scenes/notification_card.tscn" id="6_qiwku"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0n6y"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -29,9 +28,6 @@ script = ExtResource("5_yahf5")
 friction = 4.0
 minimum_velocity = 0.4
 rebound_strength = 7.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3kc7"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="NotificationsContainer" type="Control"]
 z_index = 9
@@ -139,14 +135,10 @@ wheel_scroll_damper = SubResource("Resource_j3kc7")
 dragging_scroll_damper = SubResource("Resource_k0n6y")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/VBoxContainer/SmoothScrollContainer"]
+[node name="NotificationsContainer" type="VBoxContainer" parent="VBoxContainer/Panel/VBoxContainer/VBoxContainer/SmoothScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="NotificationCard" parent="VBoxContainer/Panel/VBoxContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("6_qiwku")]
-custom_minimum_size = Vector2(0, 199)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_j3kc7")
 
 [connection signal="pressed" from="VBoxContainer/Panel/VBoxContainer/VBoxContainer/HBoxContainer2/HBoxContainer4/CloseButton" to="." method="_on_close_button_pressed"]

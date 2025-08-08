@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg2mpludg7ke2"]
+[gd_scene load_steps=5 format=3 uid="uid://bg2mpludg7ke2"]
 
 [ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="1_33uvk"]
+[ext_resource type="Script" uid="uid://bjv3lvotxnc88" path="res://Scenes/notification_card.gd" id="1_qrkyb"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="2_qrkyb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3kc7"]
@@ -15,6 +16,7 @@ offset_right = -625.0
 offset_bottom = -199.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_j3kc7")
+script = ExtResource("1_qrkyb")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -53,7 +55,8 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Message" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 65)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -64,7 +67,8 @@ theme_override_font_sizes/font_size = 24
 text = "Your crop scan is ready. View results to check health and recommendations"
 autowrap_mode = 2
 
-[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TimeAgo" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1

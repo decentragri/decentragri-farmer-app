@@ -21,9 +21,10 @@ func reset_fields() -> void:
 	%TransferButton.disabled = true
 
 func _on_wallet_container_wallet_token_button_pressed(token_data: Dictionary) -> void:
+	visible = true
 	for modal_container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		modal_container.visible = true
-	visible = true
+	
 
 	%TokenIcon.texture = token_data.texture
 	%TokenIconMain.texture = token_data.texture

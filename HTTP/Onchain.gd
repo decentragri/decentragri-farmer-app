@@ -125,7 +125,7 @@ func transfer_token(token_transfer_data: Dictionary[String, String]) -> void:
 	var _connect: int = TransferToken.request_completed.connect(_on_TransferToken_request_completed)
 
 	# Log the initiation of the request to retrieve leaderboard data.	
-	Utils.logger.info("Call to stake ETH")
+	Utils.logger.info("Call to transfer token")
 	
 	# Construct the request URL for fetching leaderboard data.
 	var request_url: String = Utils.host + "/api/onchain/token/transfer"

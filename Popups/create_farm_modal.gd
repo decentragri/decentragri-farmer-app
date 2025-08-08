@@ -13,7 +13,7 @@ func connect_signals() -> void:
 	var _2: int = GpsLocator.gps_coordinates_received.connect(_on_gps_coordinates_received)
 	var _3: int = Camera.image_request_completed.connect(_display_captured_image)
 	var _4: int = Camera.image_request_failed.connect(_image_request_failed)
-	var _5: int = Farmer.create_farm_complete.connect(_on_create_farm_complete)
+	var _5: int = Farm.create_farm_complete.connect(_on_create_farm_complete)
 
 
 func _display_captured_image(image_data: Dictionary) -> void:
@@ -116,7 +116,7 @@ func _on_submit_button_pressed() -> void:
 	# Use empty string if image is null or not set
 	var image_data: String = farm_image if farm_image != "" else ""
 	print(image_data)
-
+	
 	var farm_data: Dictionary[String, Variant] = {
 		"farmName": farm_name,
 		"cropType": crop_type,
@@ -138,7 +138,7 @@ func _on_submit_button_pressed() -> void:
 		print("No image provided. Using empty string as placeholder.")
 
 	on_error_encountered.emit("Farm creation submitted.")
-	Farmer.create_farm(farm_data)
+	Farm.create_farm(farm_data)
 
 	
 func _on_create_farm_complete(message: Dictionary) -> void:

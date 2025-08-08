@@ -23,7 +23,7 @@ func _on_farms_container_on_farm_card_button_pressed(farm_id: String) -> void:
 	%LoaderContainer4.visible = true
 	%TextureProgressBar4.play()
 	
-	Farmer.get_farm_data(farm_id)
+	Farm.get_farm_data(farm_id)
 	
 	
 func _ready() -> void:
@@ -31,10 +31,13 @@ func _ready() -> void:
 	
 	
 func connect_signals() -> void:
-	var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
+	var _1: int = Farm.get_farm_data_complete.connect(_on_get_farm_data_complete)
+	var _2: int = Farm.sell_farm_complete.connect(_on_sell_farm_complete)
 	
 	
 func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
+	print(farm_data)
+	
 	%FarmName.text = farm_data.farmName
 	%CropType.text = farm_data.cropType
 	%CreatedAt.text = "Joined at " + farm_data.formattedCreatedAt
@@ -59,6 +62,18 @@ func _on_get_farm_data_complete(farm_data: Dictionary) -> void:
 	%ActionsContainer.visible = true
 	%TextureProgressBar4.play()
 	%ScansCard.set_farm_name(farm_data.farmName)
+	var image_bytes: PackedByteArray = farm_data.imageBytes
+	set_image(image_bytes)
+	
+	
+func _on_sell_farm_complete(message: Dictionary) -> void:
+	if message.has("error"):
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box(str(message.error )+ " Please try again")
+	else:
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Farm sale application submitted successfully")
+	
 	
 func _on_plant_scan_button_pressed() -> void:
 	on_plant_scan_button_pressed.emit(%FarmName.text)
@@ -73,5 +88,21 @@ func _on_delete_farm_button_pressed() -> void:
 
 
 func _on_scans_card_farm_scan_card_button_pressed(scan_data: Dictionary) -> void:
-	print(scan_data)
 	farm_scan_card_button_pressed.emit(scan_data)
+	
+	
+func _on_sell_farm_button_pressed() -> void:
+	Farm.sell_farm(str(%FarmID.text))
+	
+	
+func set_image(image_byte: PackedByteArray) -> void:
+	if image_byte.size() == 0:
+		%FarmPic.texture = preload("res://Assets/Background/auth_bg.png")
+		return
+		
+	var image: Image = Image.new()
+	var error: Error = image.load_png_from_buffer(image_byte)
+	if error != OK:
+		return
+	var plant_scan_image: Texture2D = ImageTexture.create_from_image(image)
+	%FarmPic.texture = plant_scan_image

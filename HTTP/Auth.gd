@@ -265,9 +265,8 @@ func _on_Login_request_completed(_result: int, response_code: int, headers: Arra
 			login_complete.emit({"error": json_body.error})
 		else:
 			login_complete.emit({"error": "Unknown server error"})
-
-
-
+	
+	
 func register(username: String, password: String ) -> void:
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
 	Register = prepared_http_req.request

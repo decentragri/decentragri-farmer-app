@@ -912,6 +912,7 @@ size_flags_vertical = 3
 
 [node name="CreatedAt" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainerSoil/SoilAnalysisResultContainer/HBoxContainer2/Panel/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(281, 0)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1

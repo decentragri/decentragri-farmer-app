@@ -3,7 +3,7 @@ extends Control
 func _ready() -> void:
 	connect_signals()
 	if OS.get_name() == "Android":
-		DisplayServer.window_set_size(Vector2(1080, 1920))
+		DisplayServer.window_set_size(Vector2i(1080, 1920))
 
 	
 	

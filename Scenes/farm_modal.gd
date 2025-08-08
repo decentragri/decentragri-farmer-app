@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func get_farm_data(farm_id: String) -> void:
-	Farmer.get_farm_data(farm_id)
+	Farm.get_farm_data(farm_id)
 	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
 	root_node.loading_start(true , "not bio")
 	Scan.get_soil_analysis_data()
@@ -22,7 +22,7 @@ func get_farm_data(farm_id: String) -> void:
 
 func connect_signals() -> void:
 	var root_node: Control = get_tree().get_nodes_in_group(&"RootNode")[0]
-	var _1: int = Farmer.get_farm_data_complete.connect(_on_get_farm_data_complete)
+	var _1: int = Farm.get_farm_data_complete.connect(_on_get_farm_data_complete)
 	var _2: int = Scan.get_soil_meter_scan_complete.connect(_on_get_soil_meter_scan_complete)
 	var _3: int = Scan.get_plant_scan_complete.connect(_on_get_plan_scan_complete)
 	var _4: int  = %ScanButton.pressed.connect(root_node.on_scan_button_pressed)

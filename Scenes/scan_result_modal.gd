@@ -4,17 +4,20 @@ func _on_farm_profile_container_farm_scan_card_button_pressed(scan_data: Diction
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		_show_modal_with_animation(container)
 		visible = true
-	if scan_data.has("interpretation"):
+	if scan_data.interpretation.has("fertility"):
 		%SmoothScrollContainerSoil.visible = true
 		%SmoothScrollContainerPlant.visible = false
 		display_soil_analysis_result(scan_data)
-	else:
+	elif scan_data.interpretation.has("Diagnosis"):
 		%SmoothScrollContainerSoil.visible = false
 		%SmoothScrollContainerPlant.visible = true
 		display_plant_scan_result(scan_data)
 		
 		
 func display_plant_scan_result(scan_data: Dictionary) -> void:
+	%ActiveResultLabel.text = "Plant Scan Result"
+	
+	
 	%CropType2.text = scan_data.cropType
 	%ScanDate.text = scan_data.formattedCreatedAt
 	%ScanID.text = scan_data.id
@@ -29,6 +32,7 @@ func display_plant_scan_result(scan_data: Dictionary) -> void:
 		
 	
 func display_soil_analysis_result(scan_data: Dictionary) -> void:
+	%ActiveResultLabel.text = "Soil Analysis Result"
 	%ID.text = scan_data.id 
 	%SensorID.text = scan_data.sensorId
 	%CreatedAt.text = scan_data.formattedCreatedAt

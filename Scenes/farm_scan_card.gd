@@ -5,7 +5,10 @@ signal on_farm_scan_card_button_pressed(scan_data: Dictionary)
 
 
 func slot_data(scan_data: Dictionary) -> void:
-	if scan_data.has("diagnosis"):
+	
+	
+	if scan_data.interpretation.has("Diagnosis"):
+		print(scan_data.interpretation)
 		%PlantScanContainer.visible = true
 		%"SoilAnalysisContainer".visible = false
 		
@@ -13,7 +16,7 @@ func slot_data(scan_data: Dictionary) -> void:
 		%CropType.text = "Crop: " + scan_data.cropType
 		%Date.text = "Date: " +  scan_data.formattedCreatedAt
 		%ID.text = "ID: " + scan_data.id
-	elif scan_data.has("interpretation"):
+	elif scan_data.interpretation.has("fertility"):
 		%"SoilAnalysisContainer".visible = true
 		%PlantScanContainer.visible = false
 		

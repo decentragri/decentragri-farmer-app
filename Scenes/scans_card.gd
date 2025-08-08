@@ -70,6 +70,8 @@ func _on_get_soil_meter_scan_complete(scan_data: Array) -> void:
 
 
 func _on_get_plan_scan_complete(scan_data: Array) -> void:
+	for scan_entry: Control in %PlantScanContainer.get_children():
+		scan_entry.queue_free()
 	if scan_data.is_empty():
 		return
 	for scan: Dictionary in scan_data:
@@ -79,6 +81,8 @@ func _on_get_plan_scan_complete(scan_data: Array) -> void:
 	
 	
 func _on_get_soil_analysis_data_by_farm_complete(scan_data: Array) -> void:
+	for scan_entry: Control in %SoilAnalysisContainer.get_children():
+		scan_entry.queue_free()
 	if scan_data.is_empty():
 		return
 	elif scan_data.has("error"):

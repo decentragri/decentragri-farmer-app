@@ -32,6 +32,7 @@ anchor_right = 0.902778
 anchor_bottom = 0.558594
 offset_right = -650.0
 offset_bottom = -715.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
 script = ExtResource("1_an7vq")
 metadata/_edit_use_anchors_ = true
@@ -111,7 +112,8 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7eo2e")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="FarmImage" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.138462
@@ -224,5 +226,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [connection signal="pressed" from="FarmButton" to="." method="_on_farm_button_pressed"]

@@ -12,8 +12,8 @@ func _ready() -> void:
 	
 	
 func connect_signals() -> void:
-	var _1: int = Farmer.get_farms_complete.connect(_on_get_farms_complete)
-	var _2: int = Farmer.create_farm_complete.connect(_on_create_farm_complete)
+	var _1: int = Farm.get_farms_complete.connect(_on_get_farms_complete)
+	var _2: int = Farm.create_farm_complete.connect(_on_create_farm_complete)
 	
 	
 func _on_get_farms_complete(farms: Array) -> void:
@@ -30,7 +30,7 @@ func _on_create_farm_button_pressed() -> void:
 	
 func _on_visibility_changed() -> void:
 	if visible:
-		Farmer.get_farms()
+		Farm.get_farms()
 	
 	
 func _on_farm_button_pressed(farm_id: String) -> void:

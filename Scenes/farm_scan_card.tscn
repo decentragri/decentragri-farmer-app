@@ -151,10 +151,8 @@ animations = [{
 [node name="FarmScanCard" type="Panel"]
 custom_minimum_size = Vector2(650, 170)
 anchors_preset = -1
-anchor_right = 1.80556
-anchor_bottom = 0.279687
-offset_right = -650.0
-offset_bottom = -170.0
+anchor_right = 0.902782
+anchor_bottom = 0.146874
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_j5ic2")
 script = ExtResource("1_j5ic2")

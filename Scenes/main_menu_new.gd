@@ -6,7 +6,7 @@ extends Control
 func _ready() -> void:
 	connect_signals()
 	
-
+	
 func connect_signals() -> void:
 	set_bottom_menu_buttons()
 	
@@ -103,8 +103,6 @@ func _on_notification_button_pressed() -> void:
 		var _3: PropertyTweener = tween.tween_property(%NotificationsContainer, "modulate:a", 0.0, 0.25)
 		var _4: PropertyTweener = tween.tween_property(%NotificationsContainer, "position:y", %NotificationsContainer.position.y - 20, 0.25)
 		var _5: CallbackTweener = tween.tween_callback(Callable(_hide_notifications_container))
-
-
 	else:
 		# Reset visibility and position before animating in
 		%NotificationsContainer.visible = true
@@ -116,3 +114,7 @@ func _on_notification_button_pressed() -> void:
 	
 func _hide_notifications_container() -> void:
 	%NotificationsContainer.visible = false
+
+
+func _on_notifications_container_unread_count_updated(count_text: String) -> void:
+	%NotificationCount.text = count_text

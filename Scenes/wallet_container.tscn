@@ -254,6 +254,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -305,12 +306,65 @@ text = "rswETH 0.0001"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Panel3" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(310, 310)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="DAGRIButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel3" groups=["WalletTokenButton"]]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.03279, 0.985157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DagriTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("8_ecu4h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DagriBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer/Panel3/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 25
+text = "DAGRI 0.0001"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Panel2" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+visible = false
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -358,58 +412,6 @@ theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
 theme_override_font_sizes/font_size = 25
 text = "SWELL 0.0001"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(310, 310)
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
-metadata/_edit_use_anchors_ = true
-
-[node name="DAGRIButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel" groups=["WalletTokenButton"]]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.03279, 0.985157)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="DagriTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-texture = ExtResource("8_ecu4h")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="DagriBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("5_ipxg7")
-theme_override_font_sizes/font_size = 25
-text = "DAGRI 0.0001"
 horizontal_alignment = 1
 vertical_alignment = 1
 
