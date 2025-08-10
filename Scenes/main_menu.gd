@@ -6,7 +6,7 @@ func _ready() -> void:
 	set_display()
 	connect_signals()
 	$HBoxContainer/MainContainer.button_pressed = true
-	Weather.get_current_weather("Camarines Sur")
+	Weather.get_current_weather("Manila")
 	loading_start(true, "bio")
 
 func connect_signals() -> void:

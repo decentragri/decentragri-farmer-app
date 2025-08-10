@@ -4,7 +4,7 @@ extends Panel
 
 
 func _ready() -> void:
-	Weather.get_weather_forecast("Camarines Sur")
+	Weather.get_weather_forecast("Manila")
 	connect_signals()
 	
 	

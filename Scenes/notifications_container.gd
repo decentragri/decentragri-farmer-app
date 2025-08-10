@@ -4,6 +4,8 @@ var notification_card_slot: PackedScene = preload("res://Scenes/notification_car
 # Dictionary to track existing notification IDs
 var existing_notifications: Dictionary = {}
 
+var first_fetch: bool = false
+
 # Signal for unread count updates
 signal unread_count_updated(count_text: String)
 
@@ -22,6 +24,10 @@ func connect_signals() -> void:
 
 
 func _on_get_notifications_complete(notifications: Array) -> void:
+	if first_fetch == false:
+		notifications.reverse()
+		first_fetch = true
+		
 	var unread_count: int = 0
 	
 	for notif: Dictionary in notifications:
@@ -45,6 +51,7 @@ func _on_get_notifications_complete(notifications: Array) -> void:
 		var notification_slot: Panel = notification_card_slot.instantiate()
 		notification_slot.set_meta("notification_id", notification_id)
 		%NotificationsContainer.add_child(notification_slot)
+		%NotificationsContainer.move_child(notification_slot, 0)
 		notification_slot.slot_data(notif)
 		
 		# Track this notification as existing

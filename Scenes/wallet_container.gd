@@ -78,9 +78,11 @@ func emit_token_signal(token_texture: Texture, balance: String, label_name: Stri
 		
 		
 func _on_user_data_received(user_data: Dictionary) -> void:
+	print("tae: ", user_data)
 	var eth_balance: float = user_data.walletData.ethBalance.to_float()
 	var rsweth_balance: float = user_data.walletData.rsWETHBalance.to_float()
-	var swell_balance: float = user_data.walletData.rsWETHBalance.to_float()
+	var fdagri_balance: float = user_data.walletData.farmerCreditTokenBalance.to_float()
+	#var swell_balance: float = user_data.walletData.rsWETHBalance.to_float()
 	var dagri_balance: float = user_data.walletData.dagriBalance.to_float()
 	
 	eth_price = user_data.walletData.ethPriceUSD
@@ -89,7 +91,8 @@ func _on_user_data_received(user_data: Dictionary) -> void:
 	
 	%ETHBalance.text = "ETH " + four_digit_balance_format(eth_balance)
 	%rswETHBalance.text = "rswETH " + four_digit_balance_format(rsweth_balance)
-	%SwellBalance.text = "SWELL " + four_digit_balance_format(swell_balance)
+	#%SwellBalance.text = "SWELL " + four_digit_balance_format(swell_balance)
+	%FDAGRIBalance.text = "FDAGRI " + four_digit_balance_format(fdagri_balance)
 	%DagriBalance.text = "DAGRI " + four_digit_balance_format(dagri_balance) 
 	
 	%Username.text = User.username
@@ -98,4 +101,4 @@ func _on_user_data_received(user_data: Dictionary) -> void:
 	
 
 func four_digit_balance_format(balance: float) -> String:
-	return "0" if balance == 0.0 else String.num(balance, 4)
+	return "0" if balance == 0.0 else String.num(balance, 5)

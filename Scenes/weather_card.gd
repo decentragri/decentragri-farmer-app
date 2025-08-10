@@ -7,7 +7,7 @@ func _ready() -> void:
 	initialize_config()
 	
 func initialize_config() -> void:
-	Weather.get_current_weather("Camarines Sur")
+	Weather.get_current_weather("Manila")
 	%WeatherConditionContainer.visible = false
 	
 	%LoaderContainer.visible = true

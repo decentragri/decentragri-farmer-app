@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cup6h27ib2a24"]
+[gd_scene load_steps=16 format=3 uid="uid://cup6h27ib2a24"]
 
 [ext_resource type="Script" uid="uid://03birdo82x6i" path="res://Scenes/wallet_container.gd" id="1_ecu4h"]
 [ext_resource type="Texture2D" uid="uid://bmcu2w26t2rj6" path="res://Assets/Icons/wallet_icon_white.png" id="1_qlidd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://o0f8f40y5b0u" path="res://Assets/Icons/rsweth_icon.png" id="6_qlidd"]
 [ext_resource type="Texture2D" uid="uid://c70rchwrqgd7n" path="res://Assets/Icons/swell_icon.png" id="7_8hmoi"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="8_ecu4h"]
+[ext_resource type="Texture2D" uid="uid://ss0ccny30hao" path="res://Assets/Logo/icon_decentragri.png" id="10_btkcj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8c2x"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -364,7 +365,6 @@ theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Panel2" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
-visible = false
 custom_minimum_size = Vector2(310, 310)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -401,12 +401,64 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
+texture = ExtResource("10_btkcj")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FDAGRIBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("5_ipxg7")
+theme_override_font_sizes/font_size = 25
+text = "FDAGRI 0.0001"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="VBoxContainer2/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(310, 310)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+metadata/_edit_use_anchors_ = true
+
+[node name="SwellButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel3" groups=["WalletTokenButton"]]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SwellTexture" type="TextureRect" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel3/VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("7_8hmoi")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="SwellBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
-unique_name_in_owner = true
+[node name="SwellBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel3/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")

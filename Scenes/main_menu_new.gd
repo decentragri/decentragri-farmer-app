@@ -114,7 +114,8 @@ func _on_notification_button_pressed() -> void:
 	
 func _hide_notifications_container() -> void:
 	%NotificationsContainer.visible = false
-
-
+	
+	
 func _on_notifications_container_unread_count_updated(count_text: String) -> void:
+	%NotificationCountPanel.visible = count_text.to_int() > 0
 	%NotificationCount.text = count_text

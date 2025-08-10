@@ -36,6 +36,7 @@ Camera="*res://addons/GodotGetImage/Camera.gd"
 Farm="*res://HTTP/Farm.gd"
 Firebase="*res://addons/Firebase/firebase.gd"
 Notification="*res://HTTP/Notification.gd"
+Staking="*res://HTTP/Staking.gd"
 
 [debug]
 

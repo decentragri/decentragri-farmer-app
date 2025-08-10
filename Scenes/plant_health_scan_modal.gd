@@ -68,16 +68,16 @@ func _on_farm_profile_container_on_plant_scan_button_pressed(farm_name: String) 
 	%FarmName.text = farm_name
 	
 	
-func _process(_delta: float) -> void:
-	if OS.get_name() == "Android":
-		var keyboard_height: int = DisplayServer.virtual_keyboard_get_height()
-
-		if keyboard_height > 0 and not keyboard_is_open:
-			keyboard_is_open = true
-			%ContentContainer.size.y = original_content_container_y + keyboard_height
-		elif keyboard_height == 0 and keyboard_is_open:
-			keyboard_is_open = false
-			%ContentContainer.size.y = original_content_container_y
+#func _process(_delta: float) -> void:
+	#if OS.get_name() == "Android":
+		#var keyboard_height: int = DisplayServer.virtual_keyboard_get_height()
+#
+		#if keyboard_height > 0 and not keyboard_is_open:
+			#keyboard_is_open = true
+			#%ContentContainer.size.y = original_content_container_y + keyboard_height
+		#elif keyboard_height == 0 and keyboard_is_open:
+			#keyboard_is_open = false
+			#%ContentContainer.size.y = original_content_container_y
 	
 	
 func _on_back_button_pressed() -> void:
@@ -204,3 +204,7 @@ func hide_modal_container() -> void:
 	for container: VBoxContainer in get_tree().get_nodes_in_group(&"ModalContainer"):
 		container.visible = false
 	visible = false
+
+
+func _on_smooth_scroll_container_scroll_started() -> void:
+	DisplayServer.virtual_keyboard_hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://byxfjbt7tlb00"]
+[gd_scene load_steps=34 format=3 uid="uid://byxfjbt7tlb00"]
 
 [ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://tb70vgt6rjy6" path="res://Scenes/settings_container.gd" id="13_otjln"]
 [ext_resource type="PackedScene" uid="uid://cp8a2yrg3b283" path="res://Scenes/add_new_farm_modal.tscn" id="14_dim5j"]
 [ext_resource type="PackedScene" uid="uid://83ivxjek7n3p" path="res://Scenes/plant_health_scan_modal.tscn" id="16_l0ub0"]
+[ext_resource type="PackedScene" uid="uid://jb7e43dqp3cc" path="res://Scenes/staking_container3.tscn" id="16_r76x1"]
 [ext_resource type="PackedScene" uid="uid://b84e6076pf2cp" path="res://Scenes/soil_analysis_modal.tscn" id="17_up55o"]
 [ext_resource type="PackedScene" uid="uid://blkh4eq1sj21v" path="res://Scenes/token_transfer_modal.tscn" id="18_ie7eg"]
 [ext_resource type="PackedScene" uid="uid://dgvq41miknhff" path="res://Scenes/scan_result_modal.tscn" id="19_qiamd"]
@@ -197,19 +198,21 @@ texture_normal = ExtResource("4_vy8md")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Panel" type="Panel" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton"]
+[node name="NotificationCountPanel" type="Panel" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -25.9999
-offset_top = -12.0
-offset_right = 4.00006
-offset_bottom = 18.0
+offset_left = -24.9999
+offset_top = -8.0
+offset_right = 5.00006
+offset_bottom = 22.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_otjln")
 
-[node name="NotificationCount" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton/Panel"]
+[node name="NotificationCount" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton/NotificationCountPanel"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -219,8 +222,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.996078, 0.996078, 0.996078, 1)
 theme_override_fonts/font = ExtResource("20_ogk8k")
-theme_override_font_sizes/font_size = 14
-text = "10"
+theme_override_font_sizes/font_size = 13
+text = "10+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -253,7 +256,11 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="StakingContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("10_8ac43")]
+[node name="StakingContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" groups=["MainContainers"] instance=ExtResource("16_r76x1")]
+visible = false
+layout_mode = 2
+
+[node name="WalletContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("12_b8l4x")]
 visible = false
 layout_mode = 2
 
@@ -266,7 +273,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="WalletContainer" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("12_b8l4x")]
+[node name="StakingContainerHide" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("10_8ac43")]
 visible = false
 layout_mode = 2
 
@@ -373,7 +380,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("20_ogk8k")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "An error eyyy!"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -181,6 +181,7 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 1070)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -194,11 +195,12 @@ size_flags_vertical = 3
 theme_override_constants/separation = 30
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 1100)
 layout_mode = 2
-size_flags_vertical = 3
 theme = ExtResource("5_ddgtb")
+scroll_horizontal = -27
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
+vertical_scroll_mode = 3
 script = ExtResource("3_d7o7k")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
@@ -398,19 +400,23 @@ layout_mode = 2
 
 [node name="SubmitButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(615, 75)
+custom_minimum_size = Vector2(615, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_oq08h")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = ExtResource("9_pi7pr")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_qiamd")
 theme_override_styles/hover = ExtResource("9_pi7pr")
 theme_override_styles/pressed = ExtResource("9_pi7pr")
 theme_override_styles/normal = ExtResource("9_pi7pr")
 text = "Submit"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -422,6 +428,7 @@ access = 2
 use_native_dialog = true
 
 [connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="scroll_started" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer" to="." method="_on_smooth_scroll_container_scroll_started"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/OpenGalleryButton" to="." method="_on_open_gallery_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/OpenCameraButton" to="." method="_on_open_camera_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/ContentContainer/CropType" to="." method="_on_crop_type_text_changed"]

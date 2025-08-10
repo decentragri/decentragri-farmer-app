@@ -19,13 +19,15 @@ var is_syncing: bool = false
 var current_sync_operations: int = 0
 var total_sync_operations: int = 0
 
+
 func _ready() -> void:
 	if OS.get_name() == "Android": 
-		Engine.get_singleton(PLUGIN_NAME)
+		android_plugin = Engine.get_singleton(PLUGIN_NAME)
 		print("AndroidInternetConnectionStatePlugin loaded")
 		connect_signals()
 		has_network = hasNetwork()
-
+		
+		
 func connect_signals() -> void:
 	if android_plugin:
 		android_plugin.stateChanged.connect(_on_android_state_changed)
@@ -50,7 +52,7 @@ func _on_network_state_changed(network: bool) -> void:
 
 func hasNetwork() -> bool:
 	if android_plugin:
-		return bool(android_plugin.isNetworkConnected())
+		return android_plugin.isNetworkConnected()
 	return false
 	
 func _sync_pending_data(force: bool = false) -> void:
