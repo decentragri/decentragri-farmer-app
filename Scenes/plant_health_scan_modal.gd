@@ -30,7 +30,7 @@ func _on_save_plant_scan_complete(message: Dictionary) -> void:
 				return
 	else:
 		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			menu.message_box("Scan was submitted successfully")
+			menu.message_box("Scan analysis successful")
 		
 		
 func _on_image_request_completed(image_data: Dictionary) -> void:

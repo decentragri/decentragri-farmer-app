@@ -85,6 +85,7 @@ func _on_get_farms_request_completed(_result: int, response_code: int, headers: 
 			get_farms_complete.emit({ "error": "Unknown server error" })
 	else:
 		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
+		get_farms()
 		print("error: ", json_body)
 		get_farms_complete.emit([])
 

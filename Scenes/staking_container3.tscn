@@ -901,5 +901,6 @@ text = "Claim"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="text_changed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer3/StakeAmount" to="." method="_on_stake_amount_text_changed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/HBoxContainer3/Panel/MaxButton" to="." method="_on_max_button_pressed"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard/VBoxContainer2/SubmitStakeButton" to="." method="_on_submit_stake_button_pressed"]
 [connection signal="pressed" from="VBoxContainer2/VBoxContainer/SmoothScrollContainer/VBoxContainer/StakingCard2/VBoxContainer2/ClaimStakeButton" to="." method="_on_claim_stake_button_pressed"]

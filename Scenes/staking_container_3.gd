@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 
-
+var max_fdagri: String
 
 func _ready() -> void:
 	connect_signals()
@@ -26,11 +26,16 @@ func _on_claim_rewards_complete(result: Dictionary) -> void:
 		Staking.get_stake_info()
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Claiming rewards successful!")
-
-
+	
+	
 func _on_user_data_received(user_data: Dictionary) -> void:
+	if user_data.has("error"):
+		Staking.get_stake_info()
+		Auth.auto_login_user()
+		return
 	var fdagri_balance: float = user_data.walletData.farmerCreditTokenBalance.to_float()
 	var dagri_balance: float = user_data.walletData.dagriBalance.to_float()
+	max_fdagri = user_data.walletData.farmerCreditTokenBalance
 	%FDAGRIBalance.text = six_digit_balance_format(fdagri_balance) + " FDAGRI AVAILABLE"
 	%DAGRIBalance.text = six_digit_balance_format(dagri_balance) + " DAGRI"
 	
@@ -146,3 +151,11 @@ func _on_visibility_changed() -> void:
 	else:
 		%SubmitStakeButton.disabled = true
 		%ClaimStakeButton.disabled = true
+	
+	
+func _on_max_button_pressed() -> void:
+	if max_fdagri == "0.0":
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("No FDAGRI Available")
+		return
+	%StakeAmount.text = max_fdagri
