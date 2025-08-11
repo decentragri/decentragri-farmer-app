@@ -50,7 +50,7 @@ shadow_offset = Vector2(0, 5)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ogk8k"]
 content_margin_left = 20.0
 content_margin_top = 20.0
-content_margin_right = 0.0
+content_margin_right = 20.0
 content_margin_bottom = 20.0
 bg_color = Color(0.205117, 0.205117, 0.205117, 0.560784)
 border_color = Color(0.0784314, 0.592157, 0.270588, 1)
@@ -135,6 +135,7 @@ theme_override_constants/separation = 30
 custom_minimum_size = Vector2(0, 1041)
 layout_mode = 2
 size_flags_vertical = 3
+scroll_horizontal = -27
 script = ExtResource("3_wlcv8")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
@@ -223,7 +224,7 @@ theme_override_fonts/font = ExtResource("5_tnwmf")
 theme_override_font_sizes/font_size = 20
 text = "To"
 
-[node name="ReceiverAddress" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
+[node name="RecipientAddress" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -246,7 +247,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_tnwmf")
 theme_override_font_sizes/font_size = 20
-text = "~ ₱ 100,100.99"
+text = "₱0.00"
 
 [node name="ErrorLabel" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["TokenTransferModalFields"]]
 unique_name_in_owner = true
@@ -281,4 +282,5 @@ layout_mode = 2
 
 [connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/Amount" to="." method="_on_amount_text_changed"]
-[connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/ReceiverAddress" to="." method="_on_receiver_address_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/RecipientAddress" to="." method="_on_receiver_address_text_changed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/TransferButton" to="." method="_on_transfer_button_pressed"]

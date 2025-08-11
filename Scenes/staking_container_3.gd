@@ -3,6 +3,8 @@ extends VBoxContainer
 
 var max_fdagri: String
 
+# ===== INITIALIZATION FUNCTIONS =====
+
 func _ready() -> void:
 	connect_signals()
 	Staking.get_stake_info()
@@ -13,46 +15,18 @@ func connect_signals() -> void:
 	var _2: int = Staking.get_stake_info_complete.connect(_on_get_stake_info_complete)
 	var _3: int = Staking.stake_tokens_complete.connect(_on_stake_tokens_complete)
 	var _4: int = Staking.claim_rewards_complete.connect(_on_claim_rewards_complete)
+	var _5: int = Staking.withdraw_tokens_complete.connect(_on_withdraw_tokens_complete)
 
 
-func _on_claim_rewards_complete(result: Dictionary) -> void:
-	if result.has("error"):
-		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("Claiming rewards failed: " + str(result.error))
-	else:
-		%RewardReceiveAmount.text = "0"
-		Utils.logger.info("Claiming rewards successful: " + str(result))
-		# Refresh the stake info to show updated data
-		Staking.get_stake_info()
-		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("Claiming rewards successful!")
-	
-	
-func _on_user_data_received(user_data: Dictionary) -> void:
-	if user_data.has("error"):
+# ===== UI INPUT HANDLERS =====
+
+func _on_visibility_changed() -> void:
+	if visible:
 		Staking.get_stake_info()
 		Auth.auto_login_user()
-		return
-	var fdagri_balance: float = user_data.walletData.farmerCreditTokenBalance.to_float()
-	var dagri_balance: float = user_data.walletData.dagriBalance.to_float()
-	max_fdagri = user_data.walletData.farmerCreditTokenBalance
-	%FDAGRIBalance.text = six_digit_balance_format(fdagri_balance) + " FDAGRI AVAILABLE"
-	%DAGRIBalance.text = six_digit_balance_format(dagri_balance) + " DAGRI"
-	
-	
-func _on_get_stake_info_complete(stake_info: Dictionary) -> void:
-	%SubmitStakeButton.disabled = false
-	%ClaimStakeButton.disabled = false
-	
-	%RewardReceiveAmount.text = stake_info.rewardAmountFormattedAccrued
-	%StakedAmount.text = stake_info.stakeAmountFormatted
-	%ReleaseRate.text = "Every " + stake_info.releaseTimeFrame.timeUnitFormatted
-	
-	
-func six_digit_balance_format(balance: float) -> String:
-	if balance == 0.0:
-		return "0"
-	return String.num(balance, 6)
+	else:
+		%SubmitStakeButton.disabled = true
+		%ClaimStakeButton.disabled = true
 
 
 func _on_stake_amount_text_changed(value: String) -> void:
@@ -94,7 +68,21 @@ func _on_stake_amount_text_changed(value: String) -> void:
 		stake_amount_input.caret_column = min(cursor_pos, filtered_text.length())
 
 
+func _on_max_button_pressed() -> void:
+	if max_fdagri == "0.0":
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("No FDAGRI Available")
+		return
+	%StakeAmount.text = max_fdagri
+
+
+# ===== BUTTON PRESS HANDLERS =====
+
+
 func _on_submit_stake_button_pressed() -> void:
+	# Disable the button to prevent multiple clicks
+	%SubmitStakeButton.disabled = true
+	%SubmitStakeButton.text = "Submitting..."
 	# Get the stake amount from the input field
 	var stake_amount: String = %StakeAmount.text.strip_edges()
 	if stake_amount > %FDAGRIBalance.text:
@@ -126,36 +114,99 @@ func _on_submit_stake_button_pressed() -> void:
 	Staking.stake_tokens(stake_amount)
 
 
+func _on_claim_stake_button_pressed() -> void:
+	# Disable the button to prevent multiple clicks
+	%ClaimStakeButton.disabled = true
+	%ClaimStakeButton.text = "Claiming..."
+	Staking.claim_rewards()
+
+
+func _on_unstake_button_pressed() -> void:
+	%UnstakeButton.disabled = true
+	%UnstakeButton.text = "Unstaking..."
+	var stake_amount: String = %AmountStaked.text
+	if stake_amount != "" and stake_amount != "0" and stake_amount != "0.0":
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Unstaking " + stake_amount + " FDAGRI...")
+		Staking.withdraw_tokens(stake_amount)
+	else:
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Invalid unstake amount: empty or zero")
+
+
+# ===== API RESPONSE HANDLERS =====
+
+
 func _on_stake_tokens_complete(result: Dictionary) -> void:
 	# Handle the result of the staking operation
 	if result.has("error"):
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Staking failed: " + str(result.error))
 	else:
+		
 		# Clear the input field on success
 		%StakeAmount.text = ""
 		# Refresh the stake info to show updated data
 		Staking.get_stake_info()
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Staking successful!")
+	%SubmitStakeButton.disabled = false
+	%SubmitStakeButton.text = "Stake"
 
 
-func _on_claim_stake_button_pressed() -> void:
-	Staking.claim_rewards()
-	
-	
-func _on_visibility_changed() -> void:
-	if visible:
-		Staking.get_stake_info()
-		Auth.auto_login_user()
-	else:
-		%SubmitStakeButton.disabled = true
-		%ClaimStakeButton.disabled = true
-	
-	
-func _on_max_button_pressed() -> void:
-	if max_fdagri == "0.0":
+func _on_claim_rewards_complete(result: Dictionary) -> void:
+	if result.has("error"):
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-			main.message_box("No FDAGRI Available")
+			main.message_box("Claiming rewards failed: " + str(result.error))
+	else:
+		%RewardReceiveAmount.text = "0"
+		Utils.logger.info("Claiming rewards successful: " + str(result))
+		# Refresh the stake info to show updated data
+		_on_visibility_changed()
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Claiming rewards successful!")
+	%ClaimStakeButton.disabled = false
+	%ClaimStakeButton.text = "Claim Rewards"
+
+
+func _on_withdraw_tokens_complete(result: Dictionary) -> void:
+	if result.has("error"):
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Unstaking tokens failed: " + str(result.error))
+	else:
+		Utils.logger.info("Unstaking tokens successful: " + str(result))
+		# Refresh the stake info to show updated data
+		_on_visibility_changed()
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Unstaking tokens successful!")
+		%UnstakeButton.disabled = false
+		%UnstakeButton.text = "Unstake"
+
+
+func _on_get_stake_info_complete(stake_info: Dictionary) -> void:
+	%SubmitStakeButton.disabled = false
+	%ClaimStakeButton.disabled = false
+	
+	%RewardReceiveAmount.text = stake_info.rewardAmountFormattedAccrued
+	%StakedAmount.text = stake_info.stakeAmountFormatted
+	%AmountStaked.text = stake_info.stakeAmountFormatted
+	%ReleaseRate.text = "Every " + stake_info.releaseTimeFrame.timeUnitFormatted
+
+
+func _on_user_data_received(user_data: Dictionary) -> void:
+	if user_data.has("error"):
+		_on_visibility_changed()
 		return
-	%StakeAmount.text = max_fdagri
+	var fdagri_balance: float = user_data.walletData.farmerCreditTokenBalance.to_float()
+	var dagri_balance: float = user_data.walletData.dagriBalance.to_float()
+	max_fdagri = user_data.walletData.farmerCreditTokenBalance
+	%FDAGRIBalance.text = six_digit_balance_format(fdagri_balance) + " FDAGRI AVAILABLE"
+	%DAGRIBalance.text = six_digit_balance_format(dagri_balance) + " DAGRI"
+
+
+# ===== UTILITY FUNCTIONS =====
+
+func six_digit_balance_format(balance: float) -> String:
+	if balance == 0.0:
+		return "0"
+	return String.num(balance, 6)

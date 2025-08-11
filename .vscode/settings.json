@@ -13,6 +13,7 @@
         "ETHSWETH",
         "FDAGRI",
         "forecastday",
+        "gdscript",
         "inappmessaging",
         "LANCZOS",
         "Longtitude",
@@ -24,6 +25,8 @@
         "stylebox",
         "tscn",
         "Tweener",
+        "unstake",
+        "Unstaking",
         "weakref",
         "weatherapi"
     ],

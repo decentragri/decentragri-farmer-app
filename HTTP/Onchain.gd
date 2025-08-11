@@ -23,11 +23,10 @@ func get_eth_to_rsweth_rate() -> void:
 	GetETHRSWETHRate = prepared_http_req.request
 	wrGetETHRSWETHRate = prepared_http_req.weakref
 
-	var _connect: int = GetETHRSWETHRate.request_completed.connect(_on_GetETHRSWETHRate_request_completed)
-	Utils.logger.info("Calling to exchange rate soil meter data")
+	Utils.logger.info("Calling to exchange rate")
 	var request_url: String = Utils.host + "/api/onchain/eth-rsweth/rate"
 
-	Utils.send_get_request(GetETHRSWETHRate, request_url)
+	Utils.send_get_request_with_retry(GetETHRSWETHRate, request_url, _on_GetETHRSWETHRate_request_completed)
 
 
 func _on_GetETHRSWETHRate_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -52,11 +51,10 @@ func get_reward_rate() -> void:
 	GetRewardRate = prepared_http_req.request
 	wrGetRewardRate = prepared_http_req.weakref
 
-	var _connect: int = GetRewardRate.request_completed.connect(_on_GetRewardRate_request_completed)
-	Utils.logger.info("Calling to exchange rate soil meter data")
+	Utils.logger.info("Calling to get reward rate")
 	var request_url: String = Utils.host + "/api/onchain/reward-percentage/price"
 
-	Utils.send_get_request(GetRewardRate, request_url)
+	Utils.send_get_request_with_retry(GetRewardRate, request_url, _on_GetRewardRate_request_completed)
 
 
 func _on_GetRewardRate_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -81,9 +79,6 @@ func stake_eth(eth_amount: String) -> void:
 	StakeETH = prepared_http_req.request
 	wrStakeETH = prepared_http_req.weakref
 
-	# Connect the callback function to handle the completion of the leaderboard data request.
-	var _connect: int = StakeETH.request_completed.connect(_on_StakeETH_request_completed)
-
 	# Log the initiation of the request to retrieve leaderboard data.	
 	Utils.logger.info("Call to stake ETH")
 	
@@ -91,8 +86,8 @@ func stake_eth(eth_amount: String) -> void:
 	var request_url: String = Utils.host + "/api/onchain/stake/eth"
 	var payload: Dictionary[String, String] = { "ethAmount": eth_amount }
 
-	# Send the GET request using the prepared URL.
-	Utils.send_post_request(StakeETH, request_url, payload)
+	# Send the POST request using the prepared URL with retry.
+	Utils.send_post_request_with_retry(StakeETH, request_url, payload, _on_StakeETH_request_completed)
 	
 	
 func _on_StakeETH_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -121,9 +116,6 @@ func transfer_token(token_transfer_data: Dictionary[String, String]) -> void:
 	TransferToken = prepared_http_req.request
 	wrTransferToken = prepared_http_req.weakref
 
-	# Connect the callback function to handle the completion of the leaderboard data request.
-	var _connect: int = TransferToken.request_completed.connect(_on_TransferToken_request_completed)
-
 	# Log the initiation of the request to retrieve leaderboard data.	
 	Utils.logger.info("Call to transfer token")
 	
@@ -131,8 +123,8 @@ func transfer_token(token_transfer_data: Dictionary[String, String]) -> void:
 	var request_url: String = Utils.host + "/api/onchain/token/transfer"
 	var payload: Dictionary[String, String] = token_transfer_data
 
-	# Send the GET request using the prepared URL.
-	Utils.send_post_request(StakeETH, request_url, payload)
+	# Send the POST request using the prepared URL with retry.
+	Utils.send_post_request_with_retry(TransferToken, request_url, payload, _on_TransferToken_request_completed)
 	
 	
 func _on_TransferToken_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:

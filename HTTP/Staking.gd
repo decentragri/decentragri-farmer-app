@@ -37,11 +37,30 @@ func stake_tokens(amount: String) -> void:
 	StakeTokens = prepared_http_req.request
 	wrStakeTokens = prepared_http_req.weakref
 	
+	# Log the initiation of the request
+	Utils.logger.info("Call to stake tokens")
+	
+	# Prepare the payload
+	var payload: Dictionary = { "amount": amount }
+	
+	# Construct the request URL
+	var request_url: String = Utils.host + "/api/stake/tokens"
+	
+	# Send the POST request with retry capability
+	Utils.send_post_request_with_retry(StakeTokens, request_url, payload, _on_stake_tokens_request_completed)
+
+
+func stake_tokens_without_retry(amount: String) -> void:
+	# Fallback function for manual calls without retry
+	var prepared_http_req: Dictionary = Utils.prepare_http_request()
+	StakeTokens = prepared_http_req.request
+	wrStakeTokens = prepared_http_req.weakref
+	
 	# Connect the callback function to handle the completion of the request
 	var _connect: int = StakeTokens.request_completed.connect(_on_stake_tokens_request_completed)
 	
 	# Log the initiation of the request
-	Utils.logger.info("Call to stake tokens")
+	Utils.logger.info("Call to stake tokens (no retry)")
 	
 	# Prepare the payload
 	var payload: Dictionary = { "amount": amount }
@@ -81,17 +100,14 @@ func get_stake_info() -> void:
 	GetStakeInfo = prepared_http_req.request
 	wrGetStakeInfo = prepared_http_req.weakref
 	
-	# Connect the callback function
-	var _connect: int = GetStakeInfo.request_completed.connect(_on_get_stake_info_request_completed)
-	
 	# Log the initiation of the request
 	Utils.logger.info("Call to get stake info")
 	
 	# Construct the request URL
 	var request_url: String = Utils.host + "/api/stake/info"
 	
-	# Send the GET request
-	Utils.send_get_request(GetStakeInfo, request_url)
+	# Send the GET request with retry capability
+	Utils.send_get_request_with_retry(GetStakeInfo, request_url, _on_get_stake_info_request_completed)
 
 
 func _on_get_stake_info_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -121,17 +137,14 @@ func get_staker_info() -> void:
 	GetStakerInfo = prepared_http_req.request
 	wrGetStakerInfo = prepared_http_req.weakref
 	
-	# Connect the callback function
-	var _connect: int = GetStakerInfo.request_completed.connect(_on_get_staker_info_request_completed)
-	
 	# Log the initiation of the request
 	Utils.logger.info("Call to get staker info")
 	
 	# Construct the request URL
 	var request_url: String = Utils.host + "/api/stake/staker"
 	
-	# Send the GET request
-	Utils.send_get_request(GetStakerInfo, request_url)
+	# Send the GET request with retry
+	Utils.send_get_request_with_retry(GetStakerInfo, request_url, _on_get_staker_info_request_completed)
 
 
 func _on_get_staker_info_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -161,17 +174,14 @@ func claim_rewards() -> void:
 	ClaimRewards = prepared_http_req.request
 	wrClaimRewards = prepared_http_req.weakref
 	
-	# Connect the callback function
-	var _connect: int = ClaimRewards.request_completed.connect(_on_claim_rewards_request_completed)
-	
 	# Log the initiation of the request
 	Utils.logger.info("Call to claim rewards")
 	
 	# Construct the request URL
 	var request_url: String = Utils.host + "/api/stake/claim"
 	
-	# Send the POST request with empty payload
-	Utils.send_post_request(ClaimRewards, request_url, {})
+	# Send the POST request with empty payload and retry
+	Utils.send_post_request_with_retry(ClaimRewards, request_url, {}, _on_claim_rewards_request_completed)
 
 
 func _on_claim_rewards_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -202,9 +212,6 @@ func withdraw_tokens(amount: String) -> void:
 	WithdrawTokens = prepared_http_req.request
 	wrWithdrawTokens = prepared_http_req.weakref
 	
-	# Connect the callback function
-	var _connect: int = WithdrawTokens.request_completed.connect(_on_withdraw_tokens_request_completed)
-	
 	# Log the initiation of the request
 	Utils.logger.info("Call to withdraw tokens")
 	
@@ -214,8 +221,8 @@ func withdraw_tokens(amount: String) -> void:
 	# Construct the request URL
 	var request_url: String = Utils.host + "/api/stake/withdraw"
 	
-	# Send the POST request
-	Utils.send_post_request(WithdrawTokens, request_url, payload)
+	# Send the POST request with retry
+	Utils.send_post_request_with_retry(WithdrawTokens, request_url, payload, _on_withdraw_tokens_request_completed)
 
 
 func _on_withdraw_tokens_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -246,17 +253,14 @@ func get_release_timeframe() -> void:
 	GetReleaseTimeFrame = prepared_http_req.request
 	wrGetReleaseTimeFrame = prepared_http_req.weakref
 	
-	# Connect the callback function
-	var _connect: int = GetReleaseTimeFrame.request_completed.connect(_on_get_release_timeframe_request_completed)
-	
 	# Log the initiation of the request
 	Utils.logger.info("Call to get release timeframe")
 	
 	# Construct the request URL
 	var request_url: String = Utils.host + "/api/stake/timeframe"
 	
-	# Send the GET request
-	Utils.send_get_request(GetReleaseTimeFrame, request_url)
+	# Send the GET request with retry
+	Utils.send_get_request_with_retry(GetReleaseTimeFrame, request_url, _on_get_release_timeframe_request_completed)
 
 
 func _on_get_release_timeframe_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:

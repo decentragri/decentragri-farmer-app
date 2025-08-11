@@ -23,17 +23,14 @@ func create_farm(farm_data: Dictionary[String, Variant]) -> void:
 	CreateFarm = prepared_http_req.request
 	wrCreateFarm = prepared_http_req.weakref
 
-	# Connect the callback function to handle the completion of the leaderboard data request.
-	var _connect: int = CreateFarm.request_completed.connect(_on_create_farm_request_completed)
-
 	# Log the initiation of the request to retrieve leaderboard data.	
 	Utils.logger.info("Call to create farm")
 	
 	# Construct the request URL for fetching leaderboard data.
 	var request_url: String = Utils.host + "/api/create/farm"
 
-	# Send the GET request using the prepared URL.
-	Utils.send_post_request(CreateFarm, request_url, farm_data)
+	# Send the POST request using the prepared URL with retry.
+	Utils.send_post_request_with_retry(CreateFarm, request_url, farm_data, _on_create_farm_request_completed)
 
 
 func _on_create_farm_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -61,11 +58,11 @@ func get_farms() -> void:
 	GetFarms = prepared_http_req.request
 	wrGetFarms = prepared_http_req.weakref
 
-	var _connect: int = GetFarms.request_completed.connect(_on_get_farms_request_completed)
 	Utils.logger.info("Call to get farms")
 	
 	var request_url: String = Utils.host + "/api/list/farm"
-	Utils.send_get_request(GetFarms, request_url)
+	# Use retry-enabled GET request
+	Utils.send_get_request_with_retry(GetFarms, request_url, _on_get_farms_request_completed)
 
 
 func _on_get_farms_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -85,7 +82,6 @@ func _on_get_farms_request_completed(_result: int, response_code: int, headers: 
 			get_farms_complete.emit({ "error": "Unknown server error" })
 	else:
 		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
-		get_farms()
 		print("error: ", json_body)
 		get_farms_complete.emit([])
 
@@ -95,11 +91,10 @@ func get_farm_data(farm_id: String) -> void:
 	GetFarmData = prepared_http_req.request
 	wrGetFarmData = prepared_http_req.weakref
 
-	var _connect: int = GetFarmData.request_completed.connect(_on_get_farm_data_request_completed)
 	Utils.logger.info("Call to get farm data")
 	
 	var request_url: String = Utils.host + "/api/data/farm/" + farm_id
-	Utils.send_get_request(GetFarmData, request_url)
+	Utils.send_get_request_with_retry(GetFarmData, request_url, _on_get_farm_data_request_completed)
 
 
 func _on_get_farm_data_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:	
@@ -124,11 +119,10 @@ func sell_farm(farm_id: String) -> void:
 	SellFarm = prepared_http_req.request
 	wrSellFarm = prepared_http_req.weakref
 
-	var _connect: int = SellFarm.request_completed.connect(_on_sell_farm_request_completed)
 	Utils.logger.info("Call to sell farm")
 	
 	var request_url: String = Utils.host + "/api/sell/farm/" + farm_id
-	Utils.send_post_request(SellFarm, request_url, {})
+	Utils.send_post_request_with_retry(SellFarm, request_url, {}, _on_sell_farm_request_completed)
 	
 	
 func _on_sell_farm_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:	

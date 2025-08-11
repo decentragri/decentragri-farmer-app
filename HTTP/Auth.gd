@@ -101,7 +101,6 @@ func validate_session() -> void:
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
 	ValidateSession = prepared_http_req.request
 	wrValidateSession = prepared_http_req.weakref
-	var _validate_session: int = ValidateSession.request_completed.connect(_on_ValidateSession_request_completed)
 	
 	# Log the initiation of  session validation
 	Utils.logger.info("Calling  to validate an existing  session")
@@ -111,8 +110,8 @@ func validate_session() -> void:
 	Utils.logger.debug("Validate session payload: " + str(payload))
 	# Construct the request URL
 	var request_url: String = Utils.host + "/api/validate-session/decentra"
-	# Send the POST request for session validation
-	Utils.send_login_request(ValidateSession, request_url, payload)
+	# Send the POST request for session validation with retry
+	Utils.send_login_request_with_retry(ValidateSession, request_url, payload, _on_ValidateSession_request_completed)
 	# Return the current script instance
 	
 	
@@ -169,12 +168,11 @@ func save_fcm_token(token: String) -> void:
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
 	SaveFcmToken = prepared_http_req.request
 	wrSaveFcmToken = prepared_http_req.weakref
-	var _validate_session: int = ValidateSession.request_completed.connect(_on_SaveFcmToken_request_completed)
 	Utils.logger.info("Calling to save FCM token")
 	
 	var payload: Dictionary = { "token": token }
 	var request_url: String = Utils.host + "/api/save/fcm-token/android"
-	Utils.send_post_request(SaveFcmToken, request_url, payload)
+	Utils.send_post_request_with_retry(SaveFcmToken, request_url, payload, _on_SaveFcmToken_request_completed)
 	
 	
 func _on_SaveFcmToken_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -206,9 +204,6 @@ func login(username: String, password: String) -> void:
 	Login = prepared_http_req.request
 	wrLogin = prepared_http_req.weakref
 	
-	# Connect the callback function to handle the completion of the login request
-	var _login_signal: int = Login.request_completed.connect(_on_Login_request_completed)
-	
 	# Log information about the login attempt
 	Utils.logger.info("Calling to log in user")
 	
@@ -224,7 +219,7 @@ func login(username: String, password: String) -> void:
 	
 	# Define the request URL for login
 	var request_url: String = Utils.host + "/api/login/decentra"
-	Utils.send_login_request(Login, request_url, payload)
+	Utils.send_login_request_with_retry(Login, request_url, payload, _on_Login_request_completed)
 	
 	
 func _on_Login_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -271,7 +266,6 @@ func register(username: String, password: String ) -> void:
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
 	Register = prepared_http_req.request
 	wrRegister = prepared_http_req.weakref
-	var _register_signal: int = Register.request_completed.connect(_on_Register_request_completed)
 	Utils.logger.info("Calling to register")
 	
 	var payload: Dictionary[String, String] = { 
@@ -281,7 +275,7 @@ func register(username: String, password: String ) -> void:
 	}
 	
 	var request_url: String = Utils.host + "/api/register/decentra"
-	Utils.send_post_request(Register, request_url, payload)
+	Utils.send_post_request_with_retry(Register, request_url, payload, _on_Register_request_completed)
 
 
 # Callback function triggered upon completion of the registration request
@@ -415,7 +409,6 @@ func request_new_access_token() -> void:
 	RenewToken = prepared_http_req.request
 	wrRenewToken = prepared_http_req.weakref
 	# Add your JWT decoding logic here
-	var _new_token_signal: int = RenewToken.request_completed.connect(_on_RequestNewAccessToken_completed)
 		# Log the initiation of  session validation
 	Utils.logger.info("Calling to validate an existing session")
 	# Create the payload with lookup and access tokens
@@ -423,8 +416,8 @@ func request_new_access_token() -> void:
 	# Log the payload details
 	Utils.logger.debug("Validate session payload: " + str(payload))
 	var request_url: String = Utils.host + "/api/renew/access/decentra"
-	# Send the POST request for session validation
-	Utils.send_login_request(RenewToken, request_url, payload)
+	# Send the POST request for session validation with retry
+	Utils.send_login_request_with_retry(RenewToken, request_url, payload, _on_RequestNewAccessToken_completed)
 	# Return the current script instance
 
 

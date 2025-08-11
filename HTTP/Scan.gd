@@ -37,17 +37,14 @@ func save_soil_meter_scan(scan_data: Dictionary) -> void:
 	SaveSoilMeterScan = prepared_http_req.request
 	wrSaveSoilMeterScan = prepared_http_req.weakref
 
-	# Connect the callback function to handle the completion of the leaderboard data request.
-	var _connect: int = SaveSoilMeterScan.request_completed.connect(_on_SaveSoilMeterScan_request_completed)
-
 	# Log the initiation of the request to retrieve leaderboard data.	
 	Utils.logger.info("Call to save soil meter scan")
 	
 	# Construct the request URL for fetching leaderboard data.
 	var request_url: String = Utils.host + "/api/save-sensor-readings"
 
-	# Send the GET request using the prepared URL.
-	Utils.send_post_request(SaveSoilMeterScan, request_url, scan_data)
+	# Send the POST request using the prepared URL with retry.
+	Utils.send_post_request_with_retry(SaveSoilMeterScan, request_url, scan_data, _on_SaveSoilMeterScan_request_completed)
 
 
 func _on_SaveSoilMeterScan_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -76,12 +73,11 @@ func get_soil_analysis_data() -> void:
 	GetSoilMeterScan = prepared_http_req.request
 	wrGetSoilMeterScan = prepared_http_req.weakref
 
-	var _connect: int = GetSoilMeterScan.request_completed.connect(_on_GetSoilMeterScan_request_completed)
 	Utils.logger.info("Calling to get soil meter data")
 	var request_url: String = Utils.host + "/api/get-soil-analysis-data"
 
-	# Send the GET request using the prepared URL.
-	Utils.send_get_request(GetSoilMeterScan, request_url)
+	# Send the GET request using the prepared URL with retry.
+	Utils.send_get_request_with_retry(GetSoilMeterScan, request_url, _on_GetSoilMeterScan_request_completed)
 	
 	
 func _on_GetSoilMeterScan_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -106,17 +102,14 @@ func save_plant_scan(scan_data: Dictionary) -> void:
 	SavePlantScan = prepared_http_req.request
 	wrSavePlantScan = prepared_http_req.weakref
 
-	# Connect the callback function to handle the completion of the leaderboard data request.
-	var _connect: int = SavePlantScan.request_completed.connect(_on_SavePlantScan_request_completed)
-
 	# Log the initiation of the request to retrieve leaderboard data.	
-	Utils.logger.info("Call to save soil meter scan")
+	Utils.logger.info("Call to save plant scan")
 	
 	# Construct the request URL for fetching leaderboard data.
 	var request_url: String = Utils.host + "/api/save-plant-readings"
 
-	# Send the GET request using the prepared URL.
-	Utils.send_post_request(SavePlantScan, request_url, scan_data)
+	# Send the POST request using the prepared URL with retry.
+	Utils.send_post_request_with_retry(SavePlantScan, request_url, scan_data, _on_SavePlantScan_request_completed)
 
 
 func _on_SavePlantScan_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -147,12 +140,11 @@ func get_plant_scan() -> void:
 	GetPlantScan = prepared_http_req.request
 	wrGetPlantScan = prepared_http_req.weakref
 
-	var _connect: int = GetPlantScan.request_completed.connect(_on_GetPlantScan_request_completed)
 	Utils.logger.info("Calling to get plant scan data")
 	var request_url: String = Utils.host + "/api/get-scan-readings"
 
-	# Send the GET request using the prepared URL.
-	Utils.send_get_request(GetPlantScan, request_url)
+	# Send the GET request using the prepared URL with retry.
+	Utils.send_get_request_with_retry(GetPlantScan, request_url, _on_GetPlantScan_request_completed)
 	
 	
 func _on_GetPlantScan_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -177,12 +169,11 @@ func get_plant_scan_by_farm(name_farm: String) -> void:
 	GetPlantScanByFarm = prepared_http_req.request
 	wrGetPlantScanByFarm = prepared_http_req.weakref
 
-	var _connect: int = GetPlantScanByFarm.request_completed.connect(_on_GetPlantScanByFarm_request_completed)
-	Utils.logger.info("Calling to get plant scan data")
+	Utils.logger.info("Calling to get plant scan data by farm")
 	var request_url: String = Utils.host + "/api/get-scan/" + name_farm
 
-	# Send the GET request using the prepared URL.
-	Utils.send_get_request(GetPlantScanByFarm, request_url)
+	# Send the GET request using the prepared URL with retry.
+	Utils.send_get_request_with_retry(GetPlantScanByFarm, request_url, _on_GetPlantScanByFarm_request_completed)
 	
 
 func _on_GetPlantScanByFarm_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -207,12 +198,11 @@ func get_soil_analysis_data_by_farm(name_farm: String) -> void:
 	GetSoilAnalysisDataByFarm = prepared_http_req.request
 	wrGetSoilAnalysisDataByFarm = prepared_http_req.weakref
 
-	var _connect: int = GetSoilAnalysisDataByFarm.request_completed.connect(_on_GetSoilAnalysisDataByFarm_request_completed)
-	Utils.logger.info("Calling to get plant scan data")
+	Utils.logger.info("Calling to get soil analysis data by farm")
 	var request_url: String = Utils.host + "/api/get-soil-analysis-by-farm/" + name_farm
 
-	# Send the GET request using the prepared URL.
-	Utils.send_get_request(GetSoilAnalysisDataByFarm, request_url)
+	# Send the GET request using the prepared URL with retry.
+	Utils.send_get_request_with_retry(GetSoilAnalysisDataByFarm, request_url, _on_GetSoilAnalysisDataByFarm_request_completed)
 	
 
 func _on_GetSoilAnalysisDataByFarm_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:

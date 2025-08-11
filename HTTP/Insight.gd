@@ -17,11 +17,10 @@ func get_eth_sweth_price() -> void:
 	GetETHSWETHPrice = prepared_http_req.request
 	wrGetETHSWETHPrice = prepared_http_req.weakref
 
-	var _connect: int = GetETHSWETHPrice.request_completed.connect(_on_GetPrice_request_completed)
 	Utils.logger.info("Calling to get prices")
 	var request_url: String = Utils.host + "/api/insight/eth/price"
 
-	Utils.send_get_request(GetETHSWETHPrice, request_url)
+	Utils.send_get_request_with_retry(GetETHSWETHPrice, request_url, _on_GetPrice_request_completed)
 	
 	
 func _on_GetPrice_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -46,11 +45,10 @@ func get_last_transaction(wallet_address: String, chain_id: String) -> void:
 	GetLastTransactions = prepared_http_req.request
 	wrGetLastTransactions = prepared_http_req.weakref
 
-	var _connect: int = GetLastTransactions.request_completed.connect(_on_GetLastTransaction_request_completed)
-	Utils.logger.info("Calling to get prices")
+	Utils.logger.info("Calling to get last transactions")
 	var request_url: String = Utils.host + "/api/insight/transactions/" + wallet_address + "/" + chain_id 
 
-	Utils.send_get_request(GetLastTransactions, request_url)
+	Utils.send_get_request_with_retry(GetLastTransactions, request_url, _on_GetLastTransaction_request_completed)
 	
 	
 func _on_GetLastTransaction_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:

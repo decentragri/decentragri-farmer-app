@@ -12,14 +12,13 @@ func get_notifications(limit: int = 50, offset: int = 0) -> void:
 	var prepared_http_req: Dictionary = Utils.prepare_http_request()
 	GetNotifications= prepared_http_req.request
 	wrGetNotifications= prepared_http_req.weakref
-
-	var _connect: int = GetNotifications.request_completed.connect(_on_get_notifications_request_completed)
+	
 	Utils.logger.info("Calling to get notifications")
 	var request_url: String = Utils.host + "/api/notifications"
 	request_url += "?limit=" + str(limit) + "&offset=" + str(offset)
-	Utils.send_get_request(GetNotifications, request_url)
-
-
+	Utils.send_get_request_with_retry(GetNotifications, request_url, _on_get_notifications_request_completed)
+	
+	
 func _on_get_notifications_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.
 	var status_check: bool = Utils.logger.check_http_response(response_code, headers, body)
@@ -33,5 +32,5 @@ func _on_get_notifications_request_completed(_result: int, response_code: int, h
 		else:
 			get_notifications_complete.emit({"error": "Unknown server error"})
 	else:
-		get_notifications_complete.emit({"error": "Unknown server error"})
+		get_notifications_complete.emit([])
 		

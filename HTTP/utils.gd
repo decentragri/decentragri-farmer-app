@@ -5,8 +5,14 @@ const logger: Script = preload("res://HTTP/logger.gd")
 const host_ip: String = "api.decentragri.com"
 var host: String = "https://" + host_ip
 
-
-
+# Retry configuration
+const RETRY_CONFIG: Dictionary = {
+	"max_retries": 3,
+	"base_delay": 1.0,  # Base delay in seconds
+	"max_delay": 30.0,  # Maximum delay in seconds
+	"backoff_multiplier": 2.0,  # Exponential backoff multiplier
+	"retryable_codes": [0, 408, 429, 500, 502, 503, 504]  # HTTP codes that should trigger retry
+}
 
 const auth_config: Dictionary[String, int] = {
 	"session_duration_seconds": 0,
@@ -27,6 +33,130 @@ func prepare_http_request() -> Dictionary[String, Variant]:
 		"weakref": weak_ref
 	}
 	return return_dict
+
+
+# Check if a response code should trigger a retry
+static func should_retry(response_code: int) -> bool:
+	return response_code in RETRY_CONFIG.retryable_codes
+
+
+# Calculate retry delay with exponential backoff
+static func get_retry_delay(attempt: int) -> float:
+	var delay: float = RETRY_CONFIG.base_delay * pow(RETRY_CONFIG.backoff_multiplier, attempt - 1)
+	return min(delay, RETRY_CONFIG.max_delay)
+
+
+# Retry wrapper for HTTP requests
+func send_request_with_retry(
+	request_func: Callable, 
+	args: Array
+) -> void:
+	# Execute the request function with provided arguments
+	request_func.callv(args)
+
+
+# Enhanced GET request with retry capability
+func send_get_request_with_retry(
+	http_node: HTTPRequest, 
+	request_url: String, 
+	callback: Callable,
+	retry_count: int = 0
+) -> void:
+	
+	# Disconnect any existing connections to avoid duplicates
+	if http_node.request_completed.is_connected(callback):
+		http_node.request_completed.disconnect(callback)
+	
+	# Create a wrapper callback that handles retries
+	var retry_callback: Callable = func(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+		if should_retry(response_code) and retry_count < RETRY_CONFIG.max_retries:
+			logger.info("Request failed with code %d. Retrying... (attempt %d/%d)" % [response_code, retry_count + 1, RETRY_CONFIG.max_retries])
+			
+			# Wait before retrying with exponential backoff
+			var delay: float = get_retry_delay(retry_count + 1)
+			await get_tree().create_timer(delay).timeout
+			
+			# Retry the request
+			send_get_request_with_retry(http_node, request_url, callback, retry_count + 1)
+		else:
+			# Either success or max retries reached - call original callback
+			callback.call(_result, response_code, headers, body)
+	
+	# Connect the retry wrapper callback
+	var _connect: int = http_node.request_completed.connect(retry_callback, CONNECT_ONE_SHOT)
+	
+	# Send the actual request
+	send_get_request(http_node, request_url)
+
+
+# Enhanced POST request with retry capability  
+func send_post_request_with_retry(
+	http_node: HTTPRequest, 
+	request_url: String, 
+	payload: Variant,
+	callback: Callable,
+	retry_count: int = 0
+) -> void:
+	
+	# Disconnect any existing connections to avoid duplicates
+	if http_node.request_completed.is_connected(callback):
+		http_node.request_completed.disconnect(callback)
+	
+	# Create a wrapper callback that handles retries
+	var retry_callback: Callable = func(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+		if should_retry(response_code) and retry_count < RETRY_CONFIG.max_retries:
+			logger.info("Request failed with code %d. Retrying... (attempt %d/%d)" % [response_code, retry_count + 1, RETRY_CONFIG.max_retries])
+			
+			# Wait before retrying with exponential backoff
+			var delay: float = get_retry_delay(retry_count + 1)
+			await get_tree().create_timer(delay).timeout
+			
+			# Retry the request
+			send_post_request_with_retry(http_node, request_url, payload, callback, retry_count + 1)
+		else:
+			# Either success or max retries reached - call original callback
+			callback.call(_result, response_code, headers, body)
+	
+	# Connect the retry wrapper callback
+	var _connect: int = http_node.request_completed.connect(retry_callback, CONNECT_ONE_SHOT)
+	
+	# Send the actual request
+	send_post_request(http_node, request_url, payload)
+
+
+# Enhanced login request with retry capability
+func send_login_request_with_retry(
+	http_node: HTTPRequest, 
+	request_url: String, 
+	payload: Dictionary,
+	callback: Callable,
+	retry_count: int = 0
+) -> void:
+	
+	# Disconnect any existing connections to avoid duplicates
+	if http_node.request_completed.is_connected(callback):
+		http_node.request_completed.disconnect(callback)
+	
+	# Create a wrapper callback that handles retries
+	var retry_callback: Callable = func(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
+		if should_retry(response_code) and retry_count < RETRY_CONFIG.max_retries:
+			logger.info("Login request failed with code %d. Retrying... (attempt %d/%d)" % [response_code, retry_count + 1, RETRY_CONFIG.max_retries])
+			
+			# Wait before retrying with exponential backoff
+			var delay: float = get_retry_delay(retry_count + 1)
+			await get_tree().create_timer(delay).timeout
+			
+			# Retry the request
+			send_login_request_with_retry(http_node, request_url, payload, callback, retry_count + 1)
+		else:
+			# Either success or max retries reached - call original callback
+			callback.call(_result, response_code, headers, body)
+	
+	# Connect the retry wrapper callback
+	var _connect: int = http_node.request_completed.connect(retry_callback, CONNECT_ONE_SHOT)
+	
+	# Send the actual request
+	send_login_request(http_node, request_url, payload)
 	
 	
 func send_get_request(http_node: HTTPRequest, request_url: String) -> void:

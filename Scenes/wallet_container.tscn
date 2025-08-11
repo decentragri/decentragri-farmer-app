@@ -62,10 +62,10 @@ shadow_offset = Vector2(0, 5)
 [node name="WalletContainer" type="VBoxContainer" groups=["MainContainers"]]
 custom_minimum_size = Vector2(650, 992)
 anchors_preset = -1
-anchor_right = 0.944444
-anchor_bottom = 0.775
-offset_right = -680.0
-offset_bottom = -992.0
+anchor_right = 0.916667
+anchor_bottom = 0.865625
+offset_right = -660.0
+offset_bottom = -1108.0
 size_flags_vertical = 3
 script = ExtResource("1_ecu4h")
 metadata/_edit_use_anchors_ = true
@@ -372,7 +372,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
 metadata/_edit_use_anchors_ = true
 
-[node name="SwellButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2" groups=["WalletTokenButton"]]
+[node name="FDAGRIButton" type="TextureButton" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2" groups=["WalletTokenButton"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -405,7 +405,7 @@ texture = ExtResource("10_btkcj")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="FDAGRIBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
+[node name="FdagriBalance" type="Label" parent="VBoxContainer2/VBoxContainer/HBoxContainer2/Panel2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)

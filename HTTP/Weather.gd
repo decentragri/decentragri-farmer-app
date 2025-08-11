@@ -21,10 +21,9 @@ func get_current_weather(location: String) -> void:
 	GetCurrentWeather = prepared_http_req.request
 	wrCurrentWeather = prepared_http_req.weakref
 
-	var _connect: int = GetCurrentWeather.request_completed.connect(_on_GetCurrentWeather_request_completed)
-	Utils.logger.info("Calling  to get weather")
+	Utils.logger.info("Calling to get weather")
 	var request_url: String = Utils.host + "/api/weather/current/" + location
-	Utils.send_get_request(GetCurrentWeather, request_url)
+	Utils.send_get_request_with_retry(GetCurrentWeather, request_url, _on_GetCurrentWeather_request_completed)
 	
 	
 func _on_GetCurrentWeather_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
@@ -53,10 +52,9 @@ func get_weather_forecast(location: String) -> void:
 	GetWeatherForecast = prepared_http_req.request
 	wrGetWeatherForecast = prepared_http_req.weakref
 
-	var _connect: int = GetWeatherForecast.request_completed.connect(_on_GetWeatherForecast_request_completed)
 	Utils.logger.info("Calling to get weather forecast")
 	var request_url: String = Utils.host + "/api/weather/forecast/" + location
-	Utils.send_get_request(GetWeatherForecast, request_url)
+	Utils.send_get_request_with_retry(GetWeatherForecast, request_url, _on_GetWeatherForecast_request_completed)
 	
 func _on_GetWeatherForecast_request_completed(_result: int, response_code: int, headers: Array, body: PackedByteArray) -> void:
 	# Check the HTTP response status.

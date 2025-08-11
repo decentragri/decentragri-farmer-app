@@ -6,17 +6,24 @@ signal wallet_token_button_pressed(token_data: Dictionary[String, Variant])
 var eth_price: float
 var swell_price: float
 var dagri_price: float
+var fdagri_price: float
 
 func _ready() -> void:
-	connect_signals()
+	var _1: int = User.user_data_received.connect(_on_user_data_received)
+	
 	
 func _on_visibility_changed() -> void:
-	Auth.auto_login_user()
+	if visible:
+		for button: TextureButton in get_tree().get_nodes_in_group(&"WalletTokenButton"):
+			if button.pressed.is_connected(_on_token_button_pressed):
+				button.pressed.disconnect(_on_token_button_pressed)
+		Auth.auto_login_user()
+	else:
+		pass
+
 	
 	
 func connect_signals() -> void:
-	var _1: int = User.user_data_received.connect(_on_user_data_received)
-
 	for button: TextureButton in get_tree().get_nodes_in_group(&"WalletTokenButton"):
 		var vbox: VBoxContainer = button.get_parent().get_node("VBoxContainer")
 		
@@ -24,12 +31,17 @@ func connect_signals() -> void:
 		var token_texture: Texture = vbox.get_child(1).texture
 		var balance: String = vbox.get_child(2).text
 		var label_name: String = vbox.get_child(2).name
-
+		
+		if not button.pressed.is_connected(_on_token_button_pressed):
 		# Connect button pressed signal and bind the values
-		var _2: int = button.pressed.connect(_on_token_button_pressed.bind(token_texture, balance, label_name))
+			var _2: int = button.pressed.connect(_on_token_button_pressed.bind(token_texture, balance, label_name))
+			
+			
+		
 		
 	for button: TextureButton in get_tree().get_nodes_in_group(&"WalletCopyButton"):
-		var _2: int = button.pressed.connect(_on_wallet_copy_button_pressed.bind(button))
+		if not button.pressed.is_connected(_on_wallet_copy_button_pressed):
+			var _2: int = button.pressed.connect(_on_wallet_copy_button_pressed.bind(button))
 	
 	
 func _on_wallet_copy_button_pressed(button: TextureButton) -> void:
@@ -43,11 +55,9 @@ func _on_wallet_copy_button_pressed(button: TextureButton) -> void:
 	)
 	
 	
-
-
 func _on_token_button_pressed(token_texture: Texture, balance: String, label_name: String) -> void:
+	print(label_name)
 	emit_token_signal(token_texture, balance, label_name)
-	
 	
 	
 func emit_token_signal(token_texture: Texture, balance: String, label_name: String) -> void:
@@ -66,9 +76,12 @@ func emit_token_signal(token_texture: Texture, balance: String, label_name: Stri
 		"DagriBalance":
 			price = dagri_price
 			token_name = "DAGRI"
+		"FdagriBalance":
+			price = fdagri_price
+			token_name = "FDAGRI"
 		_:
+			
 			price = 0.0
-
 	wallet_token_button_pressed.emit({
 		"texture": token_texture,
 		"balance": balance,
@@ -78,7 +91,6 @@ func emit_token_signal(token_texture: Texture, balance: String, label_name: Stri
 		
 		
 func _on_user_data_received(user_data: Dictionary) -> void:
-	print("tae: ", user_data)
 	var eth_balance: float = user_data.walletData.ethBalance.to_float()
 	var rsweth_balance: float = user_data.walletData.rsWETHBalance.to_float()
 	var fdagri_balance: float = user_data.walletData.farmerCreditTokenBalance.to_float()
@@ -89,15 +101,16 @@ func _on_user_data_received(user_data: Dictionary) -> void:
 	swell_price = user_data.walletData.swellPriceUSD
 	dagri_price = user_data.walletData.dagriPriceUSD
 	
+	
 	%ETHBalance.text = "ETH " + four_digit_balance_format(eth_balance)
 	%rswETHBalance.text = "rswETH " + four_digit_balance_format(rsweth_balance)
 	#%SwellBalance.text = "SWELL " + four_digit_balance_format(swell_balance)
-	%FDAGRIBalance.text = "FDAGRI " + four_digit_balance_format(fdagri_balance)
+	%FdagriBalance.text = "FDAGRI " + four_digit_balance_format(fdagri_balance)
 	%DagriBalance.text = "DAGRI " + four_digit_balance_format(dagri_balance) 
 	
 	%Username.text = User.username
 	%SmartWalletAddress.text = User.wallet_address
-	
+	connect_signals()
 	
 
 func four_digit_balance_format(balance: float) -> String:
