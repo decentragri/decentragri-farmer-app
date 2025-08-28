@@ -23,7 +23,7 @@ func connect_signals() -> void:
 
 #endregion
 
-#region 🔐 Biometric Auth Handling
+#region  Biometric Auth Handling
 
 func _on_bio_auth_success() -> void:
 	if visible: 
@@ -55,7 +55,7 @@ func get_data() -> void:
 
 #endregion
 
-#region ✅ Stake Completion Callback
+#region  Stake Completion Callback
 
 func on_stake_eth_completed(message: Dictionary) -> void:
 	if message.has("error"):
@@ -81,7 +81,7 @@ func update_available_balance() -> void:
 	%ETHBalance.text = six_digit_balance_format(new_eth_balance) + " ETH AVAILABLE"
 #endregion
 
-#region 🧮 Stake Amount Input & Calculation
+#region  Stake Amount Input & Calculation
 
 func _on_stake_amount_text_changed(stake_amount: String) -> void:
 	if stake_amount.is_empty():

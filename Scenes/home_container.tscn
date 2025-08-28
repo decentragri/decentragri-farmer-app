@@ -121,6 +121,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="QuickActionsCard" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("3_ghbwx")]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]

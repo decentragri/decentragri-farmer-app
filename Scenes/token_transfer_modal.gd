@@ -8,15 +8,12 @@ var token_name: String
 
 
 
-
-
-
 func _ready() -> void:
 	var _1: int = Onchain.transfer_token_completed.connect(_on_transfer_token_completed)
-
-
-
+	
+	
 func _on_transfer_token_completed(message: Dictionary) -> void:
+	Auth.auto_login_user()
 	if message.has("error"):
 		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 			main.message_box("Transfer failed: " + message.error)
@@ -177,4 +174,5 @@ func _on_transfer_button_pressed() -> void:
 	for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
 		main.message_box("Token transfer in progress...")
 		
-	#Onchain.transfer_token(token_transfer_data)
+	Onchain.transfer_token(token_transfer_data)
+	_on_back_button_pressed()

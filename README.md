@@ -1,8 +1,6 @@
-# 🌱 DecentrAgri App (Godot)
+# 🌱 DecentrAgri Farmer App (Godot)
 
 DecentrAgri App is a real-time environmental sensor dashboard and data collection interface built using the **Godot Game Engine**. It empowers farmers and agricultural researchers by providing live, AI-enhanced feedback on soil and environmental conditions, fully integrated with a blockchain-secure backend.
-
-This is the mobile and desktop app companion to the [DecentrAgri](https://github.com/decentragri) ecosystem.
 
 ---
 

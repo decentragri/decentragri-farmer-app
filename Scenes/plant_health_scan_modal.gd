@@ -207,4 +207,5 @@ func hide_modal_container() -> void:
 
 
 func _on_smooth_scroll_container_scroll_started() -> void:
-	DisplayServer.virtual_keyboard_hide()
+	if OS.get_name() == "Android" or OS.get_name() == "iOS":
+		DisplayServer.virtual_keyboard_hide()

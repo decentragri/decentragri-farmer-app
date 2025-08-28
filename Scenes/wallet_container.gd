@@ -20,7 +20,6 @@ func _on_visibility_changed() -> void:
 		Auth.auto_login_user()
 	else:
 		pass
-
 	
 	
 func connect_signals() -> void:
@@ -36,9 +35,6 @@ func connect_signals() -> void:
 		# Connect button pressed signal and bind the values
 			var _2: int = button.pressed.connect(_on_token_button_pressed.bind(token_texture, balance, label_name))
 			
-			
-		
-		
 	for button: TextureButton in get_tree().get_nodes_in_group(&"WalletCopyButton"):
 		if not button.pressed.is_connected(_on_wallet_copy_button_pressed):
 			var _2: int = button.pressed.connect(_on_wallet_copy_button_pressed.bind(button))

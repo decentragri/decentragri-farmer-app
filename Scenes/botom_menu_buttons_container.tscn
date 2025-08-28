@@ -290,6 +290,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel5" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 mouse_filter = 1
@@ -366,6 +367,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel3" type="Panel" parent="Panel/HBoxContainer/SmoothScrollContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 mouse_filter = 1

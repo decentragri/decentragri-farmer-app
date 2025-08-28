@@ -250,7 +250,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
 theme_override_font_sizes/font_size = 25
-text = "ETH 0.0001"
+text = "PLEASE WAIT..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -355,7 +355,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
 theme_override_font_sizes/font_size = 25
-text = "DAGRI 0.0001"
+text = "PLEASE WAIT..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -411,7 +411,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_ipxg7")
 theme_override_font_sizes/font_size = 25
-text = "FDAGRI 0.0001"
+text = "PLEASE WAIT..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
