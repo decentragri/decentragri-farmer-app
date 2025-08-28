@@ -1,6 +1,6 @@
-# DecentrAgri Farmer App (Godot)
+# Decentragri Farmer App (Godot)
 
-DecentrAgri App is a real-time environmental sensor dashboard and data collection interface built using the **Godot Game Engine**. It empowers farmers and agricultural researchers by providing live, AI-enhanced feedback on soil and environmental conditions, fully integrated with a blockchain-secure backend.
+Decentragri App is a real-time environmental sensor dashboard and data collection interface built using the **Godot Game Engine**. It empowers farmers and agricultural researchers by providing live, AI-enhanced feedback on soil and environmental conditions, fully integrated with a blockchain-secure backend.
 
 ---
 
@@ -19,6 +19,6 @@ DecentrAgri App is a real-time environmental sensor dashboard and data collectio
 
 - [Godot 4.x](https://godotengine.org) — open source game engine
 - GDScript — Godot-native scripting language
-- REST API integration with DecentrAgri backend (ElysiaJS)
+- REST API integration with Decentragri backend (ElysiaJS)
 - JWT-based authentication
 - Optional hardware integration (for sensor via serial/Bluetooth/Wi-Fi)
