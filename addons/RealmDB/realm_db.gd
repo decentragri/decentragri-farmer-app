@@ -83,3 +83,17 @@ func _handle_origin_signal(origin: String) -> void:
 		"SoilAnalysisScan":
 			if Scan and Scan.has_signal("save_soil_meter_scan_complete"):
 				Scan.save_soil_meter_scan_complete.emit(response)
+		"WeatherData":
+			if Weather and Weather.has_signal("save_weather_data_complete"):
+				Weather.save_weather_data_complete.emit(response)
+		"FarmData":
+			if Farm and Farm.has_signal("save_farm_data_complete"):
+				Farm.save_farm_data_complete.emit(response)
+		"UserSettings":
+			if User and User.has_signal("save_user_settings_complete"):
+				User.save_user_settings_complete.emit(response)
+		"TransactionData":
+			if Onchain and Onchain.has_signal("save_transaction_complete"):
+				Onchain.save_transaction_complete.emit(response)
+		_:
+			print("Unknown origin type: ", origin)

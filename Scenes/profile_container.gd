@@ -68,3 +68,10 @@ func _on_dagri_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	get_data()
+
+
+func _on_sync_button_pressed() -> void:
+	if OS.get_name() == "Android":
+		NetworkState.manual_sync()
+	else:
+		on_error_encountered.emit("Sync feature only available on Android")

@@ -171,8 +171,24 @@ func _on_transfer_button_pressed() -> void:
 	
 	print("Transfer data validated: ", token_transfer_data)
 	
-	for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
-		main.message_box("Token transfer in progress...")
-		
-	Onchain.transfer_token(token_transfer_data)
+	# Check network connectivity and handle offline/online scenarios
+	if OS.get_name() == "Android":
+		if NetworkState.hasNetwork():
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("Token transfer in progress...")
+			Onchain.transfer_token(token_transfer_data)
+		else:
+			# Save transaction data offline for later sync
+			token_transfer_data["pending"] = true
+			token_transfer_data["transactionType"] = "token_transfer"
+			token_transfer_data["timestamp"] = Time.get_unix_time_from_system()
+			RealmDB.save_data(JSON.stringify(token_transfer_data), "TransactionData")
+			for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+				main.message_box("No internet connection. Transaction saved offline.")
+	else:
+		# For non-Android platforms, attempt direct transfer
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			main.message_box("Token transfer in progress...")
+		Onchain.transfer_token(token_transfer_data)
+	
 	_on_back_button_pressed()

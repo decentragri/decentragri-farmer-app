@@ -8,14 +8,30 @@ func _ready() -> void:
 	$HBoxContainer/MainContainer.button_pressed = true
 	Weather.get_current_weather("Manila")
 	loading_start(true, "bio")
+	
+	# Start sync of pending data if network is available and on Android
+	if OS.get_name() == "Android":
+		_check_and_sync_pending_data()
+
+func _check_and_sync_pending_data() -> void:
+	# Wait a bit to ensure all systems are initialized
+	await get_tree().create_timer(1.0).timeout
+	
+	if NetworkState.hasNetwork():
+		print("App started with network connection, checking for pending data to sync...")
+		NetworkState._sync_pending_data()
 
 func connect_signals() -> void:
 	var _1: int = Weather.get_current_weather_complete.connect(_on_get_current_weather_complete)
 	var _2: int = Weather.get_weather_icon_complete.connect(_on_get_weather_icon_complete)
 	var _3: int = BiometricAuth.bio_auth_success.connect(_on_bio_auth_success)
 	var _4: int = BiometricAuth.bio_auth_failed.connect(_on_bio_failed)
-
 	var _5: int  = %ScanButton.pressed.connect(on_scan_button_pressed)
+	
+	# Connect sync status signals
+	if OS.get_name() == "Android":
+		var _6: int = NetworkState.sync_completed.connect(_on_sync_completed)
+		var _7: int = NetworkState.sync_progress.connect(_on_sync_progress)
 
 
 #endregion
@@ -226,5 +242,17 @@ func _on_farm_modal__on_error_encountered(text:String) -> void:
 func _on_my_farm_container__on_error_encountered(text:String) -> void:
 	%ErrorLabel.text = text
 	%AnimationPlayer.play("error_animation")
+
+#endregion
+
+#region 📡 Sync Status Handlers
+
+func _on_sync_completed(success: bool, message: String) -> void:
+	print("Sync completed: ", success, " - ", message)
+	# You can add UI updates here if needed
+
+func _on_sync_progress(current: int, total: int, message: String) -> void:
+	print("Sync progress: %d/%d - %s" % [current, total, message])
+	# You can add progress UI updates here if needed
 
 #endregion

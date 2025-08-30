@@ -32,8 +32,15 @@ func connect_signals() -> void:
 	if android_plugin:
 		android_plugin.stateChanged.connect(_on_android_state_changed)
 		NetworkState.stateChanged.connect(_on_network_state_changed)
+		# Scan signals
 		Scan.save_soil_meter_scan_complete.connect(_on_scan_sync_complete)
 		Scan.save_plant_scan_complete.connect(_on_scan_sync_complete)
+		# Other potential signals for expanded functionality
+		if Weather and Weather.has_signal("save_weather_data_complete"):
+			Weather.save_weather_data_complete.connect(_on_scan_sync_complete)
+		if Farm and Farm.has_signal("save_farm_data_complete"):
+			Farm.save_farm_data_complete.connect(_on_scan_sync_complete)
+
 
 func _on_android_state_changed(state: String) -> void:
 	var is_connected = state == "true"
@@ -155,6 +162,13 @@ func _process_single_entry(entry_id: String, entry: Dictionary) -> void:
 	current_sync_operations += 1
 	sync_progress.emit(current_sync_operations, total_sync_operations, "Syncing item %d of %d" % [current_sync_operations, total_sync_operations])
 	
+	# Validate data integrity before syncing
+	var validation_result: Dictionary = _validate_entry_data(entry)
+	if not validation_result.get("valid", false):
+		printerr("Entry validation failed for ", entry_id, ": ", validation_result.get("error", "Unknown validation error"))
+		_handle_sync_failure(entry_id, "Data validation failed: " + validation_result.get("error", ""))
+		return
+	
 	var success: bool = false
 	var error_message: String = ""
 	
@@ -166,8 +180,20 @@ func _process_single_entry(entry_id: String, entry: Dictionary) -> void:
 		success = await _sync_with_retry(entry_id, entry, "_sync_plant_health_scan")
 		if not success:
 			error_message = "Failed to sync plant health scan"
+	elif _is_weather_data(entry):
+		success = await _sync_with_retry(entry_id, entry, "_sync_weather_data")
+		if not success:
+			error_message = "Failed to sync weather data"
+	elif _is_farm_data(entry):
+		success = await _sync_with_retry(entry_id, entry, "_sync_farm_data")
+		if not success:
+			error_message = "Failed to sync farm data"
+	elif _is_transaction_data(entry):
+		success = await _sync_with_retry(entry_id, entry, "_sync_transaction_data")
+		if not success:
+			error_message = "Failed to sync transaction data"
 	else:
-		error_message = "Unknown scan type"
+		error_message = "Unknown data type"
 		success = false
 	
 	if success:
@@ -199,8 +225,20 @@ func _sync_with_retry(entry_id: String, entry_data: Dictionary, sync_func: Strin
 			var result: Dictionary = await _sync_soil_meter_scan_with_error_handling(entry_id, entry_data)
 			success = result.get("success", false)
 			error_message = result.get("error", "")
-		else:
+		elif sync_func == "_sync_plant_health_scan":
 			var result: Dictionary = await _sync_plant_health_scan_with_error_handling(entry_id, entry_data)
+			success = result.get("success", false)
+			error_message = result.get("error", "")
+		elif sync_func == "_sync_weather_data":
+			var result: Dictionary = await _sync_weather_data_with_error_handling(entry_id, entry_data)
+			success = result.get("success", false)
+			error_message = result.get("error", "")
+		elif sync_func == "_sync_farm_data":
+			var result: Dictionary = await _sync_farm_data_with_error_handling(entry_id, entry_data)
+			success = result.get("success", false)
+			error_message = result.get("error", "")
+		elif sync_func == "_sync_transaction_data":
+			var result: Dictionary = await _sync_transaction_data_with_error_handling(entry_id, entry_data)
 			success = result.get("success", false)
 			error_message = result.get("error", "")
 		
@@ -257,8 +295,7 @@ func _handle_sync_failure(entry_id: String, error_message: String) -> void:
 	
 	if entry.attempts >= MAX_RETRY_ATTEMPTS:
 		sync_progress.emit(-1, -1, "Max retry attempts reached for an item")
-		# Optionally: Notify user about the failure
-		# _notify_sync_failure(entry_id, error_message)
+		_notify_sync_failure(entry_id, error_message)
 
 func _sync_completed() -> void:
 	var success: bool = failed_syncs.is_empty()
@@ -267,6 +304,9 @@ func _sync_completed() -> void:
 	print(message)
 	sync_completed.emit(success, message)
 	is_syncing = false
+	
+	# Notify user about sync completion
+	_notify_sync_completion(success, message)
 	
 	# Clear synced data if everything was successful
 	if success:
@@ -294,6 +334,18 @@ func _is_soil_meter_scan(entry: Dictionary) -> bool:
 
 func _is_plant_health_scan(entry: Dictionary) -> bool:
 	return entry.has("imageBytes") and entry.has("cropType")
+
+
+func _is_weather_data(entry: Dictionary) -> bool:
+	return entry.has("temperature") or entry.has("weatherCondition") or entry.has("location")
+
+
+func _is_farm_data(entry: Dictionary) -> bool:
+	return entry.has("farmName") or entry.has("crops") or entry.has("farmLocation")
+
+
+func _is_transaction_data(entry: Dictionary) -> bool:
+	return entry.has("transactionHash") or entry.has("tokenAmount") or entry.has("transactionType")
 
 
 func _sync_soil_meter_scan(entry_id: String, entry_data: Dictionary) -> void:
@@ -372,3 +424,192 @@ func _on_scan_sync_complete(message: Dictionary) -> void:
 	# This function is kept for backward compatibility
 	# The actual handling is now done in _process_single_entry and related functions
 	pass
+
+
+# Notify user about sync failures
+func _notify_sync_failure(entry_id: String, error_message: String) -> void:
+	for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+		if main.has_method("message_box"):
+			main.message_box("Failed to sync data after multiple attempts: " + error_message)
+
+
+# Notify user about sync completion
+func _notify_sync_completion(success: bool, message: String) -> void:
+	for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+		if main.has_method("message_box"):
+			if success:
+				if failed_syncs.is_empty() and total_sync_operations > 0:
+					main.message_box("Successfully synced %d items to server" % total_sync_operations)
+			else:
+				main.message_box("Some items failed to sync. Will retry when connection is stable.")
+
+
+# Manual sync trigger for user
+func manual_sync() -> void:
+	if is_syncing:
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			if main.has_method("message_box"):
+				main.message_box("Sync already in progress...")
+		return
+		
+	if not hasNetwork():
+		for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			if main.has_method("message_box"):
+				main.message_box("No internet connection available")
+		return
+	
+	for main: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+		if main.has_method("message_box"):
+			main.message_box("Starting manual sync...")
+	
+	_sync_pending_data(true)
+
+
+# Get sync status for UI display
+func get_sync_status() -> Dictionary:
+	return {
+		"is_syncing": is_syncing,
+		"failed_count": failed_syncs.size(),
+		"has_network": hasNetwork(),
+		"pending_retries": failed_syncs.size()
+	}
+
+
+# Weather data sync handlers
+func _sync_weather_data_with_error_handling(entry_id: String, entry_data: Dictionary) -> Dictionary:
+	var result: Dictionary = {"success": false}
+	
+	if not hasNetwork():
+		result["error"] = "No network connection"
+		return result
+
+	var success: bool = false
+	var error_message: String = ""
+	
+	# Assuming Weather singleton has a save method
+	if Weather and Weather.has_method("save_weather_data"):
+		Weather.save_weather_data(entry_data)
+		if Weather.has_signal("save_weather_data_complete"):
+			var response: Variant = await Weather.save_weather_data_complete
+			if response is Dictionary and response.has("error"):
+				error_message = str(response.error)
+			else:
+				success = true
+		else:
+			success = true  # Assume success if no completion signal
+	else:
+		error_message = "Weather sync method not available"
+	
+	result["success"] = success
+	if not success and not error_message.is_empty():
+		result["error"] = error_message
+		
+	return result
+
+
+# Farm data sync handlers
+func _sync_farm_data_with_error_handling(entry_id: String, entry_data: Dictionary) -> Dictionary:
+	var result: Dictionary = {"success": false}
+	
+	if not hasNetwork():
+		result["error"] = "No network connection"
+		return result
+
+	var success: bool = false
+	var error_message: String = ""
+	
+	# Assuming Farm singleton has a save method
+	if Farm and Farm.has_method("save_farm_data"):
+		Farm.save_farm_data(entry_data)
+		if Farm.has_signal("save_farm_data_complete"):
+			var response: Variant = await Farm.save_farm_data_complete
+			if response is Dictionary and response.has("error"):
+				error_message = str(response.error)
+			else:
+				success = true
+		else:
+			success = true  # Assume success if no completion signal
+	else:
+		error_message = "Farm sync method not available"
+	
+	result["success"] = success
+	if not success and not error_message.is_empty():
+		result["error"] = error_message
+		
+	return result
+
+
+# Transaction data sync handlers
+func _sync_transaction_data_with_error_handling(entry_id: String, entry_data: Dictionary) -> Dictionary:
+	var result: Dictionary = {"success": false}
+	
+	if not hasNetwork():
+		result["error"] = "No network connection"
+		return result
+
+	var success: bool = false
+	var error_message: String = ""
+	
+	# Assuming Onchain singleton has a save method
+	if Onchain and Onchain.has_method("save_transaction_data"):
+		Onchain.save_transaction_data(entry_data)
+		if Onchain.has_signal("save_transaction_complete"):
+			var response: Variant = await Onchain.save_transaction_complete
+			if response is Dictionary and response.has("error"):
+				error_message = str(response.error)
+			else:
+				success = true
+		else:
+			success = true  # Assume success if no completion signal
+	else:
+		error_message = "Transaction sync method not available"
+	
+	result["success"] = success
+	if not success and not error_message.is_empty():
+		result["error"] = error_message
+		
+	return result
+
+
+# Data validation before sync
+func _validate_entry_data(entry: Dictionary) -> Dictionary:
+	var result: Dictionary = {"valid": false, "error": ""}
+	
+	# Check if entry has required ID field
+	if not entry.has("id") or str(entry.get("id", "")).strip_edges().is_empty():
+		result["error"] = "Missing or empty ID field"
+		return result
+	
+	# Check if entry is marked as pending
+	if not entry.get("pending", false):
+		result["error"] = "Entry not marked as pending"
+		return result
+	
+	# Validate based on data type
+	if _is_soil_meter_scan(entry):
+		if not entry.has("fertility") or not entry.has("moisture"):
+			result["error"] = "Soil scan missing required fields (fertility, moisture)"
+			return result
+	elif _is_plant_health_scan(entry):
+		if not entry.has("imageBytes") or not entry.has("cropType"):
+			result["error"] = "Plant scan missing required fields (imageBytes, cropType)"
+			return result
+		if str(entry.get("imageBytes", "")).is_empty():
+			result["error"] = "Plant scan has empty image data"
+			return result
+	elif _is_weather_data(entry):
+		if not entry.has("location"):
+			result["error"] = "Weather data missing location"
+			return result
+	elif _is_farm_data(entry):
+		if not entry.has("farmName") or str(entry.get("farmName", "")).strip_edges().is_empty():
+			result["error"] = "Farm data missing or empty farm name"
+			return result
+	elif _is_transaction_data(entry):
+		if not entry.has("transactionType") or str(entry.get("transactionType", "")).strip_edges().is_empty():
+			result["error"] = "Transaction data missing transaction type"
+			return result
+	
+	# If we get here, validation passed
+	result["valid"] = true
+	return result
