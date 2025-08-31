@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://eoixy2lyy743"]
+[gd_scene load_steps=11 format=3 uid="uid://eoixy2lyy743"]
 
+[ext_resource type="Script" uid="uid://b0idcierupkxr" path="res://Scenes/quick_actions_card.gd" id="1_22cq8"]
 [ext_resource type="Texture2D" uid="uid://clrnknoxdkem8" path="res://Assets/Icons/quick_icon_white.png" id="1_kkdix"]
 [ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="2_4cn2g"]
-[ext_resource type="Texture2D" uid="uid://54ujoj3qvqdm" path="res://Assets/Icons/plus_icon_white.png" id="3_4cn2g"]
+[ext_resource type="Texture2D" uid="uid://cevk35bml0nin" path="res://Assets/Icons/pest_icon_white.png" id="3_cc10j"]
 [ext_resource type="Texture2D" uid="uid://dmavg5nguhwk6" path="res://Assets/Icons/camera_icon_white.png" id="4_l73r3"]
 [ext_resource type="Texture2D" uid="uid://bekcro62slcvk" path="res://Assets/Icons/export_icon_white.png" id="5_cc10j"]
 [ext_resource type="Texture2D" uid="uid://bfjvyxhg11ubc" path="res://Assets/Icons/finance_white_icon.png" id="6_22cq8"]
@@ -46,6 +47,7 @@ offset_right = -650.0
 offset_bottom = -900.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_8ac43")
+script = ExtResource("1_22cq8")
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -85,7 +87,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("2_4cn2g")
 theme_override_font_sizes/font_size = 32
-text = "Quick Actions"
+text = "Actions"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -109,10 +111,9 @@ columns = 2
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_kkdix")
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel"]
+[node name="ReportPestButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,7 +122,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/TextureButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,29 +131,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/TextureButton/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton/VBoxContainer"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/TextureButton/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton/VBoxContainer"]
 modulate = Color(0.623529, 0.952941, 0, 1)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-texture = ExtResource("3_4cn2g")
+texture = ExtResource("3_cc10j")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/TextureButton/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("2_4cn2g")
 theme_override_font_sizes/font_size = 24
-text = "Add crop data"
+text = "Report pest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel2" type="Panel" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -199,6 +201,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel3" type="Panel" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -245,6 +248,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel4" type="Panel" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -301,3 +305,5 @@ grow_horizontal = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_7eo2e")
 metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton" to="." method="_on_report_pest_button_pressed"]

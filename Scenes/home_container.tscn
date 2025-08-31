@@ -121,7 +121,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="QuickActionsCard" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("3_ghbwx")]
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
@@ -132,3 +131,4 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [connection signal="forecast_button_pressed" from="VBoxContainer2/VBoxContainer/WeatherCard" to="." method="_on_weather_card_forecast_button_pressed"]
+[connection signal="report_pest_button_pressed" from="VBoxContainer2/VBoxContainer/QuickActionsCard" to="." method="_on_quick_actions_card_report_pest_button_pressed"]

@@ -37,6 +37,7 @@ Farm="*res://HTTP/Farm.gd"
 Firebase="*res://addons/Firebase/firebase.gd"
 Notification="*res://HTTP/Notification.gd"
 Staking="*res://HTTP/Staking.gd"
+Pest="*res://HTTP/Pest.gd"
 
 [debug]
 
@@ -100,6 +101,7 @@ SoilAnalysisFields=""
 TokenTransferModalFields=""
 WalletTokenButton=""
 SelectScanButton=""
+PestModalFields=""
 
 [input_devices]
 

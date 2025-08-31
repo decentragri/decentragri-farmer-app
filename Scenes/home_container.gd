@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 signal forecast_button_pressed
-
+signal report_pest_button_pressed
 
 func _ready() -> void:
 	set_greetings_label() 
@@ -27,3 +27,7 @@ func set_greetings_label() -> void:
 	var random_greeting: String = greetings[randi() % greetings.size()]
 	%GreetingsLabel.text = "Hello " + User.username +"!"
 	%GreetingQuote.text = random_greeting
+
+
+func _on_quick_actions_card_report_pest_button_pressed() -> void:
+	report_pest_button_pressed.emit()

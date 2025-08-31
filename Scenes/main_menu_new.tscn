@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://byxfjbt7tlb00"]
+[gd_scene load_steps=35 format=3 uid="uid://byxfjbt7tlb00"]
 
 [ext_resource type="Script" uid="uid://csvl8k05omau2" path="res://Scenes/main_menu_new.gd" id="1_d7bum"]
 [ext_resource type="Texture2D" uid="uid://csiwy1ttdglyp" path="res://Assets/Logo/decentra_logo2.png" id="1_qjsf3"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://blkh4eq1sj21v" path="res://Scenes/token_transfer_modal.tscn" id="18_ie7eg"]
 [ext_resource type="PackedScene" uid="uid://dgvq41miknhff" path="res://Scenes/scan_result_modal.tscn" id="19_qiamd"]
 [ext_resource type="FontFile" uid="uid://d1hefddkwf7sl" path="res://Assets/Fonts/argentum-sans.vf-regular.ttf" id="20_ogk8k"]
+[ext_resource type="PackedScene" uid="uid://8kulb1pkeok5" path="res://Scenes/report_pest_modal.tscn" id="23_8rqtt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rf5tc"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 0.901961)
@@ -231,6 +232,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+scroll_horizontal = -35
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 script = ExtResource("1_rf5tc")
@@ -273,6 +275,7 @@ visible = false
 layout_mode = 2
 
 [node name="StakingContainerHide" parent="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer" instance=ExtResource("10_8ac43")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
@@ -349,6 +352,10 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="ReportPestModal" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer" instance=ExtResource("23_8rqtt")]
+visible = false
+layout_mode = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="ModalContainer/ColorRect/VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(11, 0)
@@ -403,6 +410,7 @@ anchor_bottom = 0.964844
 
 [connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/NotificationButton" to="." method="_on_notification_button_pressed"]
 [connection signal="forecast_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/HomeContainer" to="." method="_on_home_container_forecast_button_pressed"]
+[connection signal="report_pest_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/HomeContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/ReportPestModal" method="_on_home_container_report_pest_button_pressed"]
 [connection signal="on_add_farm_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/AddNewFarmModal" method="_on_farms_container_on_add_farm_button_pressed"]
 [connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="." method="_on_farms_container_on_farm_card_button_pressed"]
 [connection signal="on_farm_card_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmsContainer" to="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" method="_on_farms_container_on_farm_card_button_pressed"]

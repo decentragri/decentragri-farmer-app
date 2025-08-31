@@ -280,6 +280,21 @@ func format_balance(value: String) -> String:
 	return formattedWholePart
 
 
+func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArray:
+	if image == null:
+		return []
+	var w: float = image.get_width()
+	var h: float = image.get_height()
+
+	if w > max_size or h > max_size:
+		var maxim: float = max(w, h)
+		var scale_down: float = float(max_size) / float(maxim)
+		@warning_ignore("narrowing_conversion")
+		image.resize(w * scale_down, h * scale_down, Image.INTERPOLATE_LANCZOS)
+		
+	return image.save_png_to_buffer()
+
+
 func generate_uuid_v4() -> String:
 	var b: Array = uuid_bin()
 	var low: String = "%02x%02x%02x%02x" % [b[0], b[1], b[2], b[3]]

@@ -1,25 +1,25 @@
-[gd_scene load_steps=18 format=3 uid="uid://cp8a2yrg3b283"]
+[gd_scene load_steps=18 format=3 uid="uid://8kulb1pkeok5"]
 
-[ext_resource type="Texture2D" uid="uid://k1ixag2t3jkq" path="res://Assets/Icons/back_icon_white.png" id="1_2s0fx"]
-[ext_resource type="Texture2D" uid="uid://bqjdbm2gw3hh0" path="res://Assets/Icons/farm_icon_white.png" id="1_h5m2w"]
-[ext_resource type="Script" uid="uid://dm8l6gij41v2w" path="res://Scenes/add_new_farm_modal.gd" id="1_yr8r7"]
-[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="2_y704f"]
-[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_u020p"]
-[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_2s0fx"]
-[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="5_yr8r7"]
-[ext_resource type="StyleBox" uid="uid://dmr560corx08x" path="res://Scenes/upload_image_button.tres" id="6_r51qt"]
-[ext_resource type="Texture2D" uid="uid://dmavg5nguhwk6" path="res://Assets/Icons/camera_icon_white.png" id="7_haqph"]
-[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="8_22vv8"]
-[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="9_pyv2i"]
+[ext_resource type="Script" uid="uid://hn33pcbx5hea" path="res://Scenes/report_pest_modal.gd" id="1_iv8eu"]
+[ext_resource type="Texture2D" uid="uid://k1ixag2t3jkq" path="res://Assets/Icons/back_icon_white.png" id="1_ypthi"]
+[ext_resource type="FontFile" uid="uid://b5ofmvuwbvdxo" path="res://Assets/Fonts/argentum-sans.black.ttf" id="3_ajnxn"]
+[ext_resource type="Texture2D" uid="uid://cevk35bml0nin" path="res://Assets/Icons/pest_icon_white.png" id="3_iv8eu"]
+[ext_resource type="Script" uid="uid://bcnyg4qos0dr7" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_q8oaa"]
+[ext_resource type="Script" uid="uid://mr2fibppbyip" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="5_5xdfj"]
+[ext_resource type="FontFile" uid="uid://dtg8qxe14m8ef" path="res://Assets/Fonts/argentum-sans.medium.ttf" id="6_3mxox"]
+[ext_resource type="StyleBox" uid="uid://dmr560corx08x" path="res://Scenes/upload_image_button.tres" id="7_vv1pq"]
+[ext_resource type="Texture2D" uid="uid://dmavg5nguhwk6" path="res://Assets/Icons/camera_icon_white.png" id="8_aiirm"]
+[ext_resource type="StyleBox" uid="uid://dr025og5g28m0" path="res://Assets/StyleRes/auth_screen.tres" id="9_1ey85"]
+[ext_resource type="FontFile" uid="uid://caw5hde3doeyx" path="res://Assets/Fonts/argentum-sans.semibold.ttf" id="10_5dclv"]
 
 [sub_resource type="Resource" id="Resource_l0ub0"]
-script = ExtResource("4_2s0fx")
+script = ExtResource("5_5xdfj")
 friction = 4.0
 minimum_velocity = 0.4
 rebound_strength = 7.0
 
 [sub_resource type="Resource" id="Resource_up55o"]
-script = ExtResource("4_2s0fx")
+script = ExtResource("5_5xdfj")
 friction = 4.0
 minimum_velocity = 0.4
 rebound_strength = 7.0
@@ -71,17 +71,10 @@ shadow_color = Color(0, 0, 0, 0.192157)
 shadow_size = 20
 shadow_offset = Vector2(0, 5)
 
-[node name="AddNewFarmModal" type="VBoxContainer"]
+[node name="ReportPestModal" type="VBoxContainer"]
 z_index = 99
-custom_minimum_size = Vector2(586, 435)
-anchors_preset = -1
-anchor_left = 0.0222222
-anchor_top = 0.0139844
-anchor_right = 0.979167
-anchor_bottom = 0.978203
-offset_top = 10.1
-offset_bottom = -10.1
-script = ExtResource("1_yr8r7")
+custom_minimum_size = Vector2(689, 1214)
+script = ExtResource("1_iv8eu")
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
@@ -92,7 +85,7 @@ theme_override_constants/separation = 15
 modulate = Color(0.707967, 0.707967, 0.707966, 1)
 custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
-texture_normal = ExtResource("1_2s0fx")
+texture_normal = ExtResource("1_ypthi")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -104,7 +97,7 @@ layout_mode = 2
 modulate = Color(0.878431, 0.878431, 0.878431, 1)
 custom_minimum_size = Vector2(55, 55)
 layout_mode = 2
-texture = ExtResource("1_h5m2w")
+texture = ExtResource("3_iv8eu")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -112,9 +105,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("2_y704f")
+theme_override_fonts/font = ExtResource("3_ajnxn")
 theme_override_font_sizes/font_size = 40
-text = "Add New Farm"
+text = "Report Pest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -137,7 +130,7 @@ theme_override_constants/separation = 30
 layout_mode = 2
 size_flags_vertical = 3
 scroll_horizontal = -23
-script = ExtResource("3_u020p")
+script = ExtResource("4_q8oaa")
 wheel_scroll_damper = SubResource("Resource_l0ub0")
 dragging_scroll_damper = SubResource("Resource_up55o")
 metadata/_custom_type_script = "uid://bcnyg4qos0dr7"
@@ -157,20 +150,20 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 20
-text = "Farm Image"
+text = "Pest Image"
 
-[node name="UploadFarmImageButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+[node name="UploadPestImageButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 mouse_filter = 1
-theme_override_styles/focus = ExtResource("6_r51qt")
-theme_override_styles/hover = ExtResource("6_r51qt")
-theme_override_styles/pressed = ExtResource("6_r51qt")
-theme_override_styles/normal = ExtResource("6_r51qt")
+theme_override_styles/focus = ExtResource("7_vv1pq")
+theme_override_styles/hover = ExtResource("7_vv1pq")
+theme_override_styles/pressed = ExtResource("7_vv1pq")
+theme_override_styles/normal = ExtResource("7_vv1pq")
 
-[node name="FarmImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton"]
+[node name="PestImage" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadPestImageButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -181,7 +174,7 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton/FarmImage"]
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadPestImageButton/PestImage"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(359, 0)
 layout_mode = 1
@@ -195,7 +188,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.627451, 0.627451, 0.627451, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 30
 text = "Press to upload an
 image"
@@ -203,7 +196,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 161
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton/FarmImage"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadPestImageButton/PestImage"]
 unique_name_in_owner = true
 modulate = Color(0.658824, 1, 0.0156863, 1)
 custom_minimum_size = Vector2(60, 60)
@@ -215,7 +208,7 @@ anchor_right = 0.53244
 anchor_bottom = 0.513014
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_haqph")
+texture = ExtResource("8_aiirm")
 expand_mode = 1
 
 [node name="CaputreImageButton" type="Button" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
@@ -224,13 +217,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = ExtResource("9_pyv2i")
+theme_override_styles/focus = ExtResource("9_1ey85")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_qiamd")
-theme_override_styles/hover = ExtResource("9_pyv2i")
-theme_override_styles/pressed = ExtResource("9_pyv2i")
-theme_override_styles/normal = ExtResource("9_pyv2i")
+theme_override_styles/hover = ExtResource("9_1ey85")
+theme_override_styles/pressed = ExtResource("9_1ey85")
+theme_override_styles/normal = ExtResource("9_1ey85")
 text = "Press here to take a picture"
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/CaputreImageButton"]
@@ -242,7 +235,7 @@ anchor_top = 0.233333
 anchor_right = 0.161789
 anchor_bottom = 0.766667
 grow_vertical = 2
-texture = ExtResource("7_haqph")
+texture = ExtResource("8_aiirm")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -251,11 +244,11 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 20
-text = "Farm Name"
+text = "Pest Type"
 
-[node name="FarmName" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["FarmModalFields"]]
+[node name="PestType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["PestModalFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -264,7 +257,31 @@ theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_22vv8")
+theme_override_fonts/font = ExtResource("10_5dclv")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
+
+[node name="Label6" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("6_3mxox")
+theme_override_font_sizes/font_size = 20
+text = "Crop Affected"
+
+[node name="CropAffected" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["PestModalFields"]]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("10_5dclv")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
@@ -275,11 +292,11 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 20
-text = "Crop Type"
+text = "Severity Level ( 1 is the lowest, 5 is the highest )"
 
-[node name="CropType" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["FarmModalFields"]]
+[node name="SeverityLevel" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["PestModalFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -288,31 +305,34 @@ theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_placeholder_color = Color(0.377919, 0.377919, 0.377918, 1)
 theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_22vv8")
+theme_override_fonts/font = ExtResource("10_5dclv")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 placeholder_text = "Example: Corn, Rice, Tomato"
+virtual_keyboard_type = 2
 
 [node name="Label3" type="Label" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 20
 text = "Description"
 
-[node name="Description" type="TextEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["FarmModalFields"]]
+[node name="Description" type="TextEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer" groups=["PestModalFields"]]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_placeholder_color = Color(0.376471, 0.376471, 0.376471, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_22vv8")
+theme_override_fonts/font = ExtResource("10_5dclv")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
@@ -325,7 +345,7 @@ custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 20
 text = "Automated Location (Longitude and Latitude via GPS)"
 
@@ -333,7 +353,7 @@ text = "Automated Location (Longitude and Latitude via GPS)"
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="Long" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/HBoxContainer" groups=["FarmModalFields"]]
+[node name="Long" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/HBoxContainer" groups=["PestModalFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -343,7 +363,7 @@ theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_22vv8")
+theme_override_fonts/font = ExtResource("10_5dclv")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
@@ -351,7 +371,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ogk8k")
 text = "0.0"
 editable = false
 
-[node name="Lat" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/HBoxContainer" groups=["FarmModalFields"]]
+[node name="Lat" type="LineEdit" parent="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/HBoxContainer" groups=["PestModalFields"]]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
@@ -361,7 +381,7 @@ theme_override_colors/caret_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_uneditable_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
-theme_override_fonts/font = ExtResource("8_22vv8")
+theme_override_fonts/font = ExtResource("10_5dclv")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_ie7eg")
 theme_override_styles/read_only = SubResource("StyleBoxFlat_yxj8g")
@@ -380,13 +400,13 @@ custom_minimum_size = Vector2(615, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("5_yr8r7")
+theme_override_fonts/font = ExtResource("6_3mxox")
 theme_override_font_sizes/font_size = 28
-theme_override_styles/focus = ExtResource("9_pyv2i")
+theme_override_styles/focus = ExtResource("9_1ey85")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_qiamd")
-theme_override_styles/hover = ExtResource("9_pyv2i")
-theme_override_styles/pressed = ExtResource("9_pyv2i")
-theme_override_styles/normal = ExtResource("9_pyv2i")
+theme_override_styles/hover = ExtResource("9_1ey85")
+theme_override_styles/pressed = ExtResource("9_1ey85")
+theme_override_styles/normal = ExtResource("9_1ey85")
 text = "Submit"
 
 [node name="FileDialog" type="FileDialog" parent="."]
@@ -400,7 +420,7 @@ access = 2
 use_native_dialog = true
 
 [connection signal="pressed" from="HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadFarmImageButton" to="." method="_on_upload_farm_image_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/CaputreImageButton" to="." method="_on_caputre_image_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/UploadPestImageButton" to="." method="_on_upload_pest_image_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/VBoxContainer2/SmoothScrollContainer/VBoxContainer/SeverityLevel" to="." method="_on_severity_level_text_changed"]
 [connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

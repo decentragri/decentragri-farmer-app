@@ -111,19 +111,6 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	data_image = image
 
 
-func get_scaled_png_bytes(image: Image, max_size: float = 512) -> PackedByteArray:
-	var w: float = image.get_width()
-	var h: float = image.get_height()
-
-	if w > max_size or h > max_size:
-		var maxim: float = max(w, h)
-		var scale_down: float = float(max_size) / float(maxim)
-		@warning_ignore("narrowing_conversion")
-		image.resize(w * scale_down, h * scale_down, Image.INTERPOLATE_LANCZOS)
-		
-	return image.save_png_to_buffer()
-
-
 func _on_submit_button_pressed() -> void:
 	var crop_type: String = %CropType.text.strip_edges()
 	var farm_name: String = %FarmName.text.strip_edges()
@@ -149,7 +136,7 @@ func _on_submit_button_pressed() -> void:
 		lat = 13.7221228
 		long = 123.5792278
 		
-	var string_image_byte_data: String = str(get_scaled_png_bytes(data_image))
+	var string_image_byte_data: String = str(Utils.get_scaled_png_bytes(data_image))
 	var farm_data: Dictionary[String, Variant] = {
 		"cropType": crop_type,
 		"farmName": farm_name,

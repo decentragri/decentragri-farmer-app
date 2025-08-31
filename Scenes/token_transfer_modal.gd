@@ -163,7 +163,7 @@ func _on_transfer_button_pressed() -> void:
 			return
 	
 	# All validations passed, create transfer data
-	var token_transfer_data: Dictionary[String, String] = {
+	var token_transfer_data: Dictionary[String, Variant] = {
 		"receiver": receiver,
 		"tokenName": token_name,
 		"amount": amount_text
