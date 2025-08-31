@@ -136,7 +136,7 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton/VBoxContainer"]
-modulate = Color(0.623529, 0.952941, 0, 1)
+modulate = Color(0.623529, 0.247059, 0, 1)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 texture = ExtResource("3_cc10j")
@@ -150,6 +150,52 @@ theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("2_4cn2g")
 theme_override_font_sizes/font_size = 24
 text = "Report pest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel5" type="Panel" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kkdix")
+
+[node name="ReportPestButton" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel5/ReportPestButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel5/ReportPestButton/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel5/ReportPestButton/VBoxContainer"]
+modulate = Color(0.623529, 0.952941, 0, 1)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("3_cc10j")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer/Panel5/ReportPestButton/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+theme_override_fonts/font = ExtResource("2_4cn2g")
+theme_override_font_sizes/font_size = 24
+text = "See Pest Scans"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -307,3 +353,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7eo2e")
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Panel/ReportPestButton" to="." method="_on_report_pest_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Panel5/ReportPestButton" to="." method="_on_report_pest_button_pressed"]
