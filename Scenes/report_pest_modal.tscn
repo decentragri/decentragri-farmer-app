@@ -74,6 +74,11 @@ shadow_offset = Vector2(0, 5)
 [node name="ReportPestModal" type="VBoxContainer"]
 z_index = 99
 custom_minimum_size = Vector2(689, 1214)
+anchors_preset = -1
+anchor_right = 0.956944
+anchor_bottom = 0.948438
+offset_right = -689.0
+offset_bottom = -1214.0
 script = ExtResource("1_iv8eu")
 metadata/_edit_use_anchors_ = true
 

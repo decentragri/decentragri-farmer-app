@@ -149,4 +149,4 @@ func _on_submit_button_pressed() -> void:
 	}
 	Farm.create_farm(farm_data)
 	# You can now pass `farm_data` to your backend or further processing
-	
+	visible = false

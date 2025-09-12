@@ -75,7 +75,6 @@ func on_toggle_container_visibility(button_name: String) -> void:
 
 	# Reset scroll position
 	%SmoothScrollContainer.scroll_vertical = 0
-
 	
 	
 func _on_home_container_forecast_button_pressed() -> void:
@@ -103,6 +102,10 @@ func _on_notification_button_pressed() -> void:
 		var _3: PropertyTweener = tween.tween_property(%NotificationsContainer, "modulate:a", 0.0, 0.25)
 		var _4: PropertyTweener = tween.tween_property(%NotificationsContainer, "position:y", %NotificationsContainer.position.y - 20, 0.25)
 		var _5: CallbackTweener = tween.tween_callback(Callable(_hide_notifications_container))
+		
+		%NotificationsContainer._on_bell_icon_clicked()
+		
+		
 	else:
 		# Reset visibility and position before animating in
 		%NotificationsContainer.visible = true
@@ -110,7 +113,7 @@ func _on_notification_button_pressed() -> void:
 		%NotificationsContainer.position.y += 20  # slide-down start
 		var _6: PropertyTweener = tween.tween_property(%NotificationsContainer, "modulate:a", 1.0, 0.25)
 		var _7: PropertyTweener = tween.tween_property(%NotificationsContainer, "position:y", %NotificationsContainer.position.y - 20, 0.25)
-
+	
 	
 func _hide_notifications_container() -> void:
 	%NotificationsContainer.visible = false
@@ -118,4 +121,9 @@ func _hide_notifications_container() -> void:
 	
 func _on_notifications_container_unread_count_updated(count_text: String) -> void:
 	%NotificationCountPanel.visible = count_text.to_int() > 0
+	%NotificationCount.text = count_text
+
+
+func _on_notifications_container_badge_updated(show_badge: bool, count_text: String) -> void:
+	%NotificationCountPanel.visible = show_badge
 	%NotificationCount.text = count_text

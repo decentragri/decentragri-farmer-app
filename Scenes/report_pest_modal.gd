@@ -13,6 +13,16 @@ func connect_signals() -> void:
 	var _2: int = GpsLocator.gps_coordinates_received.connect(_on_gps_coordinates_received)
 	var _3: int = Camera.image_request_completed.connect(_display_captured_image)
 	var _4: int = Camera.image_request_failed.connect(_image_request_failed)
+	var _5: int = Pest.save_pest_report_complete.connect(_on_save_pest_report_complete)
+
+
+func _on_save_pest_report_complete(message: Dictionary) -> void:
+	if message.has("error"):
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box(message.error)
+	else:
+		for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+			menu.message_box("Pest report submitted successfully")
 
 
 func _image_request_failed(message: String) -> void:
@@ -73,8 +83,8 @@ func reset_fields() -> void:
 	for field: Variant in get_tree().get_nodes_in_group(&"PestModalFields"):
 		field.text = ""
 	%PestImage.texture = null
-
-
+	
+	
 func _on_severity_level_text_changed(severity: String) -> void:
 	var allowed_values: Array[String]= ["1", "2", "3", "4", "5"]
 	if severity in allowed_values:
@@ -126,7 +136,9 @@ func _on_submit_button_pressed() -> void:
 	}
 	
 	Pest.save_pest_report(pest_data)
-
+	visible = false
+	for menu: Control in get_tree().get_nodes_in_group(&"MainMenu"):
+		menu.message_box("Pest report submitted")
 
 
 func _on_upload_pest_image_button_pressed() -> void:

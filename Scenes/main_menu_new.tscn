@@ -418,4 +418,5 @@ anchor_bottom = 0.964844
 [connection signal="on_plant_scan_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/PlantHealthScanModal" method="_on_farm_profile_container_on_plant_scan_button_pressed"]
 [connection signal="on_soil_analysis_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/FarmProfileContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/SoilAnalysisModal" method="_on_farm_profile_container_on_soil_analysis_button_pressed"]
 [connection signal="wallet_token_button_pressed" from="ColorRect/VBoxContainer/SmoothScrollContainer/ContentContainer/WalletContainer" to="ModalContainer/ColorRect/VBoxContainer/HBoxContainer/TokenTransferModal" method="_on_wallet_container_wallet_token_button_pressed"]
+[connection signal="badge_updated" from="NotificationsContainer" to="." method="_on_notifications_container_badge_updated"]
 [connection signal="unread_count_updated" from="NotificationsContainer" to="." method="_on_notifications_container_unread_count_updated"]
