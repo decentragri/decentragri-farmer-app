@@ -221,7 +221,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
 theme_override_fonts/font = ExtResource("5_cc07j")
 theme_override_font_sizes/font_size = 18
-text = "0.001 FDAGRI AVAILABLE"
+text = "0 FDAGRI AVAILABLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
