@@ -31,6 +31,7 @@ var last_login_type: String
 
 var access_token: String
 var refresh_token: String
+var offline_mode: bool = false
 
 var login_timeout: int = 0
 var login_timer: Timer
@@ -51,12 +52,31 @@ func auto_login_user() -> void:
 			access_token = session_data.access_token
 			refresh_token = session_data.refresh_token
 			last_login_type = session_data.login_type
-			if last_login_type == 'decentragri':
+			logged_in_user = str(session_data.get("username", ""))
+			
+			# Try to validate session online, fallback to offline if network/server fails
+			var _tried_online: bool = false
+			if last_login_type == 'decentragri' or last_login_type == 'passkey':
+				_tried_online = true
+				offline_mode = false
+				# Start validation and wait for completion or timeout
 				validate_session()
-			elif last_login_type == 'passkey':
-				validate_session()
+				
+				# Wait for online validation or timeout
+				var wait_time: float = 3.0
+				var timer: SceneTreeTimer = get_tree().create_timer(wait_time)
+				await timer.timeout
+				
+				# If we reach here, either validation completed or timed out
+				# Check if we're still waiting for validation (no success yet)
+				if not offline_mode:
+					Utils.logger.info("Online validation timed out, falling back to offline login mode.")
+					offline_mode = true
+					complete_session_check({"offline": true, "username": logged_in_user})
 			else:
-				complete_session_check({})
+				# Unknown login type, go offline
+				offline_mode = true
+				complete_session_check({"offline": true, "username": logged_in_user})
 		else:
 			Utils.logger.debug("No saved  session data, so no autologin will be performed")
 			# Set up a timer to delay the emission of the signal for a short duration
@@ -71,7 +91,7 @@ func auto_login_user() -> void:
 		complete_session_check_wait_timer.start()
 	
 	
-func load_session() -> Dictionary:
+func load_session(max_age_seconds: int = 60 * 60 * 24 * 30) -> Dictionary:
 	var session_data: Variant
 
 	if OS.get_name() == "Android":
@@ -91,6 +111,14 @@ func load_session() -> Dictionary:
 			source = "local storage"
 		Utils.logger.debug("No session data found from " + source)
 		return {}
+
+	# Check session age (optional, default 30 days)
+	if session_data.has("timestamp"):
+		var now: float = Time.get_unix_time_from_system()
+		var age: float = now - float(str(session_data.timestamp))
+		if age > max_age_seconds:
+			Utils.logger.info("Session expired (age: %d seconds)" % age)
+			return {}
 
 	Utils.logger.info("Loaded session data: " + str(session_data))
 	return session_data
@@ -130,6 +158,7 @@ func _on_ValidateSession_request_completed(_result: int, response_code: int, hea
 		# Parse the JSON body of the response
 		var json_body: Variant = JSON.parse_string(body.get_string_from_utf8())
 		if json_body == null:
+			offline_mode = false
 			complete_session_check({ })
 			return
 			
@@ -138,9 +167,11 @@ func _on_ValidateSession_request_completed(_result: int, response_code: int, hea
 
 		if json_body.has("error"):
 			Utils.logger.error("validate session failure: " + str(json_body.error))
+			offline_mode = false
 		elif json_body.has("success"):
 			# Log success and set the  as logged in
 			Utils.logger.info("validate session success.")
+			offline_mode = false
 			
 			var username: String = json_body.username
 			set_user_logged_in(username)
@@ -153,13 +184,15 @@ func _on_ValidateSession_request_completed(_result: int, response_code: int, hea
 			login_type = json_body.loginType
 			
 			login_complete.emit(result_body)
-			save_session(access_token, refresh_token, login_type)
+			save_session(access_token, refresh_token, login_type, logged_in_user)
 
 		# Trigger the completion of the session check with the result
+		result_body["offline"] = false
 		complete_session_check(result_body)
 		renew_access_token_timer()
 	else:
 		# Trigger the completion of the session check with an empty result in case of failure
+		offline_mode = false
 		complete_session_check({ })
 	
 	
@@ -242,8 +275,8 @@ func _on_Login_request_completed(_result: int, response_code: int, headers: Arra
 			refresh_token = json_body.refreshToken
 			login_type = json_body.loginType
 
-			save_session(access_token, refresh_token, login_type)
 			var username: String = json_body.username
+			save_session(access_token, refresh_token, login_type, username)
 			set_user_logged_in(username)
 
 			renew_access_token_timer()
@@ -293,7 +326,7 @@ func _on_Register_request_completed(_result: int, response_code: int, headers: A
 			login_type = json_body.loginType
 			var username: String = json_body.username
 			set_user_logged_in(username)
-			save_session(access_token, refresh_token, login_type)
+			save_session(access_token, refresh_token, login_type, username)
 			renew_access_token_timer()
 			Utils.logger.info("Register success")
 		else:
@@ -347,14 +380,18 @@ func set_user_logged_in(user_name: String) -> void:
 		setup_login_timer()
 		
 		
-func save_session(token_access: String, token_refresh: String, type_login: String) -> void:
+func save_session(token_access: String, token_refresh: String, type_login: String, username: String = "", extra: Dictionary = {}) -> void:
 	# Log debug information about the session being saved
 	Utils.logger.debug("Saving session, access: " + str(token_access) + ", refresh: " + str(token_refresh))
-	var session_data: Dictionary[String, String] = {
+	var session_data: Dictionary = {
 		"access_token": token_access,
 		"refresh_token": token_refresh,
-		"login_type": type_login
+		"login_type": type_login,
+		"username": username,
+		"timestamp": Time.get_unix_time_from_system()
 	}
+	for k: String in extra.keys():
+		session_data[k] = extra[k]
 	# Check if the OS is Android
 	if OS.get_name() == "Android":
 		SessionTokens.store_jwt_tokens(session_data)
@@ -438,7 +475,7 @@ func _on_RequestNewAccessToken_completed(_result: int, response_code: int, heade
 			# Save the session and set the as logged in
 			refresh_token = json_body.refreshToken
 			access_token = json_body.accessToken
-			save_session(access_token, refresh_token, login_type)
+			save_session(access_token, refresh_token, login_type, logged_in_user)
 			token_renew_complete.emit(json_body)
 	else:
 		# Trigger the completion of the session check with an empty result in case of failure
