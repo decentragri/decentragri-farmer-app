@@ -87,6 +87,18 @@ func emit_token_signal(token_texture: Texture, balance: String, label_name: Stri
 		
 		
 func _on_user_data_received(user_data: Dictionary) -> void:
+	# Handle offline mode - show appropriate placeholders
+	if user_data.has("offline") and user_data.offline:
+		%ETHBalance.text = "ETH ---.--"
+		%rswETHBalance.text = "rswETH ---.--"
+		%FdagriBalance.text = "FDAGRI ---.--"
+		%DagriBalance.text = "DAGRI ---.--"
+		%Username.text = user_data.get("username", "")
+		%SmartWalletAddress.text = "Offline Mode - No Wallet Access"
+		connect_signals()
+		return
+	
+	# Handle online mode with full wallet data
 	var eth_balance: float = user_data.walletData.ethBalance.to_float()
 	var rsweth_balance: float = user_data.walletData.rsWETHBalance.to_float()
 	var fdagri_balance: float = user_data.walletData.farmerCreditTokenBalance.to_float()
@@ -97,17 +109,14 @@ func _on_user_data_received(user_data: Dictionary) -> void:
 	swell_price = user_data.walletData.swellPriceUSD
 	dagri_price = user_data.walletData.dagriPriceUSD
 	
-	
 	%ETHBalance.text = "ETH " + four_digit_balance_format(eth_balance)
 	%rswETHBalance.text = "rswETH " + four_digit_balance_format(rsweth_balance)
 	#%SwellBalance.text = "SWELL " + four_digit_balance_format(swell_balance)
 	%FdagriBalance.text = "FDAGRI " + four_digit_balance_format(fdagri_balance)
 	%DagriBalance.text = "DAGRI " + four_digit_balance_format(dagri_balance) 
-	
+
 	%Username.text = User.username
 	%SmartWalletAddress.text = User.wallet_address
 	connect_signals()
-	
-
 func four_digit_balance_format(balance: float) -> String:
 	return "0" if balance == 0.0 else String.num(balance, 5)

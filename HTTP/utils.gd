@@ -198,6 +198,9 @@ func send_get_request(http_node: HTTPRequest, request_url: String) -> void:
 	var _get_request_send: Error = http_node.request(request_url, headers, HTTPClient.METHOD_GET)
 
 func add_jwt_token_headers(headers: Array[String] = []) -> Array:
+	# Don't add auth headers in offline mode
+	if Auth.offline_mode:
+		return headers
 	if Auth.access_token != null:
 		headers.append("Authorization: Bearer " + Auth.access_token)
 	return headers
@@ -235,6 +238,9 @@ func send_patch_request(http_node: HTTPRequest, request_url: String, payload: Va
 	
 	
 func add_jwt_refresh_token_headers(headers: Array[String] = []) -> Array:
+	# Don't add auth headers in offline mode
+	if Auth.offline_mode:
+		return headers
 	if Auth.refresh_token != null:
 		headers.append("Authorization: Bearer " + Auth.refresh_token)
 	return headers

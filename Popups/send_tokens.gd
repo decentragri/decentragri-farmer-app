@@ -16,7 +16,12 @@ var price: int
 #region 🔁 Lifecycle & Initialization
 
 func _ready() -> void:
-	%WalletAddress.text = User.wallet_address
+	# Handle offline mode - disable wallet functionality
+	if User.wallet_address.is_empty():
+		%WalletAddress.text = "Offline Mode - No Wallet Access"
+		# You might want to disable token transfer buttons here
+	else:
+		%WalletAddress.text = User.wallet_address
 	connect_signals()
 
 func connect_signals() -> void:

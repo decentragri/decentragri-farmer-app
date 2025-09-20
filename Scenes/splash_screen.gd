@@ -23,7 +23,8 @@ func _on_session_check_complete(session: Dictionary) -> void:
 	
 	if session.has("error"):
 		change_to_auth_scene()
-	elif session.has("walletAddress"):
+	elif session.has("walletAddress") or (session.has("offline") and session.offline):
+		# Allow access to main menu for both online authenticated users and offline mode
 		change_to_main_menu_scene()
 	
 	

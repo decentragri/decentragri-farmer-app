@@ -28,7 +28,18 @@ func _on_wallet_copy_button_pressed(button: TextureButton) -> void:
 	on_error_encountered.emit("Successfully copied " + button.name)
 	
 func _on_user_data_received(user_data: Dictionary) -> void:
-	%UsernameLogin.text = user_data.username
+	%UsernameLogin.text = user_data.get("username", "")
+	
+	# Handle offline mode - show appropriate placeholders
+	if user_data.has("offline") and user_data.offline:
+		%SmartWalletAddress.text = "Offline Mode - No Wallet Access"
+		%ETHBalance.text = "ETH ---.--"
+		%RSWETHBalance.text = "rswETH ---.--"
+		%SwellBalance.text = "SWELL ---.--"
+		%DecentraBalance.text = "DAGRI ---.--"
+		return
+	
+	# Handle online mode with full wallet data
 	%SmartWalletAddress.text = user_data.walletAddress
 	
 	var eth_balance: float = user_data.walletData.ethBalance.to_float()

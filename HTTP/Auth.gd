@@ -5,7 +5,7 @@ const utils_static: Script = preload("res://HTTP/utils.gd")
 
 var ValidateSession: HTTPRequest 
 var wrValidateSession: WeakRef
-signal session_check_complete(session: Dictionary[String, String])
+signal session_check_complete(session: Dictionary)
 
 
 var Login: HTTPRequest

@@ -17,11 +17,21 @@ func connect_signals() -> void:
 	
 	
 func _on_get_farms_complete(farms: Array) -> void:
+	# Clear existing farm cards first
+	for child: Node in %FarmContainer.get_children():
+		child.queue_free()
+	
+	# Add farm cards from cache or server
 	for farm: Dictionary in farms:
 		var farm_card_instance: Control = farm_card.instantiate()
 		farm_card_instance.farm_slot_data(farm)
 		farm_card_instance.farm_button_pressed.connect(_on_farm_button_pressed)
 		%FarmContainer.add_child(farm_card_instance)
+	
+	# Log cache info
+	var cache_info: Dictionary = Farm.get_cache_info()
+	if cache_info.cached_count > 0:
+		Utils.logger.info("My Farms: %d farms loaded from cache (%.1f hours old)" % [cache_info.cached_count, cache_info.cache_age_hours])
 	
 	
 func _on_create_farm_button_pressed() -> void:
